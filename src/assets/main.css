@@ -1,0 +1,274 @@
+@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: linear-gradient(to bottom right, #191919, #2c2c2c);
+  background-size: cover, cover;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  color: #f0f0f0;
+}
+
+.logo {
+    font-family: "Righteous", sans-serif;
+    background-color: #f3ec78;
+    font-size: 2rem;
+    background-image: linear-gradient(90deg, #C94079, #FF8C42);
+    background-clip: text;
+    background-size: 100%
+    background-repeat;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+}
+
+.moto {
+    position: absolute; /* Position relative to .homepage-left */
+    top: 30px; /* Adjust distance from the top edge */
+    left: 50px; /* Adjust distance from the left edge */
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 2px;
+    line-height: 0.8;
+}
+
+
+/* Font Settings */
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('../assets/fonts/Bebas_Neue/BebasNeue-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Righteous", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Righteous&display=swap');
+}
+
+@font-face {
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+}
+
+/* Global Button Styling */
+.button {
+    background-color: #C94079;  /* Primary green color */
+    color: white;  /* Text color */
+    border: none;  /* Remove default border */
+    border-radius: 12px;  /* Rounded corners */
+    padding: 12px 30px;  /* Comfortable padding */
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;  /* Text size */
+    font-weight: 500;  /* Medium font weight */
+    text-transform: uppercase;  /* All caps for modern feel */
+    letter-spacing: 1px;  /* Slight spacing between letters */
+    cursor: pointer;  /* Pointer cursor on hover */
+    transition: all 0.3s ease;  /* Smooth transition for all properties */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    display: inline-block;  /* Inline block for flexible layout */
+}
+  
+.button.secondary {
+    background-color: #4079c9;  /* Primary pink color */
+    color: white;  /* Text color */
+    border: none;  /* Remove default border */
+    border-radius: 12px;  /* Rounded corners */
+    padding: 12px 30px;  /* Comfortable padding */
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;  /* Text size */
+    font-weight: 500;  /* Medium font weight */
+    text-transform: uppercase;  /* All caps for modern feel */
+    letter-spacing: 1px;  /* Slight spacing between letters */
+    cursor: pointer;  /* Pointer cursor on hover */
+    transition: all 0.3s ease;  /* Smooth transition for all properties */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    display: inline-block;  /* Inline block for flexible layout */
+}
+  
+/* Hover Effect */
+.button:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
+    transform: translateY(-2px);  /* Slight upward movement */
+    background-color: #6CB439;
+}
+  
+.button.secondary:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
+    transform: translateY(-2px);  /* Slight upward movement */
+    background-color: #396CB4;
+}
+  
+/* Focus Effect */
+.button:focus {
+    outline: none;  /* Remove default outline */
+}
+  
+.button.secondary:focus {
+    outline: none;  /* Remove default outline */
+}
+  
+/* Active Effect */
+.button:active {
+    background-color: #60A033;  /* Darker purple when pressed */
+    transform: translateY(1px);  /* Slight downward movement */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Reduced shadow on press */
+}
+  
+.button.secondary:active {
+    background-color: #3360A0;  /* Darker purple when pressed */
+    transform: translateY(1px);  /* Slight downward movement */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Reduced shadow on press */
+}
+  
+/* Disabled Button */
+.button:disabled {
+    background-color: #ccc;  /* Gray background for disabled state */
+    color: #888;  /* Dimmed text */
+    cursor: not-allowed;  /* Block interaction */
+    box-shadow: none;  /* Remove shadow for disabled state */
+}
+  
+.button.secondary:disabled {
+    background-color: #ccc;  /* Gray background for disabled state */
+    color: #888;  /* Dimmed text */
+    cursor: not-allowed;  /* Block interaction */
+    box-shadow: none;  /* Remove shadow for disabled state */
+}
+
+/* Card Styling */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem;
+    background: rgba(39, 39, 39, 0.1); /* Semi-transparent background matching #191919 */
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f0f0f0;
+    text-align: center;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.3s ease-in-out;
+
+    /* Frosted glass effect */
+    backdrop-filter: blur(60px); /* Applies blur effect to the background */
+    -webkit-backdrop-filter: blur(60px); /* For Safari support */
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #f0f0f0;
+    background: linear-gradient(to bottom right, #2e2e2e, #3c3c3c);
+    border-radius: 10px; /* Slightly smaller border radius */
+    outline: 2px solid transparent;
+    border: none;
+    border-image: linear-gradient(to right, #505050, #C94079) 1;
+    box-shadow: 0 0 0 2px #505050;
+    transition: all 0.3s ease;
+}
+
+input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+}
+
+input:focus,select:focus {
+    outline-color: #C94079; /* Solid color for active state */
+    box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8); /* Subtle glowing effect */
+}
+
+option {
+    background-color: #2e2e2e;
+    border: none;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    color: #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+/* Message Styling */
+.error-message {
+    color: red;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.success-message {
+    font-size: 1rem;
+    color: green;
+    text-align: center;
+}
+
+/* Calendar Customization - VCalendar Global Theming */
+:root {
+    /* Calendar Border, Background, and Font Colors */
+    --vc-border-color: #444;
+    --vc-text-color: #f0f0f0;
+    --vc-title-color: #ff8c42; /* Header Month Name */
+    --vc-header-text-color: #ff8c42; /* Day-of-Week Headers */
+    --vc-highlight-color: #c94079; /* Selected Day Background */
+    --vc-today-color: #ff8c42; /* Today's Highlight Color */
+    --vc-focus-outline-color: #c94079; /* Focus Border */
+  
+    /* Day-Specific Overrides */
+    --vc-day-content-hover-color: rgba(255, 140, 66, 0.3); /* Hover Effect */
+    --vc-disabled-color: #666; /* Disabled Date Color */
+}
+
+/* Header (Month Names & Navigation Arrows) */
+.vc-container .vc-title {
+    color: #ff8c42;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+  
+.vc-container .vc-navigation {
+    color: #ff8c42;
+}
+  
+  /* Weekday Headers (Sun, Mon, etc.) */
+.vc-container .vc-weekday {
+    color: #ff8c42;
+    font-weight: 600;
+}
+  
+  
+  /* Days of the Month */
+.vc-container .vc-day {
+    color: #f0f0f0;
+    font-size: 0.9rem;
+}
+  
+.vc-container .vc-day:hover {
+    cursor: pointer;
+}
+
+  

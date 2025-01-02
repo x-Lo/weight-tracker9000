@@ -1,0 +1,179 @@
+<template>
+  <div class="info-page" v-if="resultsData.hidden">
+    <div class="info-container">
+      <p>The first step we need to take is to calculate your maintenance calories</p>
+      <p>The calculator will do that by using the Mifflin-St Jeor Formula, which is widely known to be the most accurate.</p>
+      <p>Based on that data, we will configure a weight plan just for you</p>
+      <p>With goal weight, calories and even macronutrients included!</p>
+    </div>
+  </div>
+  <div class="results-page" v-else>
+    <h1>Your results:</h1>
+
+    <div class="results-grid">
+      <div class="grid-item calories">
+        <h2>Your Maintenance Calories:</h2>
+        <div class="calorie-section">
+          <span class="calories-value">{{ resultsData.tdee }}</span>
+          <span class="calories-label">calories per day</span>
+        </div>
+        <div class="calorie-section" style="border: none;">
+          <span class="calories-value">{{ resultsData.tdee ? resultsData.tdee * 7 : '-' }}</span>
+          <span class="calories-label">calories per week</span>
+        </div>
+      </div>
+
+      <div class="grid-item plan">
+        <h2>Plan Creation:</h2>
+        <div class="plan-section">
+          <h3>What is your goal?</h3>
+          <div class="plan-grid">
+            <div class="grid-item fatloss" @click="updatePlanType" id="FAT LOSS">FAT LOSS</div>
+            <div class="grid-item maintenance" @click="updatePlanType" id="MAINTENANCE">MAINTENANCE</div>
+            <div class="grid-item musclegain" @click="updatePlanType" id="MUSCLE GAIN">MUSCLE GAIN</div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent } from "vue";
+import { useNavigation } from '@/composables/useNavigation';
+import { useAppStore } from '@/stores/appStore';
+
+export default defineComponent({
+  setup() {
+    const { navigate } = useNavigation(); // Use the composable
+    const store = useAppStore();
+    
+
+    const resultsData = computed(() => store.resultsData);
+
+    const updatePlanType = (event: MouseEvent) => {
+      const clickedElement = event.target as HTMLElement;
+      if (clickedElement.id) {
+        console.time('updateResultsProperty');
+        store.updateResultsProperty('typeOfPlan', clickedElement.id.trim());
+        console.timeEnd('updateResultsProperty');
+      }
+      console.time('navigate');
+      navigate('personal');
+      console.timeEnd('navigate');
+    };
+
+    return { navigate, resultsData, updatePlanType, store };
+  },
+});
+</script>
+
+<style scoped>
+/* General Page Styling */
+.results-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 1rem;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f0f0f0;
+}
+
+.results-page h1 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.results-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.grid-item {
+  width: 50vh;
+  background: rgba(39, 39, 39, 0.1);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #f0f0f0;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+}
+
+.plan-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.plan-grid {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.plan-grid .grid-item{
+  width:  30vh;
+  background-color: #C94079;
+}
+
+.calorie-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.calories-value {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.calories-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #f0f0f0;
+}
+
+.grid-item:hover {
+  transform: translateY(-5px);
+}
+
+.plan-grid .grid-item:hover {
+  cursor: pointer;
+}
+</style>
