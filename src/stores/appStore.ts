@@ -28,7 +28,8 @@ export const useAppStore = defineStore('appStore', {
       phaseDuration: 0,
       startDate: new Date(),
       currentWeight: 0,
-      streak: 1,
+      streak: 0,
+      lastSubmissionDate: null,
     },
     userId: null, // Authenticated user ID
     username: "",

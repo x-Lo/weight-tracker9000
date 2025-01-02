@@ -40,19 +40,42 @@ export default defineComponent({
     const weightSubmitted = ref(false);
     const successMessage = ref("");
     const errorMessage = ref("");
-    const today = new Date().toISOString().split("T")[0]; // Get today's date in 'YYYY-MM-DD' format
+    const today = new Date().toISOString().split("T")[0]; // Today's date in 'YYYY-MM-DD' format
 
     // Function to check if a weight was submitted today
     const checkIfWeightSubmittedToday = () => {
       weightSubmitted.value = store.calendarAttributes.some((attr: any) => {
-      if (typeof attr.dates === "string") {
-        return attr.dates === today; // Compare directly if `dates` is a string
-      }
-      if (Array.isArray(attr.dates)) {
-        return attr.dates.includes(today); // Check for inclusion if `dates` is an array
-      }
+        if (typeof attr.dates === "string") {
+          return attr.dates === today; // Compare directly if `dates` is a string
+        }
+        if (Array.isArray(attr.dates)) {
+          return attr.dates.includes(today); // Check for inclusion if `dates` is an array
+        }
         return false; // Fallback for unexpected structures
       });
+    };
+
+    // Function to validate the streak
+    const validateStreak = () => {
+      const lastSubmissionDate = store.resultsData.lastSubmissionDate;
+      if (!lastSubmissionDate) {
+        // No previous submissions; streak should start from 0
+        store.updateResultsProperty("streak", 0);
+        return;
+      }
+
+      // Calculate difference in days between the last submission and today
+      const lastSubmission = new Date(lastSubmissionDate);
+      const currentDay = new Date(today);
+
+      const differenceInDays = Math.floor(
+        (currentDay.getTime() - lastSubmission.getTime()) / (1000 * 60 * 60 * 24)
+      );
+
+      if (differenceInDays > 1) {
+        // Missed one or more days; reset streak to 0
+        store.updateResultsProperty("streak", 0);
+      }
     };
 
     // Function to handle weight submission
@@ -83,8 +106,11 @@ export default defineComponent({
       store.updateResultsProperty("currentWeight", currentWeightInput.value);
 
       // Update the streak
-      const streak = store.resultsData.streak + 1;
-      store.updateResultsProperty("streak", streak);
+      const currentStreak = store.resultsData.streak + 1;
+      store.updateResultsProperty("streak", currentStreak);
+
+      // Update the last submission date
+      store.updateResultsProperty("lastSubmissionDate", today);
 
       // Set success message and mark today's weight as submitted
       successMessage.value = "Weight logged successfully!";
@@ -92,8 +118,9 @@ export default defineComponent({
       currentWeightInput.value = ""; // Clear the input
     };
 
-    // Check if today's weight is already logged on page load
+    // Validate streak and check if today's weight is already logged on page load
     onMounted(() => {
+      validateStreak();
       checkIfWeightSubmittedToday();
     });
 
@@ -114,10 +141,10 @@ export default defineComponent({
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  gap: 5rem;
+  gap: 3rem;
   padding: 1rem;
 }
 
@@ -127,9 +154,22 @@ export default defineComponent({
   font-size: 2rem; /* Emphasize the brand name */
 }
 
+.submit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 40vh;
+}
+
 .info-message {
   font-size: 1rem; /* Larger, yet readable */
   color: #f0f0f0;
   text-align: center;
+  margin-top: 2rem;
+}
+
+.feedback-messages {
+  margin-bottom: 4rem;
 }
 </style>

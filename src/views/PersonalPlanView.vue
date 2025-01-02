@@ -216,6 +216,7 @@ export default {
             // Update attributes in Pinia store
             store.setCalendarAttributes(attributes);
             store.updateResultsProperty('startDate', startDate);
+            store.updateResultsProperty('streak', 1);
             console.log('Calendar attributes updated:', attributes);
             navigate('calendar');
         };
