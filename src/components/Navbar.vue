@@ -118,14 +118,14 @@
   color: #fff;
   text-decoration: none;
   font-size: 1.5rem;
-  font-family: "Righteous", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Active link styling */
 .nav-link.active {
   color: #C94079;
   font-size: 1.5rem;
-  font-family: "Righteous", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .hamburger {
