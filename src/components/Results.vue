@@ -153,6 +153,8 @@ export default defineComponent({
   gap: 1rem;
 }
 
+
+
 .plan-grid {
   width: 100%;
   height: 80%;
@@ -165,7 +167,11 @@ export default defineComponent({
 
 .plan-grid .grid-item{
   width:  30vh;
-  background-color: #C94079;
+}
+
+.plan-grid .grid-item:hover {
+  outline-color: #C94079; /* Solid color for active state */
+  box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8); /* Subtle glowing effect */
 }
 
 .calorie-section {
@@ -193,10 +199,6 @@ h2 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
   color: #f0f0f0;
-}
-
-.grid-item:hover {
-  transform: translateY(-5px);
 }
 
 .plan-grid .grid-item:hover {
