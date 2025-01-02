@@ -116,12 +116,12 @@ export default {
                 'FAT LOSS': {
                     slow: -250,
                     moderate: -500,
-                    fast: -700,
+                    fast: -1000,
                 },
                 'MUSCLE GAIN': {
                     slow: +250,
                     moderate: +500,
-                    fast: +700,
+                    fast: +1000,
                 },
             };
 
@@ -215,6 +215,7 @@ export default {
 
             // Update attributes in Pinia store
             store.setCalendarAttributes(attributes);
+            store.updateResultsProperty('startDate', startDate);
             console.log('Calendar attributes updated:', attributes);
             navigate('calendar');
         };

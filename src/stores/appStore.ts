@@ -26,6 +26,7 @@ export const useAppStore = defineStore('appStore', {
       carbs: 0,
       fats: 0,
       phaseDuration: 0,
+      startDate: new Date(),
       currentWeight: 0,
       streak: 1,
     },

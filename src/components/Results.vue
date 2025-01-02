@@ -1,11 +1,22 @@
 <template>
   <div class="info-page" v-if="resultsData.hidden">
     <div class="info-container">
-      <p>The first step we need to take is to calculate your maintenance calories</p>
-      <p>The calculator will do that by using the Mifflin-St Jeor Formula, which is widely known to be the most accurate.</p>
-      <p>Based on that data, we will configure a weight plan just for you</p>
-      <p>With goal weight, calories and even macronutrients included!</p>
+      <div class="info-step">
+        <h1>The first step we need to take is to calculate your maintenance calories.</h1>
+      </div>
+      <div class="info-step">
+        <h2>
+          The calculator will do that by using the Mifflin-St Jeor Formula, which is widely known to be the most accurate.
+        </h2>
+      </div>
+      <div class="info-step">
+        <h3>Based on that data, we will configure a weight plan just for you.</h3>
+      </div>
+      <div class="info-step">
+        <h4>With goal weight, calories, and even macronutrients included!</h4>
+      </div>
     </div>
+
   </div>
   <div class="results-page" v-else>
     <h1>Your results:</h1>
@@ -83,6 +94,21 @@ export default defineComponent({
   font-size: 1rem;
   font-weight: bold;
   color: #f0f0f0;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers content horizontally */
+  text-align: center;
+  gap: 2rem; /* Space between sections */
+  padding: 2rem; /* Adds breathing room around the container */
+  max-width: 800px; /* Limits content width for readability */
+  margin: 0 auto; /* Centers the container on the page */
+}
+
+.info-step {
+  padding: 1rem 2rem; /* Adds space around each step for visual clarity */
 }
 
 .results-page h1 {

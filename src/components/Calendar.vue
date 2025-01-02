@@ -4,8 +4,20 @@
         <VCalendar class="v-calendar" :color="selectedColor" :attributes="calendarAttributes" expanded borderless transparent/>
       </div>
       <div class="info-grid">
-        <div class="grid-item days"> Days Remaining: {{ resultsData.phaseDuration - resultsData.streak }}</div>
-        <div class="grid-item streak">Current Streak: {{ resultsData.streak }}</div>
+        <div class="grid-item days"> 
+          <div class="days-section">
+            <h2>Days Remaining: </h2>
+            <span class="days-value">{{ daysRemaining }}</span>
+            <span class="days-label" style="">DAYS</span>
+          </div>
+        </div>
+        <div class="grid-item streak">
+          <div class="days-section">
+            <h2>Current Streak: </h2>
+            <span class="days-value">{{ resultsData.streak }}</span>
+            <span class="days-label" style="">DAYS</span>
+          </div>
+        </div>
         <div class="grid-item goal"></div>
       </div>
     </div>
@@ -22,11 +34,25 @@
       const resultsData = computed(() => store.resultsData);
       const calendarAttributes = computed(() => store.calendarAttributes);
       const selectedColor = ref("gray"); // Soft blue color for events/cursor highlight
+
+      const planStartDate = new Date(store.resultsData.startDate); // Ensure you have this property in your resultsData.
+      const today = new Date(); // Current date
+
+      // Calculate days passed
+      const daysPassed = Math.floor(
+        (today.getTime() - planStartDate.getTime()) / (1000 * 60 * 60 * 24)
+      );
+
+      // Compute days remaining
+      const daysRemaining = computed(() => {
+        return store.resultsData.phaseDuration - daysPassed;
+      });
   
       return {
         resultsData,
         selectedColor,
         calendarAttributes,
+        daysRemaining
       };
     },
   });
@@ -57,12 +83,13 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   gap: 2rem;
 }
 
 .grid-item {
   width: 40vh;
+  height: 50vh;
   border-radius: 20px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -77,6 +104,27 @@
   color: #f0f0f0;
   backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
+}
+
+.days-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.days-value {
+  margin-top: 3rem;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.days-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 </style>
   
