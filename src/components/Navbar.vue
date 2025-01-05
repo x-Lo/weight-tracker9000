@@ -41,57 +41,64 @@
   </template>
   
 <script lang="ts">
-  import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useAppStore } from "@/stores/appStore";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
   export default {
     name: "Navbar",
-    data() {
-    return {
-      menuOpen: false,
-      activeLink: "/", // Store the active link path
-      isLoggedIn: false, // Track if the user is logged in
-    };
-  },
-  created() {
-    // Set the active link based on the current route when the component is created
-    this.activeLink = this.$route.path;
 
-    // Check authentication state
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      this.isLoggedIn = !!user; // Update isLoggedIn based on user presence
-    });
-  },
-  watch: {
-    // Watch for route changes and update activeLink accordingly
-    $route(to) {
-      this.activeLink = to.path;
+    data() {
+      return {
+        menuOpen: false,
+        activeLink: "/", // Store the active link path
+        isLoggedIn: false, // Track if the user is logged in
+      };
     },
-  },
-  methods: {
-    toggleMenu() {
-      this.menuOpen = !this.menuOpen;
-    },
-    setActiveLink(path: string) {
-      this.activeLink = path;
-      this.menuOpen = false; // Close menu after selecting a link
-    },
-    async logout() {
+
+    created() {
+      // Set the active link based on the current route when the component is created
+      this.activeLink = this.$route.path;
+
+      // Check authentication state
       const auth = getAuth();
-      try {
-        await signOut(auth);
-        this.$router.push("/"); // Redirect to the home page after logout
+      onAuthStateChanged(auth, (user) => {
+        this.isLoggedIn = !!user; // Update isLoggedIn based on user presence
+      });
+    },
+
+    watch: {
+      // Watch for route changes and update activeLink accordingly
+      $route(to) {
+        this.activeLink = to.path;
+      },
+    },
+
+    methods: {
+      toggleMenu() {
+        this.menuOpen = !this.menuOpen;
+      },
+      setActiveLink(path: string) {
+        this.activeLink = path;
         this.menuOpen = false; // Close menu after selecting a link
-      } catch (error) {
-        console.error("Logout failed:", error);
-      }
+      },
+      async logout() {
+        const auth = getAuth();
+        try {
+          await signOut(auth);
+          const store = useAppStore();
+          store.logout();
+          this.$router.push("/"); // Redirect to the home page after logout
+          this.menuOpen = false; // Close menu after selecting a link
+        } catch (error) {
+          console.error("Logout failed:", error);
+        }
+      },
+      login() {
+        this.$router.push("/login"); // Redirect to the SignInView.vue
+        this.menuOpen = false; // Close menu after selecting a link
+      },
     },
-    login() {
-      this.$router.push("/login"); // Redirect to the SignInView.vue
-      this.menuOpen = false; // Close menu after selecting a link
-    },
-  },
-};
+  };
 </script>
   
 <style scoped>

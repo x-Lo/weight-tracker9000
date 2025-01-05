@@ -50,9 +50,18 @@ const router = createRouter({
           name: 'calendar',
           components: {
             left: () => import(/* webpackPrefetch: true */ '@/components/Calendar.vue'),
-            right: () => import(/* webpackPrefetch: true */ '@/components/DailyWeight.vue'),
+            
           },
           meta: { requiresAuth: false },
+        },
+        {
+          path: '/dailyweight',
+          name: 'dailyweight',
+          components: {
+            left: () => import(/* webpackPrefetch: true */ '@/components/Calendar.vue'),
+            right: () => import(/* webpackPrefetch: true */ '@/components/DailyWeight.vue'),
+          },
+          meta: { requiresAuth: true },
         },
 
       ],

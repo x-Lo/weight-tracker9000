@@ -1,6 +1,6 @@
 <template>
     <div class="dailyweight-page">
-        <h1>Welcome, <span class="user-name"><<!--{{ username }}-->></span>!</h1>
+        <h1>Welcome, <span class="user-name"> {{store.username}} </span>!</h1>
         <h2>Stay on track by submitting your weight for today.</h2>
             <div class="submit-form">
                 <input
@@ -130,6 +130,7 @@ export default defineComponent({
       submitWeight,
       successMessage,
       errorMessage,
+      store,
     };
   },
 });

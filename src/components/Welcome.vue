@@ -12,7 +12,7 @@
       </div>
       <div
         class="grid-item"
-        @click="triggerAnimation('calendar')"
+        @click="triggerAnimation('dailyweight')"
       >
         LOG YOUR PROGRESS
       </div>

@@ -129,6 +129,10 @@ export const useAppStore = defineStore('appStore', {
         console.error("Error fetching user data:", error);
       }
     },
-    
+
+    // user data reset method
+    logout() {
+      this.$reset(); // Reset all state to initial values
+    }
   }
 }); 
