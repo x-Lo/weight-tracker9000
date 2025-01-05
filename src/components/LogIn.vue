@@ -40,6 +40,7 @@
   import { getUserProfile } from "@/services/userService";
   import { useRouter } from "vue-router";
   import { useNavigation } from "@/composables/useNavigation";
+  import { useAppStore } from "@/stores/appStore";
   
   export default defineComponent({
     setup() {
@@ -48,6 +49,7 @@
       const errorMessage = ref("");
       const router = useRouter(); // Access the router instance
       const { navigate } = useNavigation();
+      const store = useAppStore();
 
       const handleNavigate = (route: string) => {
         navigate(route);
@@ -60,6 +62,7 @@
   
           // Fetch user profile after logging in
           const userProfile = await getUserProfile(user.uid);
+          store.fetchUserData(user.uid);
           console.log("User logged in successfully!", userProfile);
           router.push("/"); // Navigate to HomeView
         } catch (error) {

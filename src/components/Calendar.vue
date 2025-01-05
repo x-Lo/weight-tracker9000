@@ -18,7 +18,12 @@
             <span class="days-label" style="">DAYS</span>
           </div>
         </div>
-        <div class="grid-item goal"></div>
+        <div class="grid-item goal">
+          <div class="goal-section">
+            <h2>Save your plan by creating an account!</h2>
+            <button class="button" @click="savePlan()">Create Account</button>
+          </div>
+        </div>
       </div>
     </div>
 </template>
@@ -26,11 +31,13 @@
 <script lang="ts">
   import { computed, defineComponent, ref } from "vue";
   import { useAppStore } from "@/stores/appStore";
+  import { useNavigation } from '@/composables/useNavigation';
   
   export default defineComponent({
     name: "Calendar",
     setup() {
       const store = useAppStore();
+      const { navigate } = useNavigation(); // Use the composable
       const resultsData = computed(() => store.resultsData);
       const calendarAttributes = computed(() => store.calendarAttributes);
       const selectedColor = ref("gray"); // Soft blue color for events/cursor highlight
@@ -47,12 +54,18 @@
       const daysRemaining = computed(() => {
         return store.resultsData.phaseDuration - daysPassed;
       });
-  
+
+      // redirect the user to signup
+      const savePlan = () => {
+        navigate('signup');
+      }
+
       return {
         resultsData,
         selectedColor,
         calendarAttributes,
-        daysRemaining
+        daysRemaining,
+        savePlan,
       };
     },
   });
@@ -125,6 +138,16 @@
 .days-label {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.goal-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  flex-grow: 1;
 }
 </style>
   

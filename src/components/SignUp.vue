@@ -50,6 +50,7 @@
   import { createUserProfile } from "@/services/userService";
   import { useRouter } from "vue-router";
   import { useNavigation } from "@/composables/useNavigation";
+  import { useAppStore } from "@/stores/appStore";
   
   export default defineComponent({    
     setup() {
@@ -59,6 +60,7 @@
       const errorMessage = ref("");
       const router = useRouter(); // Access the router instance
       const { navigate } = useNavigation();
+      const store = useAppStore();
 
       const handleNavigate = (route: string) => {
         navigate(route);
@@ -69,13 +71,11 @@
           errorMessage.value = ""; // Reset error message
           const user = await signUp(email.value, password.value);
           await createUserProfile(user.uid, { username: username.value });
+          store.updateUser(user.uid, username.value);
+          await store.saveUserData();
           console.log("Account created successfully!");
           router.push("/account"); // Navigate to AccountView
         } catch (error) {
-          errorMessage.value =
-            error.code === "auth/email-already-in-use"
-              ? "Email already in use. Please log in."
-              : "An error occurred during sign-up.";
           console.error("Error signing up:", error);
         }
       };

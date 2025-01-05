@@ -60,7 +60,7 @@ export default {
     watch(
       () => route.name,
       (newRoute) => {
-        if (newRoute === "homeview" || newRoute === "login") {
+        if (newRoute === "homeview" || newRoute === "login" || newRoute === "signup") {
           animationStore.resetAnimation();
         }
       },
@@ -69,7 +69,7 @@ export default {
 
     // Ensure reset on initial load if on home view
     onMounted(() => {
-      if (route.name === "homeview" || route.name === "homeview") {
+      if (route.name === "homeview" || route.name === "login" || route.name === "signup") {
         /* animationStore.isSliding = false;
         animationStore.isFading = false;
         animationStore.isMoved = false;

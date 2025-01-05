@@ -1,5 +1,7 @@
 // stores/appStore.ts
 import { defineStore } from "pinia";
+import { db,  } from "@/firebase";
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 
 export const useAppStore = defineStore('appStore', {
   state: () => ({
@@ -40,6 +42,12 @@ export const useAppStore = defineStore('appStore', {
       this.resultsData = data;
     },
 
+    // Update userId and username
+    updateUser(userId: any, username :string) {
+      this.userId = userId;
+      this.username = username;
+    },
+
     // Update specific properties in resultsData
     updateResultsProperty(property: keyof typeof this.resultsData, value: any) {
       this.$patch({
@@ -65,5 +73,62 @@ export const useAppStore = defineStore('appStore', {
     getCalendarAttributes() {
       return this.calendarAttributes;
     },
+
+    /* Saving the user data to the firestore */
+    async saveUserData() {
+      const userId = this.userId;
+      if (!userId) throw new Error("User ID is not set!");
+
+      try {
+        const userDoc = doc(db, "users", userId);
+        const dataToSave = {
+          dailyWeights: this.dailyWeights,
+          calendarAttributes: this.calendarAttributes,
+          resultsData: {
+            ...this.resultsData,
+            startDate: this.resultsData.startDate?.toISOString(), // Convert to ISO
+          },
+        };
+        await setDoc(userDoc, dataToSave, { merge: true });
+        console.log("User data saved successfully.");
+      } catch (error) {
+        console.error("Error saving user data:", error);
+      }
+    },
+
+    /* fetching user data from firestore */
+    async fetchUserData(userId: any) {
+      this.userId = userId;
+      if (!userId) throw new Error("User ID is not set!");
+
+      try {
+        const userDoc = doc(db, "users", userId);
+        const docSnap = await getDoc(userDoc);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+
+          // Parse date strings back to Date objects where necessary
+          if (userData.resultsData.startDate) {
+            userData.resultsData.startDate = new Date(
+              userData.resultsData.startDate
+            );
+          }
+
+          this.$patch({
+            dailyWeights: userData.dailyWeights || [],
+            calendarAttributes: userData.calendarAttributes || [],
+            resultsData: userData.resultsData || {},
+          });
+
+          console.log("User data loaded:", userData);
+        } else {
+          console.warn("No user data found for ID:", userId);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    },
+    
   }
 }); 
