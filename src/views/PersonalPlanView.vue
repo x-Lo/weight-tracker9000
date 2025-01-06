@@ -179,7 +179,7 @@ export default {
                     label: 'Daily Weight Measurement: ' + store.resultsData.weight,
                 },
                 dot: {
-                    color: 'gray',
+                    color: 'pink',
                 }
             },
             // Attribute for the entire phase duration
