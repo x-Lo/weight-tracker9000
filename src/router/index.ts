@@ -50,7 +50,7 @@ const router = createRouter({
           name: 'calendar',
           components: {
             left: () => import(/* webpackPrefetch: true */ '@/components/Calendar.vue'),
-            
+            right: () => import(/* webpackPrefetch: true */ '@/components/SavePlan.vue'),
           },
           meta: { requiresAuth: false },
         },

@@ -20,8 +20,9 @@
         </div>
         <div class="grid-item goal">
           <div class="goal-section">
-            <h2>Save your plan by creating an account!</h2>
-            <button class="button" @click="savePlan()">Create Account</button>
+            <h2>Have your results slowed down?</h2>
+            <h3>Reconfigure your plan!</h3>
+            <button class="button" @click="reconfigurePlan()">Reconfigure</button>
           </div>
         </div>
       </div>
@@ -56,8 +57,8 @@
       });
 
       // redirect the user to signup
-      const savePlan = () => {
-        navigate('signup');
+      const reconfigurePlan = () => {
+        //add logic here
       }
 
       return {
@@ -65,7 +66,7 @@
         selectedColor,
         calendarAttributes,
         daysRemaining,
-        savePlan,
+        reconfigurePlan,
       };
     },
   });
