@@ -38,7 +38,7 @@
   import { defineComponent, ref } from "vue";
   import { logIn } from "@/services/authService";
   import { getUserProfile } from "@/services/userService";
-  import { useRouter } from "vue-router";
+  import { useRouter, useRoute } from "vue-router";
   import { useNavigation } from "@/composables/useNavigation";
   import { useAppStore } from "@/stores/appStore";
   
@@ -48,6 +48,7 @@
       const password = ref("");
       const errorMessage = ref("");
       const router = useRouter(); // Access the router instance
+      const route = useRoute();
       const { navigate } = useNavigation();
       const store = useAppStore();
 
@@ -62,9 +63,11 @@
   
           // Fetch user profile after logging in
           const userProfile = await getUserProfile(user.uid);
+          store.setCalendarAttributes([]);
           store.fetchUserData(user.uid);
           console.log("User logged in successfully!", userProfile);
-          router.push("/"); // Navigate to HomeView
+          const redirectPath = route.query.redirect || "/"; // Default to home if no redirect
+          router.push(redirectPath as string);
         } catch (error) {
           console.error("Error logging in:", error);
         }

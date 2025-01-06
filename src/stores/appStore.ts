@@ -1,7 +1,7 @@
 // stores/appStore.ts
 import { defineStore } from "pinia";
 import { db,  } from "@/firebase";
-import { doc, setDoc, getDoc } from 'firebase/firestore'
+import { doc, setDoc, getDoc, Timestamp } from 'firebase/firestore'
 
 export const useAppStore = defineStore('appStore', {
   state: () => ({
@@ -88,6 +88,7 @@ export const useAppStore = defineStore('appStore', {
             ...this.resultsData,
             startDate: this.resultsData.startDate?.toISOString(), // Convert to ISO
           },
+          username: this.username,
         };
         await setDoc(userDoc, dataToSave, { merge: true });
         console.log("User data saved successfully.");
@@ -109,16 +110,27 @@ export const useAppStore = defineStore('appStore', {
           const userData = docSnap.data();
 
           // Parse date strings back to Date objects where necessary
-          if (userData.resultsData.startDate) {
-            userData.resultsData.startDate = new Date(
-              userData.resultsData.startDate
-            );
+          // Convert resultsData startDate back to Date object if necessary
+          if (userData.resultsData.startDate instanceof Timestamp) {
+            userData.resultsData.startDate = userData.resultsData.startDate.toDate();
           }
+
+          // Convert calendarAttributes dates to JavaScript Date objects
+          const convertedCalendarAttributes = (userData.calendarAttributes || []).map((attr: any) => {
+            if (typeof attr.dates === 'string') {
+              attr.dates = new Date(attr.dates);
+            } else if (attr.dates?.start && attr.dates?.end) {
+              attr.dates.start = new Date(attr.dates.start);
+              attr.dates.end = new Date(attr.dates.end);
+            }
+            return attr;
+          });
 
           this.$patch({
             dailyWeights: userData.dailyWeights || [],
-            calendarAttributes: userData.calendarAttributes || [],
+            calendarAttributes: convertedCalendarAttributes,
             resultsData: userData.resultsData || {},
+            username: userData.username || '',
           });
 
           console.log("User data loaded:", userData);

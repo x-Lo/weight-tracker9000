@@ -12,7 +12,7 @@
       </div>
       <div
         class="grid-item"
-        @click="triggerAnimation('dailyweight')"
+        @click="navigate('dailyweight')"
       >
         LOG YOUR PROGRESS
       </div>
@@ -22,17 +22,19 @@
 
 <script lang="ts" defer>
 import { useAnimationStore } from "@/stores/animationStore";
+import { useNavigation } from "@/composables/useNavigation";
 
 export default {
   name: "Welcome",
   setup() {
     const animationStore = useAnimationStore();
+    const { navigate } = useNavigation();
 
     const triggerAnimation = (route: string) => {
       animationStore.triggerAnimation(route);
     };
 
-    return { triggerAnimation };
+    return { triggerAnimation, navigate };
   },
 };
 </script>

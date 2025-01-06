@@ -84,8 +84,12 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const currentUser = auth.currentUser;
+
   if (requiresAuth && !currentUser) {
-    next('/');
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }, // Store the intended path in query params
+    });
   } else {
     next();
   }

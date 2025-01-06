@@ -116,6 +116,9 @@ export default defineComponent({
       successMessage.value = "Weight logged successfully!";
       weightSubmitted.value = true;
       currentWeightInput.value = ""; // Clear the input
+
+      // save the user data on the firestore
+      store.saveUserData();
     };
 
     // Validate streak and check if today's weight is already logged on page load
