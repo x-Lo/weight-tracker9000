@@ -197,7 +197,7 @@ export default {
                     base: { 
                         fillMode: 'light',
                         style: {
-                            backgroundColor: '#ff8c42', // background color
+                            backgroundColor: '#f0f0f0', // background color
                         },
                     },
                     end: {

@@ -256,7 +256,7 @@ label {
   
   /* Weekday Headers (Sun, Mon, etc.) */
 .vc-container .vc-weekday {
-    color: #ff8c42;
+    color: #C94079;
     font-weight: 600;
 }
   
@@ -264,7 +264,6 @@ label {
   /* Days of the Month */
 .vc-container .vc-day {
     color: #f0f0f0;
-    font-size: 0.9rem;
 }
   
 .vc-container .vc-day:hover {

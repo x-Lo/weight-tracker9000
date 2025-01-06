@@ -152,7 +152,7 @@ export default defineComponent({
 }
 
 .user-name {
-  color: #FF8C42;
+  color: #c94079;
   font-weight: bold;
   font-size: 2rem; /* Emphasize the brand name */
 }
