@@ -148,7 +148,6 @@ export default defineComponent({
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  
   padding: 1rem;
 }
 
