@@ -33,8 +33,8 @@ export const useAppStore = defineStore('appStore', {
       streak: 0,
       lastSubmissionDate: null,
     },
-    userId: null, // Authenticated user ID
-    username: "",
+    userId: null as string | null, // Authenticated user ID
+    username: null as string | null,
   }),
   actions: {
     // Update the entire resultsData object
@@ -46,6 +46,11 @@ export const useAppStore = defineStore('appStore', {
     updateUser(userId: any, username :string) {
       this.userId = userId;
       this.username = username;
+      if (userId) {
+        localStorage.setItem("userId", userId); // Persist userId
+      } else {
+        localStorage.removeItem("userId"); // Clear userId on logout
+      }
     },
 
     // Update specific properties in resultsData
@@ -145,6 +150,11 @@ export const useAppStore = defineStore('appStore', {
     // user data reset method
     logout() {
       this.$reset(); // Reset all state to initial values
+      localStorage.removeItem("userId"); // Clear persisted userId
     }
-  }
+  },
+  persist: {
+    key: "app-store",
+    storage: localStorage,
+  },
 }); 
