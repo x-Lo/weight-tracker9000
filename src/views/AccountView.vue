@@ -1,50 +1,56 @@
 <template>
   <div class="account-page">
-    <div class="card">
-      <!-- User Information -->
-      <div class="user-info">
+    <h1>ACCOUNT DETAILS</h1>
+    <div class="grid">
+      <div class="grid-item">
         <div class="user-field">
-          <label>Email:</label>
+          <label>EMAIL:</label>
           <input type="text" :value="email" readonly />
         </div>
         <div class="user-field">
-          <label>Username:</label>
+          <label>USERNAME:</label>
           <input type="text" :value="store.username" readonly />
         </div>
+      </div>
+      <div class="grid-item">
         <div class="user-field">
-          <label>Starting Weight:</label>
+          <label>STARTING WEIGHT:</label>
           <input type="number" :value="store.resultsData.weight" readonly />
         </div>
         <div class="user-field">
-          <label>Goal Weight:</label>
+          <label>GOAL WEIGHT:</label>
           <input type="number" :value="store.resultsData.goalweight" readonly />
         </div>
         <div class="user-field">
-          <label>Current Weight:</label>
+          <label>CURRENT WEIGHT:</label>
           <input type="number" :value="store.resultsData.weight" readonly />
         </div>
+      </div>
+      <div class="grid-item">
         <div class="user-field">
-          <label>TDEE (Calories):</label>
-          <input type="number" :value="store.resultsData.tdee" readonly />
+          <label>PLAN TYPE:</label>
+          <input type="text" :value="store.resultsData.typeOfPlan" readonly style="text-transform: lowercase;"/>
         </div>
         <div class="user-field">
-          <label>Plan Type:</label>
-          <input type="text" :value="store.resultsData.typeOfPlan" readonly />
-        </div>
-        <div class="user-field">
-          <label>Phase Duration (Days):</label>
+          <label>PHASE DURATION (DAYS):</label>
           <input type="number" :value="store.resultsData.phaseDuration" readonly />
         </div>
         <div class="user-field">
-          <label>Streak:</label>
+          <label>STREAK:</label>
           <input type="number" :value="store.resultsData.streak" readonly />
         </div>
+      </div>
+      <div class="grid-item">
         <div class="user-field">
-          <label>Macronutrient Breakdown:</label>
+          <label>TDEE (CALORIES):</label>
+          <input type="number" :value="store.resultsData.tdee" readonly />
+        </div>
+        <div class="user-field">
+          <label>MACRONUTRIENT BREAKDOWN:</label>
           <div class="macros">
-            <p>Protein: {{ store.resultsData.protein }}g</p>
-            <p>Carbs: {{ store.resultsData.carbs }}g</p>
-            <p>Fats: {{ store.resultsData.fats }}g</p>
+            <p>PROTEIN: {{ store.resultsData.protein }}g</p>
+            <p>CARBS: {{ store.resultsData.carbs }}g</p>
+            <p>FATS: {{ store.resultsData.fats }}g</p>
           </div>
         </div>
       </div>
@@ -52,8 +58,9 @@
   </div>
 </template>
 
+
   
-  <script lang="ts">
+<script lang="ts">
   import { defineComponent, ref, onMounted } from "vue";
   import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
   import { getAuth } from "firebase/auth";
@@ -74,76 +81,88 @@
       };
     },
   });
-  </script>
+</script>
   
-  <style scoped>
-  .account-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  .user-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: left;
-    padding: 1rem;
+<style scoped>
+.account-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: 2em;
+  color: #f0f0f0;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  width: 100%;
+  max-width: 1400px; /* Increased max width to allow more space */
+}
+
+.grid-item {
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px transparent, 0 4px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem; /* Increased padding for better proportions */
+  align-items: flex-start;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+}
+
+.grid-item:hover {
+  border: 1px solid #c94079;
+  box-shadow: 0 6px 15px rgba(201, 64, 121, 0.7);
+}
+
+.user-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input[readonly] {
+  border-radius: 8px;
+  padding: 0.7rem; /* Adjusted padding for larger fields */
+  width: 100%;
+  color: #f0f0f0;
+}
+
+.user-field label {
+  font-weight: bold;
+  color: #c94079;
+}
+
+.macros {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.2em;
+  color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
-  .user-field label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #C94079;
+
+  .grid-item {
+    align-items: center;
   }
 
-  input[readonly] {
-    background-color: #f0f0f0;
-    color: #555;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .macros {
+    align-items: center;
+    text-align: center;
   }
-  
-  @media (max-width: 768px) {
-    .account-container {
-      padding: 15px;
-      max-width: 100%;
-    }
-  
-    .avatar img {
-      width: 80px;
-      height: 80px;
-    }
-  
-    .user-field input {
-      font-size: 14px;
-    }
-  
-    .field-with-button button {
-      font-size: 12px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .account-container {
-      padding: 15px;
-      max-width: 95%;
-    }
-  
-    .avatar img {
-      width: 80px;
-      height: 80px;
-    }
-  
-    .user-field input {
-      font-size: 14px;
-    }
-  
-    .field-with-button button {
-      font-size: 12px;
-    }
-  }
-  </style>
-  
+}
+</style>

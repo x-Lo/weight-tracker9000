@@ -92,7 +92,7 @@ export default defineComponent({
           label: "Daily Weight Measurement: " + currentWeightInput.value,
         },
         dot: {
-          color: "gray", // Dot color
+          color: "pink", // Dot color
         },
       };
 
