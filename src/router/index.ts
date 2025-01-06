@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from '@/firebase'
+import { useAppStore } from '@/stores/appStore';
 
 
 const router = createRouter({
@@ -84,6 +85,11 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const currentUser = auth.currentUser;
+  const store = useAppStore();
+
+  if (to.path === "/calendar" && store.userId) {
+    next("/dailyweight");
+  }
 
   if (requiresAuth && !currentUser) {
     next({
