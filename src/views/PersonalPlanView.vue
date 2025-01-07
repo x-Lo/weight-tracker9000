@@ -174,7 +174,7 @@ export default {
             const attributes = [
             // Attribute for the first day with a popover
             {
-                dates: startDate.toISOString(), // Highlight only the first day
+                dates: startDate, // Highlight only the first day
                 popover: {
                     label: 'Daily Weight Measurement: ' + store.resultsData.weight,
                 },
@@ -210,7 +210,7 @@ export default {
                         },
                     },
                 },
-                dates: { start: startDate.toISOString(), end: endDate.toISOString() }, // Apply styles to the full duration
+                dates: { start: startDate, end: endDate }, // Apply styles to the full duration
             },];
 
             // Update attributes in Pinia store

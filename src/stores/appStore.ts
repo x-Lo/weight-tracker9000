@@ -28,10 +28,10 @@ export const useAppStore = defineStore('appStore', {
       carbs: 0,
       fats: 0,
       phaseDuration: 0,
-      startDate: new Date(),
+      startDate: null  as Date | null,
       currentWeight: 0,
       streak: 0,
-      lastSubmissionDate: null,
+      lastSubmissionDate: null  as Date | null,
     },
     userId: null as string | null, // Authenticated user ID
     username: null as string | null,
@@ -91,7 +91,9 @@ export const useAppStore = defineStore('appStore', {
           calendarAttributes: this.calendarAttributes,
           resultsData: {
             ...this.resultsData,
-            startDate: this.resultsData.startDate?.toISOString(), // Convert to ISO
+            startDate: this.resultsData.startDate instanceof Date 
+           ? this.resultsData.startDate
+           : new Date(), // Default to now if invalid
           },
           username: this.username,
         };
@@ -106,38 +108,32 @@ export const useAppStore = defineStore('appStore', {
     async fetchUserData(userId: any) {
       this.userId = userId;
       if (!userId) throw new Error("User ID is not set!");
-
+    
       try {
         const userDoc = doc(db, "users", userId);
         const docSnap = await getDoc(userDoc);
-
+    
         if (docSnap.exists()) {
           const userData = docSnap.data();
-
-          // Parse date strings back to Date objects where necessary
-          // Convert resultsData startDate back to Date object if necessary
-          if (userData.resultsData.startDate instanceof Timestamp) {
-            userData.resultsData.startDate = userData.resultsData.startDate.toDate();
-          }
-
-          // Convert calendarAttributes dates to JavaScript Date objects
-          const convertedCalendarAttributes = (userData.calendarAttributes || []).map((attr: any) => {
-            if (typeof attr.dates === 'string') {
-              attr.dates = new Date(attr.dates);
-            } else if (attr.dates?.start && attr.dates?.end) {
-              attr.dates.start = new Date(attr.dates.start);
-              attr.dates.end = new Date(attr.dates.end);
-            }
-            return attr;
-          });
-
+    
+          // Parse Firestore Timestamps and ISO strings back to Date objects
+          const resultsData = userData.resultsData || {};
+          resultsData.startDate = this.convertToDate(resultsData.startDate);
+          resultsData.lastSubmissionDate = this.convertToDate(resultsData.lastSubmissionDate);
+    
           this.$patch({
-            dailyWeights: userData.dailyWeights || [],
-            calendarAttributes: convertedCalendarAttributes,
-            resultsData: userData.resultsData || {},
+            dailyWeights: (userData.dailyWeights || []).map((weight: any) => ({
+              ...weight,
+              dates: this.convertToDate(weight.dates), // Handle dates for each weight entry
+            })),
+            calendarAttributes: (userData.calendarAttributes || []).map((attr: any) => ({
+              ...attr,
+              dates: this.handleNestedDates(attr.dates), // Recursively process dates
+            })),
+            resultsData,
             username: userData.username || '',
           });
-
+    
           console.log("User data loaded:", userData);
         } else {
           console.warn("No user data found for ID:", userId);
@@ -146,7 +142,35 @@ export const useAppStore = defineStore('appStore', {
         console.error("Error fetching user data:", error);
       }
     },
+    
+    // Helper function to handle date conversion
+    convertToDate(value: any): Date | null {
+      if (value instanceof Timestamp) {
+        return value.toDate(); // Convert Firestore Timestamp to JS Date
+      } else if (typeof value === 'string') {
+        return new Date(value); // Convert ISO string to JS Date
+      } else if (value === null || value === undefined) {
+        return null; // Keep null or undefined as is
+      }
+      return value; // Return original value if not a known date type
+    },
 
+    handleNestedDates(value: any): any {
+      if (value instanceof Timestamp) {
+        return value.toDate(); // Convert Firestore Timestamp to JS Date
+      } else if (typeof value === 'string') {
+        return new Date(value); // Convert ISO string to JS Date
+      } else if (value && typeof value === 'object') {
+        // Recursively process nested objects
+        const processed: any = {};
+        for (const key in value) {
+          processed[key] = this.handleNestedDates(value[key]); // Process each key
+        }
+        return processed;
+      }
+      return value; // Return original value for other types
+    },
+    
     // user data reset method
     logout() {
       this.$reset(); // Reset all state to initial values

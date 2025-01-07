@@ -40,20 +40,27 @@ export default defineComponent({
     const weightSubmitted = ref(false);
     const successMessage = ref("");
     const errorMessage = ref("");
-    const today = new Date().toISOString().split("T")[0]; // Today's date in 'YYYY-MM-DD' format
+    const today = new Date(); // Today's date in 'YYYY-MM-DD' format
 
-    // Function to check if a weight was submitted today
+    const formatDate = (date: Date) => {
+      return date.toISOString().split("T")[0]; // Formats date as 'YYYY-MM-DD'
+    };
+
     const checkIfWeightSubmittedToday = () => {
+      const todayFormatted = formatDate(today);
       weightSubmitted.value = store.calendarAttributes.some((attr: any) => {
         if (typeof attr.dates === "string") {
-          return attr.dates === today; // Compare directly if `dates` is a string
+          return attr.dates === todayFormatted; // Compare formatted date
         }
-        if (Array.isArray(attr.dates)) {
-          return attr.dates.includes(today); // Check for inclusion if `dates` is an array
+        if (attr.dates && attr.dates.start && attr.dates.end) {
+          const start = formatDate(new Date(attr.dates.start));
+          const end = formatDate(new Date(attr.dates.end));
+          return todayFormatted >= start && todayFormatted <= end;
         }
-        return false; // Fallback for unexpected structures
+        return false;
       });
     };
+
 
     // Function to validate the streak
     const validateStreak = () => {
@@ -123,8 +130,10 @@ export default defineComponent({
 
     // Validate streak and check if today's weight is already logged on page load
     onMounted(() => {
-      validateStreak();
       checkIfWeightSubmittedToday();
+      if (!weightSubmitted.value) {
+        validateStreak();
+      }
     });
 
     return {
