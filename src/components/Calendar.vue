@@ -22,7 +22,7 @@
           <div class="goal-section">
             <h2>Have your results slowed down?</h2>
             <h3>Reconfigure your plan!</h3>
-            <button class="button" @click="reconfigurePlan()">Reconfigure</button>
+            <button class="button" @click="navigate('calculator')">Reconfigure</button>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
       const calendarAttributes = computed(() => store.calendarAttributes);
       const selectedColor = ref("gray"); // Soft blue color for events/cursor highlight
 
-      const planStartDate = new Date(store.resultsData.startDate); // Ensure you have this property in your resultsData.
+      const planStartDate = new Date(store.resultsData.startDate ?? new Date()); // Ensure you have this property in your resultsData.
       const today = new Date(); // Current date
 
       // Calculate days passed
@@ -56,17 +56,12 @@
         return store.resultsData.phaseDuration - daysPassed;
       });
 
-      // redirect the user to signup
-      const reconfigurePlan = () => {
-        //add logic here
-      }
-
       return {
         resultsData,
         selectedColor,
         calendarAttributes,
         daysRemaining,
-        reconfigurePlan,
+        navigate,
       };
     },
   });
