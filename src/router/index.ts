@@ -82,23 +82,31 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const currentUser = auth.currentUser;
   const store = useAppStore();
+  const currentUser = await new Promise((resolve) => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      unsubscribe(); // Stop listening
+      resolve(user);
+    });
+  });
 
+  // Redirect logged-in users going to "/calendar" to "/dailyweight"
   if (to.path === "/calendar" && store.userId) {
-    next("/dailyweight");
+    return next("/dailyweight");
   }
 
+  // Redirect unauthenticated users trying to access protected routes
   if (requiresAuth && !currentUser) {
-    next({
+    return next({
       path: '/login',
       query: { redirect: to.fullPath }, // Store the intended path in query params
     });
-  } else {
-    next();
   }
+
+  // Allow navigation to proceed
+  next();
 });
 
 export default router
