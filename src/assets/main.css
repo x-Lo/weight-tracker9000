@@ -227,41 +227,13 @@ label {
     text-align: center;
 }
 
-/* Calendar Customization - VCalendar Global Theming */
-:root {
-    /* Calendar Border, Background, and Font Colors */
-    --vc-border-color: #444;
-    --vc-text-color: #f0f0f0;
-    --vc-title-color: #ff8c42; /* Header Month Name */
-    --vc-header-text-color: #ff8c42; /* Day-of-Week Headers */
-    --vc-highlight-color: #c94079; /* Selected Day Background */
-    --vc-today-color: #ff8c42; /* Today's Highlight Color */
-    --vc-focus-outline-color: #c94079; /* Focus Border */
-  
-    /* Day-Specific Overrides */
-    --vc-day-content-hover-color: rgba(255, 140, 66, 0.3); /* Hover Effect */
-    --vc-disabled-color: #666; /* Disabled Date Color */
-}
-
-/* Header (Month Names & Navigation Arrows) */
-.vc-container .vc-title {
-    color: #ff8c42;
-    font-weight: bold;
-    font-size: 1.25rem;
-}
-  
-.vc-container .vc-navigation {
-    color: #ff8c42;
-}
-  
-  /* Weekday Headers (Sun, Mon, etc.) */
+/* Weekday Headers (Sun, Mon, etc.) */
 .vc-container .vc-weekday {
     color: #C94079;
     font-weight: 600;
 }
-  
-  
-  /* Days of the Month */
+
+/* Days of the Month */
 .vc-container .vc-day {
     color: #f0f0f0;
 }
@@ -270,4 +242,54 @@ label {
     cursor: pointer;
 }
 
+
+/* Add responsiveness for small screens */
+@media (max-width: 768px) {
+    .homepage-container {
+      flex-direction: column; /* Stack sections on top of each other */
+    }
+    .homepage-left,
+    .homepage-right {
+      flex: 1 0 auto; /* Take up equal space */
+      width: 100%; /* Full width for smaller screens */
+    }
+  
+    .welcome-container {
+      padding: 1rem;
+      gap: 3rem; /* Reduce gap for better fit on small screens */
+    }
+  
+    .homepage-grid {
+      flex-direction: column; /* Stack grid items on top of each other */
+      gap: 1rem;
+    }
+  
+    .grid-item {
+      height: 4rem; /* Shrink buttons for smaller screens */
+      padding: 1rem;
+    }
+  
+    .quote-container h2 {
+        font-size: 0.8em; /* Shrink font size */
+        margin-bottom: 0.8rem; /* Adjust margin for better spacing */
+    }
+
+    .quote-container h3 {
+        font-size: 0.5em; /* Shrink font size */
+        margin-bottom: 0.6rem; /* Adjust margin for better spacing */
+    }
+
+    .moto {
+        position: absolute; /* Position relative to .homepage-left */
+        top: 30px; /* Adjust distance from the top edge */
+        left: 15px; /* Adjust distance from the left edge */
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 5rem;
+        font-weight: bold;
+        color: #fff;
+        letter-spacing: 2px;
+        line-height: 0.8;
+    }
+}
+  
   

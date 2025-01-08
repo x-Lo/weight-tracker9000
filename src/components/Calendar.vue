@@ -41,7 +41,7 @@
       const { navigate } = useNavigation(); // Use the composable
       const resultsData = computed(() => store.resultsData);
       const calendarAttributes = computed(() => store.calendarAttributes);
-      const selectedColor = ref("gray"); // Soft blue color for events/cursor highlight
+      const selectedColor = ref("pink"); // Soft blue color for events/cursor highlight
 
       const planStartDate = new Date(store.resultsData.startDate ?? new Date()); // Ensure you have this property in your resultsData.
       const today = new Date(); // Current date

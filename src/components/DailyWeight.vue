@@ -8,15 +8,15 @@
                     class="input"
                     v-model="currentWeightInput"
                     placeholder="Enter your current weight (kg)"
-                    :disabled="weightSubmitted"
+                    :disabled="store.weightSubmitted"
                 />
                 <button
                     class="button"
                     @click="submitWeight"
-                    :disabled="weightSubmitted">
+                    :disabled="store.weightSubmitted">
                     Submit
                 </button>
-                <p v-if="weightSubmitted" class="info-message">
+                <p v-if="store.weightSubmitted" class="info-message">
                     You've already logged your weight for the day!
                 </p>
             </div>
@@ -37,108 +37,97 @@ export default defineComponent({
     const store = useAppStore();
 
     const currentWeightInput = ref("");
-    const weightSubmitted = ref(false);
     const successMessage = ref("");
     const errorMessage = ref("");
-    const today = new Date(); // Today's date in 'YYYY-MM-DD' format
+    const today = new Date();
 
-    const formatDate = (date: Date) => {
-      return date.toISOString().split("T")[0]; // Formats date as 'YYYY-MM-DD'
-    };
+    // Format Date to 'YYYY-MM-DD'
+    const formatDate = (date: Date) => date.toISOString().split("T")[0];
 
-    const checkIfWeightSubmittedToday = () => {
+    const checkIfWeightSubmittedToday = async () => {
       const todayFormatted = formatDate(today);
-      weightSubmitted.value = store.calendarAttributes.some((attr: any) => {
-        if (typeof attr.dates === "string") {
-          return attr.dates === todayFormatted; // Compare formatted date
+
+      // Fetch user data from Firestore
+      await store.fetchUserData(store.userId);
+      console.log("Fetched calendarAttributes:", store.calendarAttributes);
+
+      // Check if any calendar attribute has today's date
+      store.weightSubmitted = store.calendarAttributes.some((attr: any) => {
+        let formattedDate;
+
+        if (attr.dates instanceof Date) {
+          // If 'dates' is already a Date object
+          formattedDate = formatDate(attr.dates);
+        } else if (attr.dates instanceof Object && "toDate" in attr.dates) {
+          // If 'dates' is a Firestore Timestamp
+          formattedDate = formatDate(attr.dates.toDate());
+        } else {
+          console.error("Unsupported date format in attribute:", attr.dates);
+          return false; // Skip this attribute
         }
-        if (attr.dates && attr.dates.start && attr.dates.end) {
-          const start = formatDate(new Date(attr.dates.start));
-          const end = formatDate(new Date(attr.dates.end));
-          return todayFormatted >= start && todayFormatted <= end;
-        }
-        return false;
+
+        console.log(`Comparing Firestore date ${formattedDate} with today's date ${todayFormatted}`);
+        return formattedDate === todayFormatted;
       });
+
+      console.log("weightSubmitted:", store.weightSubmitted); // Log the final state
     };
 
 
-    // Function to validate the streak
-    const validateStreak = () => {
-      const lastSubmissionDate = store.resultsData.lastSubmissionDate;
-      if (!lastSubmissionDate) {
-        // No previous submissions; streak should start from 0
-        store.updateResultsProperty("streak", 0);
-        return;
-      }
-
-      // Calculate difference in days between the last submission and today
-      const lastSubmission = new Date(lastSubmissionDate);
-      const currentDay = new Date(today);
-
-      const differenceInDays = Math.floor(
-        (currentDay.getTime() - lastSubmission.getTime()) / (1000 * 60 * 60 * 24)
-      );
-
-      if (differenceInDays > 1) {
-        // Missed one or more days; reset streak to 0
-        store.updateResultsProperty("streak", 0);
-      }
-    };
-
-    // Function to handle weight submission
-    const submitWeight = () => {
-      if (weightSubmitted.value) {
+    const submitWeight = async () => {
+      if (store.weightSubmitted) {
         errorMessage.value = "You've already logged your weight for today!";
         return;
       }
 
       // Create a new calendar attribute for today's weight entry
       const newAttribute = {
-        dates: today,
+        dates: today, // Save Date directly; Firestore handles timestamps
         popover: {
           label: "Daily Weight Measurement: " + currentWeightInput.value,
         },
         dot: {
-          color: "pink", // Dot color
+          color: "pink",
         },
       };
 
-      // Add the new attribute to the existing attributes
       const updatedAttributes = [...store.calendarAttributes, newAttribute];
-
-      // Update the store with the new calendar attributes
       store.setCalendarAttributes(updatedAttributes);
-
-      // Update the current weight in the store
       store.updateResultsProperty("currentWeight", currentWeightInput.value);
-
-      // Update the streak
-      const currentStreak = store.resultsData.streak + 1;
-      store.updateResultsProperty("streak", currentStreak);
-
-      // Update the last submission date
       store.updateResultsProperty("lastSubmissionDate", today);
+      store.updateResultsProperty("streak", store.resultsData.streak + 1);
 
-      // Set success message and mark today's weight as submitted
+      store.weightSubmitted = true;
+      console.log("weightSubmitted after submission:", store.weightSubmitted);
+      await store.saveUserData();
+
       successMessage.value = "Weight logged successfully!";
-      weightSubmitted.value = true;
-      currentWeightInput.value = ""; // Clear the input
-
-      // save the user data on the firestore
-      store.saveUserData();
+      currentWeightInput.value = "";
     };
 
-    // Validate streak and check if today's weight is already logged on page load
-    onMounted(() => {
-      checkIfWeightSubmittedToday();
-      if (!weightSubmitted.value) {
-        validateStreak();
+    onMounted(async () => {
+      await checkIfWeightSubmittedToday();
+      console.log("Final weightSubmitted state after page load:", store.weightSubmitted);
+      if (!store.weightSubmitted) {
+        const lastSubmissionDate = store.resultsData.lastSubmissionDate || null;
+
+        if (lastSubmissionDate) {
+          const lastDate = new Date(lastSubmissionDate);
+          const diffInDays = Math.floor(
+            (today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24)
+          );
+
+          if (diffInDays > 1) {
+            store.updateResultsProperty("streak", 0);
+          }
+        } else {
+          store.updateResultsProperty("streak", 0);
+        }
       }
     });
 
     return {
       currentWeightInput,
-      weightSubmitted,
       submitWeight,
       successMessage,
       errorMessage,
@@ -147,6 +136,7 @@ export default defineComponent({
   },
 });
 </script>
+
 
 
 <style scoped>

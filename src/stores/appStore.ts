@@ -35,6 +35,7 @@ export const useAppStore = defineStore('appStore', {
     },
     userId: null as string | null, // Authenticated user ID
     username: null as string | null,
+    weightSubmitted:  false,
   }),
   actions: {
     // Update the entire resultsData object
@@ -96,6 +97,7 @@ export const useAppStore = defineStore('appStore', {
            : new Date(), // Default to now if invalid
           },
           username: this.username,
+          weightSubmitted: this.weightSubmitted,
         };
         await setDoc(userDoc, dataToSave, { merge: true });
         console.log("User data saved successfully.");
@@ -132,6 +134,7 @@ export const useAppStore = defineStore('appStore', {
             })),
             resultsData,
             username: userData.username || '',
+            weightSubmitted: userData.weightSubmitted || 0,
           });
     
           console.log("User data loaded:", userData);
