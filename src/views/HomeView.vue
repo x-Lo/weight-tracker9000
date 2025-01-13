@@ -152,4 +152,23 @@ export default {
   transform: translateX(-100%);
   opacity: 0;
 }
+
+@media (max-width: 768px) {
+  .homepage-container {
+    flex-direction: column; /* Stack sections on top of each other */
+  }
+  
+  .homepage-left,
+  .homepage-right {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .homepage-left {
+    flex: 0 0 80%;
+  }
+
+  .homepage-right {
+    flex: 0 0 20%;
+  }
+}
 </style>

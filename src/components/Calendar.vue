@@ -145,5 +145,28 @@
   padding: 1rem;
   flex-grow: 1;
 }
+
+@media (max-width: 768px) {
+  .info-grid{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-grid {
+    gap: 0.5rem;
+  }
+
+  .grid-item {
+    width: 40vh;
+    height: 15vh;
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .days-value {
+    font-size: 1rem;
+    margin: 0;
+  }
+}
 </style>
   

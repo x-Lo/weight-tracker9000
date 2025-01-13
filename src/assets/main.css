@@ -245,50 +245,12 @@ label {
 
 /* Add responsiveness for small screens */
 @media (max-width: 768px) {
-    .homepage-container {
-      flex-direction: column; /* Stack sections on top of each other */
-    }
-    .homepage-left,
-    .homepage-right {
-      flex: 1 0 auto; /* Take up equal space */
-      width: 100%; /* Full width for smaller screens */
-    }
-  
-    .welcome-container {
-      padding: 1rem;
-      gap: 3rem; /* Reduce gap for better fit on small screens */
-    }
-  
-    .homepage-grid {
-      flex-direction: column; /* Stack grid items on top of each other */
-      gap: 1rem;
-    }
-  
-    .grid-item {
-      height: 4rem; /* Shrink buttons for smaller screens */
-      padding: 1rem;
-    }
-  
-    .quote-container h2 {
-        font-size: 0.8em; /* Shrink font size */
-        margin-bottom: 0.8rem; /* Adjust margin for better spacing */
+    body {
+        overflow-y: scroll;
     }
 
-    .quote-container h3 {
-        font-size: 0.5em; /* Shrink font size */
-        margin-bottom: 0.6rem; /* Adjust margin for better spacing */
-    }
-
-    .moto {
-        position: absolute; /* Position relative to .homepage-left */
-        top: 30px; /* Adjust distance from the top edge */
-        left: 15px; /* Adjust distance from the left edge */
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 5rem;
-        font-weight: bold;
-        color: #fff;
-        letter-spacing: 2px;
-        line-height: 0.8;
+    .logo {
+        font-size: 2em;
     }
 }
   

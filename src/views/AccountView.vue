@@ -61,8 +61,7 @@
 
   
 <script lang="ts">
-  import { defineComponent, ref, onMounted } from "vue";
-  import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+  import { defineComponent, ref } from "vue";
   import { getAuth } from "firebase/auth";
   import { useAppStore } from "@/stores/appStore";
   
