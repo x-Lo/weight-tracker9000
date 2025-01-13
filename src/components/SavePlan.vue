@@ -35,25 +35,26 @@ h2 {
 .grid-item {
   width: 60vh;
   height: 20vh;
-  border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;
   backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
-  font-size: 2em;
+  font-size: 3em;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .grid-item:hover {
     outline-color: #C94079; /* Solid color for active state */
-    box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8); /* Subtle glowing effect */
+    box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
     cursor: pointer;
 }
 </style>

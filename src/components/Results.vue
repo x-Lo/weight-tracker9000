@@ -167,11 +167,16 @@ export default defineComponent({
 
 .plan-grid .grid-item{
   width:  30vh;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .plan-grid .grid-item:hover {
   outline-color: #C94079; /* Solid color for active state */
-  box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8); /* Subtle glowing effect */
+  box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
 }
 
 .calorie-section {

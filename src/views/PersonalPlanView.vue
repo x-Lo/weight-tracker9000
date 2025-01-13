@@ -264,9 +264,10 @@ export default {
 .rate-options-grid .grid-item{
     width: 40vh;
     background: rgba(39, 39, 39, 0.1);
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -277,16 +278,17 @@ export default {
     color: #f0f0f0;
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .rate-options-grid .grid-item:hover {
     outline-color: #C94079; /* Solid color for active state */
-    box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8); /* Subtle glowing effect */
+    box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
 }
 
 .rate-options-grid .grid-item.isSelected {
     outline-color: #C94079; /* Solid color for active state */
-    box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8); /* Subtle glowing effect */
+    box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
 }
 
 .grid-item {

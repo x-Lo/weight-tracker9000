@@ -10,6 +10,9 @@
       >
         CREATE YOUR PLAN
       </div>
+      <div class="sepperator">
+
+      </div>
       <div
         class="grid-item"
         @click="navigate('dailyweight')"
@@ -69,29 +72,29 @@ export default {
   justify-content: flex-end;
   gap: 2rem;
   padding: 1rem;
-  margin-bottom: 3rem;
-  margin-top: 3rem;
 }
 
 .grid-item {
   width: 100%;
-  height: 5rem;
-  padding: 3rem;
+  height: 10rem;
   background: rgba(39, 39, 39, 0.1);
-  border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
-  display: flex;
+    display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #f0f0f0;
   text-align: center;
   transition: transform 0.2s, background-color 0.2s;
   backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
+}
+
+.sepperator{
+  background-color: #C94079;
+  width: 1vh;
+  height: 95%;
 }
 
 .grid-item:hover {
