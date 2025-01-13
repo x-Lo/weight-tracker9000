@@ -108,7 +108,27 @@ h2 {
   margin-bottom: 1rem;
   font-weight: bold;
   color: #c94079;
+  background: linear-gradient(90deg, #c94079, #ff8c42);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  position: relative;
 }
+
+/* Add a decorative underline */
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #c94079, #ff8c42);
+  border-radius: 4px;
+}
+
 
 /* Form */
 .login-form {
