@@ -109,8 +109,6 @@
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
 }
 
 .days-section {

@@ -304,8 +304,7 @@ export default {
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
+  
 }
 
 .grid-item-h {
@@ -323,8 +322,6 @@ export default {
     text-align: center;
     font-family: 'Roboto', Arial, sans-serif;
     color: #f0f0f0;
-    backdrop-filter: blur(60px);
-    -webkit-backdrop-filter: blur(60px);
     visibility: hidden;
     transform: translateX(-100%); /* Start off-screen to the left */
     transition: all 0.7s ease-in-out;
