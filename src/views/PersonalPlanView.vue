@@ -263,7 +263,7 @@ export default {
 
 .rate-options-grid .grid-item{
     width: 40vh;
-    background: rgba(39, 39, 39, 0.1);
+    background: none;
     border: none;
     border-radius: 0;
     box-shadow: none;
@@ -276,8 +276,6 @@ export default {
     text-align: center;
     font-family: 'Roboto', Arial, sans-serif;
     color: #f0f0f0;
-    backdrop-filter: blur(60px);
-    -webkit-backdrop-filter: blur(60px);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 

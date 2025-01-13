@@ -10,7 +10,7 @@
       >
         CREATE YOUR PLAN
       </div>
-      <div class="sepperator">
+      <div class="separator">
 
       </div>
       <div
@@ -47,7 +47,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
   gap: 5rem;
@@ -55,7 +55,16 @@ export default {
 }
 
 .brand-name {
-  color: #C94079;
+  background-color: #f3ec78;
+  background-image: linear-gradient(90deg, #C94079, #FF8C42);
+  background-clip: text;
+  background-size: 100%
+  background-repeat;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
   font-weight: bold;
 }
 
@@ -71,14 +80,14 @@ export default {
   flex-direction: row;
   justify-content: flex-end;
   gap: 2rem;
-  padding: 1rem;
+  
 }
 
 .grid-item {
   width: 100%;
   height: 10rem;
   background: rgba(39, 39, 39, 0.1);
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', Arial, sans-serif;
@@ -91,9 +100,14 @@ export default {
   -webkit-backdrop-filter: blur(60px);
 }
 
-.sepperator{
-  background-color: #C94079;
-  width: 1vh;
+.separator{
+  background: linear-gradient(
+    to bottom, 
+    #C94079,          /* Primary accent color */
+    #e85e92,          /* Soft pink for highlights */
+    #FF8C42           /* Deep magenta for depth */
+  );
+  width: 2px;
   height: 95%;
 }
 

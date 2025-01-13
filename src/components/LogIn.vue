@@ -1,9 +1,9 @@
 <template>
-  <h1>Login Here</h1>
+  <h1>LOGIN HERE</h1>
   <div class="card">
     <form @submit.prevent="handleLogIn">
       <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email">EMAIL:</label>
         <input
           id="email"
           type="email"
@@ -13,7 +13,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Password:</label>
+        <label for="password">PASSWORD:</label>
         <input
           id="password"
           type="password"
@@ -23,8 +23,8 @@
         />
         <div class="signup">
           <p>
-            Don't have an account? 
-            <a @click.prevent="handleNavigate('signup')">Create Account</a>
+            DON'T HAVE AN ACCOUNT? 
+            <a @click.prevent="handleNavigate('signup')">CREATE ACCOUNT</a>
           </p>
         </div>
       </div>

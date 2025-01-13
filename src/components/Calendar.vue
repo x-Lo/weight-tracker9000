@@ -11,6 +11,7 @@
             <span class="days-label" style="">DAYS</span>
           </div>
         </div>
+        <div class="separator"></div>
         <div class="grid-item streak">
           <div class="days-section">
             <h2>Current Streak: </h2>
@@ -18,11 +19,11 @@
             <span class="days-label" style="">DAYS</span>
           </div>
         </div>
+        <div class="separator"></div>
         <div class="grid-item goal">
           <div class="goal-section">
             <h2>Have your results slowed down?</h2>
-            <h3>Reconfigure your plan!</h3>
-            <button class="button" @click="navigate('calculator')">Reconfigure</button>
+            <h3 class="reconfigure" @click="navigate('calculator')">Reconfigure your plan!</h3>
           </div>
         </div>
       </div>
@@ -136,11 +137,37 @@
 .goal-section {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   padding: 1rem;
+  gap: 7rem;
   flex-grow: 1;
+}
+
+.reconfigure {
+  font-weight: bold;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.reconfigure:hover {
+  outline-color: #C94079; /* Solid color for active state */
+  box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
+  cursor: pointer;
+}
+
+.separator {
+  background: linear-gradient(
+    to bottom, 
+    #C94079,          /* Primary accent color */
+    #e85e92,          /* Soft pink for highlights */
+    #FF8C42           /* Deep magenta for depth */
+  );
+  width: 2px;
+  height: 95%;
 }
 
 @media (max-width: 768px) {
