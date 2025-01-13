@@ -141,12 +141,13 @@
   align-items: center;
   width: 100%;
   padding: 1rem;
-  gap: 7rem;
+  gap: 6rem;
   flex-grow: 1;
 }
 
 .reconfigure {
   font-weight: bold;
+  font-size: 1.5em;
   border: none;
   border-radius: 0;
   box-shadow: none;

@@ -1,9 +1,11 @@
 <template>
-  <h1>LOGIN HERE</h1>
-  <div class="card">
-    <form @submit.prevent="handleLogIn">
-      <div class="form-group">
-        <label for="email">EMAIL:</label>
+  <div class="login-container">
+    <form class="login-form" @submit.prevent="handleLogIn">
+      <h2>SIGN IN</h2>
+      <div class="input-group">
+        <label for="email">
+          <span class="icon">📧</span>
+        </label>
         <input
           id="email"
           type="email"
@@ -12,8 +14,10 @@
           required
         />
       </div>
-      <div class="form-group">
-        <label for="password">PASSWORD:</label>
+      <div class="input-group">
+        <label for="password">
+          <span class="icon">🔒</span>
+        </label>
         <input
           id="password"
           type="password"
@@ -21,17 +25,17 @@
           placeholder="Enter your password"
           required
         />
-        <div class="signup">
-          <p>
-            DON'T HAVE AN ACCOUNT? 
-            <a @click.prevent="handleNavigate('signup')">CREATE ACCOUNT</a>
-          </p>
-        </div>
       </div>
-      <button class="button" type="submit">Login</button>
+      <button type="submit" class="login-button">SIGN IN</button>
+      <p class="forgot-password">
+        <a href="#">Forgot Password?</a>
+      </p>
+      <p class="signup">
+        Don't have an account? 
+        <a @click.prevent="handleNavigate('signup')">Create an Account</a>
+      </p>
     </form>
-    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-  </div>    
+  </div>
 </template>
   
 <script lang="ts" defer>
@@ -80,50 +84,107 @@
 </script>
   
 <style scoped>
-h1 {
-  padding: 1rem;
-  font-size: 2rem;
-}
-
-.card {
-  max-width: 400px; /* Ensures the card has a consistent width */
-  width: 100%;
-  padding: 1rem; /* Reduced padding */
-  font-size: 1rem; /* Slightly smaller font size */
+/* Background */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  color: #f0f0f0;
+  text-align: center;
+  flex-direction: column;
 }
 
+/* Header */
+h2 {
+  font-size: 2.5em;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #c94079;
+}
 
-.form-group {
-  padding: 1rem;
+/* Form */
+.login-form {
+  width: 100%;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  margin-bottom: 0.5rem;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Input group */
+.input-group {
+  position: relative;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  font-size: 1em;
+  color: #f0f0f0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #c94079;
+}
+
+/* Button */
+.login-button {
+  padding: 0.8rem;
+  font-size: 1em;
+  font-weight: bold;
+  color: #f0f0f0;
+  background: linear-gradient(to right,#C94079, #FF8C42);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+  transform: translateY(-3px);
+}
+
+/* Links */
+.forgot-password a,
+.signup a {
+  color: #c94079;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover,
+.signup a:hover {
+  color: #f77ba1;
+  cursor: pointer;
+}
+
+.forgot-password {
+  margin: 0.5rem 0;
 }
 
 .signup {
+  font-size: 1em;
   margin-top: 1rem;
-  padding: 1rem;
-  text-align: center;
-  color: #f0f0f0;
-}
-  
-.signup a {
-  cursor: pointer;
-  color: #C94079;
-  text-decoration: underline;
-}
-
-.signup p {
-  font-size: 1rem;
-  text-align: center;
-}
-
-.button {
-  width: 100%;
-  padding: 0.5rem; /* Reduced padding */
-  font-size: 1rem; /* Reduced font size */
+  color: #bdbdbd;
 }
 </style>
   
