@@ -1,24 +1,13 @@
 <template>
   <div class="welcome-container">
-    <h1>Welcome to <span class="brand-name">Weight Tracker 9000</span></h1>
-    <h2>Your ultimate companion for achieving your weight goals.</h2>
-    <p class="tagline">Track, plan, and crush your fitness journey with ease!</p>
-    <div class="homepage-grid">
-      <div
-        class="grid-item"
-        @click="triggerAnimation('calculator')"
-      >
-        CREATE YOUR PLAN
-      </div>
-      <div class="separator">
-
-      </div>
-      <div
-        class="grid-item"
-        @click="navigate('dailyweight')"
-      >
-        LOG YOUR PROGRESS
-      </div>
+    <h1 class="brand-name">Weight Tracking Made Simple.</h1>
+    <h2>
+      Dedication and careful planning are the keys to success,
+      <span>transcend yourself.</span>
+    </h2>
+    <div class="buttons-div">
+      <button class="start-button">BEGIN YOUR JOURNEY</button>
+      <button class="log-button">LOG YOUR PROGRESS</button>
     </div>
   </div>
 </template>
@@ -44,75 +33,70 @@ export default {
 
 <style scoped>
 .welcome-container {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
-  gap: 5rem;
-  padding: 1rem;
+  gap: 4rem;
+  padding: 0;
+  position: relative;
+  margin-bottom: 5rem;
 }
 
-.brand-name {
-  background-color: #f3ec78;
-  background-image: linear-gradient(90deg, #C94079, #FF8C42);
-  background-clip: text;
-  background-size: 100%
-  background-repeat;
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
+h1 {
+  margin-top: 10rem;
+  font-size: 2em;
   font-weight: bold;
+  z-index: 2;
+  color: #ffffff;
 }
 
-.tagline {
-  margin-top: 0.5rem;
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  z-index: 2;
+  color: #f0f0f0;
+}
+
+span {
   font-style: italic;
   color: #C94079;
 }
 
-.homepage-grid {
-  height: 100%;
+.buttons-div {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  gap: 2rem;
-  
+  gap: 1rem;
+  z-index: 2;
 }
 
-.grid-item {
-  width: 100%;
-  height: 10rem;
-  background: rgba(39, 39, 39, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto', Arial, sans-serif;
-  font-size: 2rem;
+.start-button {
+  padding: 1rem;
+  font-size: 1em;
   font-weight: bold;
   color: #f0f0f0;
-  text-align: center;
-  transition: transform 0.2s, background-color 0.2s;
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
-}
-
-.separator{
-  background: linear-gradient(
-    to bottom, 
-    #C94079,          /* Primary accent color */
-    #e85e92,          /* Soft pink for highlights */
-    #FF8C42           /* Deep magenta for depth */
-  );
-  width: 2px;
-  height: 95%;
-}
-
-.grid-item:hover {
-  transform: translateY(-5px);
+  background: linear-gradient(to right, #C94079 35%, #FF8C42);
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.log-button {
+  padding: 1rem;
+  font-size: 1em;
+  font-weight: bold;
+  color: #f0f0f0;
+  background: linear-gradient(to right, #FF8C42 35%, #C94079);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.start-button:hover, .log-button:hover {
+  transform: translateY(-3px);
 }
 </style>
