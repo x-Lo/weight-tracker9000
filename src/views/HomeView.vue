@@ -91,8 +91,9 @@ export default {
   display: flex;
   height: 100vh;
   width: 100%;
-  background: linear-gradient(to bottom right, #191919, #2c2c2c);
+  background: linear-gradient(to bottom , #191919, #2c2c2c);
   background-size: cover;
+  background-color: #191919;
 }
 
 .homepage-left,

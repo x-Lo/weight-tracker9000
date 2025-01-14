@@ -150,7 +150,7 @@ h2::after {
   justify-content: flex-start;
   gap: 1.5rem;
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   width: calc(33.333% - 1rem);
   min-width: 280px;

@@ -167,7 +167,7 @@
     #FF8C42           /* Deep magenta for depth */
   );
   width: 2px;
-  height: 95%;
+  height: 75%;
 }
 
 @media (max-width: 768px) {

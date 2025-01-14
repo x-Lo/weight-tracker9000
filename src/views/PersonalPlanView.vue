@@ -404,6 +404,16 @@ export default {
   color: rgba(255, 255, 255, 0.8);
 }
 
+h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #ffffff; /* High contrast */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1.5px;
+  position: relative;
+  text-align: center;
+}
+
 h2 {
   font-size: 1.2rem;
   margin-bottom: 1rem;

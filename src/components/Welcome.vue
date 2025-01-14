@@ -40,7 +40,6 @@ export default {
   align-items: center;
   text-align: center;
   gap: 4rem;
-  padding: 0;
   position: relative;
   margin-bottom: 5rem;
 }
@@ -50,7 +49,7 @@ h1 {
   font-size: 2em;
   font-weight: bold;
   z-index: 2;
-  color: #ffffff;
+  color: #f0f0f0;
 }
 
 h2 {
@@ -77,7 +76,7 @@ span {
   font-size: 1em;
   font-weight: bold;
   color: #f0f0f0;
-  background: linear-gradient(to right, #C94079 35%, #FF8C42);
+  background: transparent;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -89,7 +88,7 @@ span {
   font-size: 1em;
   font-weight: bold;
   color: #f0f0f0;
-  background: linear-gradient(to right, #FF8C42 35%, #C94079);
+  background: transparent;
   border: none;
   border-radius: 8px;
   cursor: pointer;

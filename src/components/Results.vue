@@ -112,9 +112,13 @@ export default defineComponent({
 }
 
 .results-page h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #ffffff; /* High contrast */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1.5px;
+  position: relative;
   text-align: center;
-  font-size: 2rem;
-  padding: 1rem;
   margin-top: 1rem;
 }
 
@@ -141,8 +145,6 @@ export default defineComponent({
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
 }
 
 .plan-section {
@@ -168,6 +170,7 @@ export default defineComponent({
 .plan-grid .grid-item{
   width:  30vh;
   border: none;
+  background-color: transparent;
   border-radius: 0;
   box-shadow: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
