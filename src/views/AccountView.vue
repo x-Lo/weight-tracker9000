@@ -132,9 +132,9 @@ h2::after {
   bottom: -5px;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 2px;
   background: linear-gradient(90deg, #c94079, #ff8c42);
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .grid {
