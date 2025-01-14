@@ -236,8 +236,9 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: linear-gradient(to bottom right, #191919, #2c2c2c);
+    background: url('../assets/hhhorizon.svg');
     background-size: cover;
+    background-color: #191919;
     padding: 1rem;
     gap: 2rem;
 }

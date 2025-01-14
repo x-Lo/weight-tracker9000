@@ -1,26 +1,23 @@
 <template>
   <div class="info-page" v-if="resultsData.hidden">
-    <div class="info-container">
-      <div class="info-step">
-        <h1>The first step we need to take is to calculate your maintenance calories.</h1>
-      </div>
-      <div class="info-step">
-        <h2>
-          The calculator will do that by using the Mifflin-St Jeor Formula, which is widely known to be the most accurate.
-        </h2>
-      </div>
-      <div class="info-step">
-        <h3>Based on that data, we will configure a weight plan just for you.</h3>
-      </div>
-      <div class="info-step">
-        <h4>With goal weight, calories, and even macronutrients included!</h4>
-      </div>
+    <div class="info-step">
+      <h1>The first step we need to take is to calculate your maintenance calories.</h1>
     </div>
-
+    <div class="info-step">
+      <h2>
+        The calculator will do that by using the Mifflin-St Jeor Formula, which is widely known to be the most accurate.
+      </h2>
+    </div>
+    <div class="info-step">
+      <h3>Based on that data, we will configure a weight plan just for you.</h3>
+    </div>
+    <div class="info-step">
+      <h4>With goal weight, calories, and even macronutrients included!</h4>
+    </div>
   </div>
+
   <div class="results-page" v-else>
     <h1>Your results:</h1>
-
     <div class="results-grid">
       <div class="grid-item calories">
         <h2>Your Maintenance Calories:</h2>
@@ -33,7 +30,6 @@
           <span class="calories-label">calories per week</span>
         </div>
       </div>
-
       <div class="grid-item plan">
         <h2>Plan Creation:</h2>
         <div class="plan-section">
@@ -45,8 +41,6 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 </template>
@@ -84,7 +78,8 @@ export default defineComponent({
 <style scoped>
 /* General Page Styling */
 .results-page {
-  height: 100%;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -96,9 +91,12 @@ export default defineComponent({
   color: #f0f0f0;
 }
 
-.info-container {
+.info-page {
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center; /* Centers content horizontally */
   text-align: center;
   gap: 2rem; /* Space between sections */
@@ -126,7 +124,7 @@ export default defineComponent({
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 2rem;
 }
 

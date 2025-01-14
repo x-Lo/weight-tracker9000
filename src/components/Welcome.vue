@@ -77,8 +77,8 @@ span {
   font-weight: bold;
   color: #f0f0f0;
   background: transparent;
-  border: none;
-  border-radius: 8px;
+  border: 2px solid #C94079;
+  border-radius: 20px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
@@ -90,12 +90,14 @@ span {
   color: #f0f0f0;
   background: transparent;
   border: none;
-  border-radius: 8px;
+  border: 2px solid #C94079;
+  border-radius: 20px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .start-button:hover, .log-button:hover {
   transform: translateY(-3px);
+  border: 2px solid #FF8C42;
 }
 </style>

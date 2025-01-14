@@ -265,7 +265,6 @@ h1 {
 
 .unit-switch a.active {
   color: #C94079;
-  text-decoration: underline;
 }
 
 .form-group {

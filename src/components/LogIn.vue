@@ -26,7 +26,7 @@
           required
         />
       </div>
-      <button type="submit" class="login-button">SIGN IN</button>
+      <button type="submit" class="button">SIGN IN</button>
       <p class="forgot-password">
         <a href="#">Forgot Password?</a>
       </p>
@@ -166,20 +166,14 @@ h2::after {
 }
 
 /* Button */
-.login-button {
+.button {
   padding: 0.8rem;
   font-size: 1em;
   font-weight: bold;
   color: #f0f0f0;
-  background: linear-gradient(to right,#C94079, #FF8C42);
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.login-button:hover {
-  transform: translateY(-3px);
 }
 
 /* Links */
@@ -203,7 +197,7 @@ h2::after {
 .signup {
   font-size: 1em;
   margin-top: 1rem;
-  color: #bdbdbd;
+  color: #f0f0f0;
 }
 </style>
   
