@@ -144,10 +144,24 @@ export default defineComponent({
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
-  padding: 1rem;
+  gap: 2rem;
+  position: relative;
+}
+
+h1 {
+  margin-top: 10rem;
+  font-size: 2em;
+  font-weight: bold;
+  color: #f0f0f0;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #f0f0f0;
 }
 
 .user-name {
@@ -159,8 +173,8 @@ export default defineComponent({
 .submit-form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 2rem;
+  justify-content: flex-end;
+  gap: 1rem;
   width: 40vh;
 }
 
@@ -168,10 +182,14 @@ export default defineComponent({
   font-size: 1rem; /* Larger, yet readable */
   color: #f0f0f0;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .feedback-messages {
   margin-bottom: 4rem;
+}
+
+.button {
+  border-radius: 12px;
 }
 </style>

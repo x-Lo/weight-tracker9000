@@ -31,9 +31,8 @@
         </div>
       </div>
       <div class="grid-item plan">
-        <h2>Plan Creation:</h2>
+        <h2>What Is Your Goal?</h2>
         <div class="plan-section">
-          <h3>What is your goal?</h3>
           <div class="plan-grid">
             <div class="grid-item fatloss" @click="updatePlanType" id="FAT LOSS">FAT LOSS</div>
             <div class="grid-item maintenance" @click="updatePlanType" id="MAINTENANCE">MAINTENANCE</div>
@@ -148,25 +147,24 @@ export default defineComponent({
 .plan-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   gap: 1rem;
 }
-
-
 
 .plan-grid {
   width: 100%;
   height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: 2rem;
   padding: 2rem;
 }
 
 .plan-grid .grid-item{
   width:  30vh;
+  font-size: 1.2em;
   border: none;
   background-color: transparent;
   border-radius: 0;

@@ -11,7 +11,7 @@
             <span class="days-label" style="">DAYS</span>
           </div>
         </div>
-        <div class="separator"></div>
+        
         <div class="grid-item streak">
           <div class="days-section">
             <h2>Current Streak: </h2>
@@ -19,9 +19,17 @@
             <span class="days-label" style="">DAYS</span>
           </div>
         </div>
-        <div class="separator"></div>
+        
         <div class="grid-item goal">
-          <div class="goal-section">
+          <div class="days-section">
+            <h2>Goal Weight:</h2>
+            <span class="days-value">{{ resultsData.goalweight }}</span>
+            <span class="days-label" style="">KG</span>
+          </div>
+        </div>
+
+        <div class="grid-item plan">
+          <div class="plan-section">
             <h2>Have your results slowed down?</h2>
             <h3 class="reconfigure" @click="navigate('calculator')">Reconfigure your plan!</h3>
           </div>
@@ -74,10 +82,12 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
+  gap: 5rem;
   width: 100%;
+  height: 100vh;
   font-size: 1rem;
   font-weight: bold;
+  margin: 0.5rem;
 }
     
 .calendar-container {
@@ -86,24 +96,28 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  border: 2px solid #C94079;
+  border-radius: 20px;
 }
 
 .info-grid {
-  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  gap: 2rem;
+  justify-content: space-between;
 }
 
 .grid-item {
-  width: 40vh;
-  height: 50vh;
+  width: 30vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background: rgba(39, 39, 39, 0.1);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
   padding: 0.5rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -114,16 +128,18 @@
 .days-section {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
-  width: 100%;
   padding: 1rem;
   flex-grow: 1;
 }
 
+.days-section h2 {
+  font-size: 1rem;
+}
+
 .days-value {
-  margin-top: 3rem;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
@@ -132,20 +148,23 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-.goal-section {
+.plan-section {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
-  width: 100%;
   padding: 1rem;
-  gap: 6rem;
+  gap: 4rem;
   flex-grow: 1;
+}
+
+.plan-section h2 {
+  font-size: 1rem;
 }
 
 .reconfigure {
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 0.9em;
   border: none;
   border-radius: 0;
   box-shadow: none;
@@ -159,16 +178,6 @@
   cursor: pointer;
 }
 
-.separator {
-  background: linear-gradient(
-    to bottom, 
-    #C94079,          /* Primary accent color */
-    #e85e92,          /* Soft pink for highlights */
-    #FF8C42           /* Deep magenta for depth */
-  );
-  width: 2px;
-  height: 75%;
-}
 
 @media (max-width: 768px) {
   .info-grid{

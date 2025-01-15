@@ -48,14 +48,12 @@ h1 {
   margin-top: 10rem;
   font-size: 2em;
   font-weight: bold;
-  z-index: 2;
   color: #f0f0f0;
 }
 
 h2 {
   font-size: 1.5em;
   font-weight: bold;
-  z-index: 2;
   color: #f0f0f0;
 }
 
@@ -68,7 +66,6 @@ span {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  z-index: 2;
 }
 
 .start-button {
@@ -80,7 +77,7 @@ span {
   border: 2px solid #C94079;
   border-radius: 20px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .log-button {
@@ -93,7 +90,7 @@ span {
   border: 2px solid #C94079;
   border-radius: 20px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .start-button:hover, .log-button:hover {

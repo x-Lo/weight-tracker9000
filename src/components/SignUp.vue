@@ -164,7 +164,7 @@ h2::after {
   color: #f0f0f0;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  border-radius: 10px;
   outline: none;
   transition: border-color 0.3s ease;
 }
@@ -178,9 +178,9 @@ h2::after {
   padding: 0.8rem;
   font-size: 1em;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 /* Links */

@@ -239,27 +239,22 @@ export default {
     background: url('../assets/hhhorizon.svg');
     background-size: cover;
     background-color: #191919;
-    padding: 1rem;
     gap: 2rem;
 }
 
 .grid-container {
     width: 100%;
-    height: 80%;
+    max-height: fit-content;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    gap: 2rem;
-    padding: 1rem;
+    justify-content: space-evenly;
 }
 
 .rate-options-grid {
     width: 100%;
-    height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 1rem;
+    justify-content: space-evenly;
 }
 
 .rate-options-grid .grid-item{
@@ -271,11 +266,12 @@ export default {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     cursor: pointer;
     text-align: center;
     font-family: 'Roboto', Arial, sans-serif;
+    font-size: 1.1em;
     color: #f0f0f0;
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -298,14 +294,13 @@ export default {
   box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  margin-bottom: 1rem;
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;
-  
+  margin-bottom: 1rem;
 }
 
 .grid-item-h {
@@ -316,7 +311,7 @@ export default {
     box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
     margin-bottom: 1rem;
@@ -353,7 +348,6 @@ export default {
 .form-group {
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
     justify-content: space-evenly;
     text-align: left;
 }
@@ -362,27 +356,14 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    justify-content: space-between;   
     width: 40vh;
 }
 
-.input-group h2 {
-    margin-top: 2rem;
-}
-
-.input-group input {
-    margin-bottom: 2rem;
-}
-
 .button {
-    width: 100%;
-    padding: 0.5rem; /* Reduced padding */
-    font-size: 1rem; /* Reduced font size */
-    margin-top: auto; /* Push the button to the bottom of the flex container */
-    align-self: center;
+    width: 40vh;
+    border-radius: 10px;
 }
-
 
 .calorie-section {
   display: flex;
@@ -417,7 +398,6 @@ h1 {
 
 h2 {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
   color: #f0f0f0;
 }
 
@@ -455,6 +435,7 @@ h2 {
 .calendar-value {
   font-size: 4rem;
   font-weight: bold;
+  
 }
 
 .calendar-label {
