@@ -85,6 +85,7 @@
   gap: 5rem;
   width: 100%;
   height: 100vh;
+  min-height: 50vh;
   font-size: 1rem;
   font-weight: bold;
   margin: 0.5rem;
@@ -180,6 +181,10 @@
 
 
 @media (max-width: 768px) {
+  .calendar-container {
+    margin-top: 1rem;
+  }
+
   .info-grid{
     flex-direction: column;
     align-items: center;
@@ -190,7 +195,7 @@
   }
 
   .grid-item {
-    width: 40vh;
+    width: 45vh;
     height: 15vh;
     font-size: 0.8rem;
     margin: 0;
@@ -200,6 +205,11 @@
     font-size: 1rem;
     margin: 0;
   }
+
+  .plan-section {
+    gap: 1rem;
+  }
 }
+
 </style>
   

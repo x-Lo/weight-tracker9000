@@ -78,6 +78,7 @@ export default defineComponent({
 /* General Page Styling */
 .results-page {
   height: 100vh;
+  min-width: 20vh;
   width: 100%;
   display: flex;
   flex-direction: column;

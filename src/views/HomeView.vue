@@ -91,6 +91,7 @@ export default {
   display: flex;
   height: 100vh;
   width: 100%;
+  min-height: 50vh;
   /*background: linear-gradient(to bottom , #191919, #2c2c2c);*/
   background: rgb(25,25,25);
   background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(0,0,0,1) 75%, rgba(57,32,42,1) 100%);
@@ -109,6 +110,7 @@ export default {
 .homepage-left {
   flex: 0 0 65%;
   height: 100vh;
+  min-height: 25vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,6 +122,7 @@ export default {
 .homepage-right {
   flex: 0 0 35%;
   height: 100%;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -168,11 +171,30 @@ export default {
   }
 
   .homepage-left {
-    flex: 0 0 80%;
+    flex: 0 0 100%;
   }
 
   .homepage-right {
     flex: 0 0 20%;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-container {
+    flex-direction: column; /* Stack sections on top of each other */
+  }
+  
+  .homepage-left,
+  .homepage-right {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .homepage-left {
+    flex: 0 0 100%;
+  }
+
+  .homepage-right {
+    flex: 0 0 100%;
   }
 }
 </style>

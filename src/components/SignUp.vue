@@ -139,8 +139,6 @@ h2::after {
   gap: 1rem;
   padding: 1.5rem;
   border-radius: 12px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 }
 

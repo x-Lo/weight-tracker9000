@@ -258,5 +258,25 @@ label {
         font-size: 2em;
     }
 }
+
+@media (max-width: 480px) {
+    body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .moto {
+        position: absolute; /* Position relative to .homepage-left */
+        top: 30px; /* Adjust distance from the top edge */
+        left: 15px; /* Adjust distance from the left edge */
+        font-size: 3em;
+        letter-spacing: 2px;
+        line-height: 0.8;
+    }
+}
   
   

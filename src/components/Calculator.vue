@@ -235,6 +235,7 @@ export default defineComponent({
   font-size: 1rem;
   font-weight: bold;
   color: #f0f0f0;
+  min-height: 20vh;
 }
 
 h1 {
@@ -346,5 +347,9 @@ input, select {
   padding: 0.5rem; /* Reduced padding */
   font-size: 1rem; /* Reduced font size */
   border-radius: 15px;
+}
+
+@media (max-width: 480px) {
+
 }
 </style>
