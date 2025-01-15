@@ -101,9 +101,13 @@
   gap: 3rem;
   border-radius: 12px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-  background: url('../assets/hhhorizon.svg');
+  background: linear-gradient(to bottom, 
+    #191919 75%, /* Dark gray at the top */
+    #39202A 100% /* Pinkish transition at the bottom */
+  );
   background-size: cover;
-  background-color: #191919;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps it steady on scroll */
 }
 
 h1 {

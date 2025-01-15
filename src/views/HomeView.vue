@@ -92,10 +92,13 @@ export default {
   height: 100vh;
   width: 100%;
   /*background: linear-gradient(to bottom , #191919, #2c2c2c);*/
-  
-  background: url('../assets/hhhorizon.svg');
+  background: linear-gradient(to bottom, 
+    #191919 75%, /* Dark gray at the top */
+    #39202A 100% /* Pinkish transition at the bottom */
+  );
   background-size: cover;
-  background-color: #191919;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps it steady on scroll */
 }
 
 .homepage-left,
