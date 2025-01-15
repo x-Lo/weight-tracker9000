@@ -189,7 +189,7 @@ input, select {
     font-size: 1rem;
     color: #f0f0f0;
     background: linear-gradient(to bottom right, #2e2e2e, #3c3c3c);
-    border-radius: 10px; /* Slightly smaller border radius */
+    border-radius: 15px; /* Slightly smaller border radius */
     outline: 2px solid transparent;
     border: none;
     border-image: linear-gradient(to right, #505050, #C94079) 1;

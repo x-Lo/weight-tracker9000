@@ -366,7 +366,7 @@ export default {
 
 .button {
     width: 40vh;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .calorie-section {

@@ -345,6 +345,6 @@ input, select {
   width: 100%;
   padding: 0.5rem; /* Reduced padding */
   font-size: 1rem; /* Reduced font size */
-  border-radius: 10px;
+  border-radius: 15px;
 }
 </style>
