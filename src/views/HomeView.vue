@@ -92,10 +92,8 @@ export default {
   height: 100vh;
   width: 100%;
   /*background: linear-gradient(to bottom , #191919, #2c2c2c);*/
-  background: linear-gradient(to bottom, 
-    #191919 75%, /* Dark gray at the top */
-    #39202A 100% /* Pinkish transition at the bottom */
-  );
+  background: rgb(25,25,25);
+  background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(0,0,0,1) 75%, rgba(57,32,42,1) 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed; /* Keeps it steady on scroll */
