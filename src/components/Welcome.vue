@@ -33,7 +33,6 @@
           x: '0%',
           opacity: 1,
           duration: 1,
-          stagger: 0.1,
           ease: 'power1.out', // Smooth deceleration effect
         }
       );

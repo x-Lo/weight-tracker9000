@@ -39,17 +39,7 @@ import { useAnimationStore } from "@/stores/animationStore";
 const animationStore = useAnimationStore();
 
 onMounted(() => {
-  // Animate the left section
-  gsap.from(".homepage-left", {
-    x: "0%", // Start 200px to the left
-    opacity: 0, // Start invisible
-    duration: 0.7, // Animation duration
-    ease: "power2.out", // Smooth easing
-    delay: 0.2, // Slight delay for better effect
-  });
-
-  // Reset any previous animation states in your store
-  animationStore.resetAnimation();
+  
 });
 
 </script>
