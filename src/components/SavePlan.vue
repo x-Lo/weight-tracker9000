@@ -22,7 +22,6 @@ const {navigate} = useNavigation();
   text-align: center;
   gap: 4rem;
   position: relative;
-  margin-bottom: 5rem;
 }
 
 h1 {

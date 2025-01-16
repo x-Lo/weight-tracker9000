@@ -104,6 +104,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 <style scoped>
 .navbar {
   position: sticky;
+  height: 10%;
   top: 0;
   display: flex;
   justify-content: space-between;

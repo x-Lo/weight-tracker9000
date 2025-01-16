@@ -84,7 +84,7 @@
   align-items: center;
   gap: 5rem;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   min-height: 50vh;
   font-size: 1rem;
   font-weight: bold;

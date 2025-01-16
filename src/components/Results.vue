@@ -11,9 +11,6 @@
     <div class="info-step">
       <h3>Based on that data, we will configure a weight plan just for you.</h3>
     </div>
-    <div class="info-step">
-      <h4>With goal weight, calories, and even macronutrients included!</h4>
-    </div>
   </div>
 
   <div class="results-page" v-else>
@@ -77,36 +74,33 @@ export default defineComponent({
 <style scoped>
 /* General Page Styling */
 .results-page {
-  height: 100vh;
+  height: 100%;
   min-width: 20vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 1rem;
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 1rem;
   font-weight: bold;
   color: #f0f0f0;
+  padding: 2rem;
 }
 
 .info-page {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center; /* Centers content horizontally */
   text-align: center;
   gap: 2rem; /* Space between sections */
-  padding: 2rem; /* Adds breathing room around the container */
   max-width: 800px; /* Limits content width for readability */
-  margin: 0 auto; /* Centers the container on the page */
 }
 
 .info-step {
-  padding: 1rem 2rem; /* Adds space around each step for visual clarity */
+  padding: 1rem; /* Adds space around each step for visual clarity */
 }
 
 .results-page h1 {
@@ -115,9 +109,7 @@ export default defineComponent({
   color: #ffffff; /* High contrast */
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
-  position: relative;
   text-align: center;
-  margin-top: 1rem;
 }
 
 .results-grid {
@@ -138,8 +130,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem;
-  margin-bottom: 0.4rem;
+  padding: 1.5rem;
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;

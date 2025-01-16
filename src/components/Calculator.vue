@@ -224,7 +224,7 @@ export default defineComponent({
 
 <style scoped>
 .calc-container {
-  flex: 0  0 35%; /* Fixed width ratio (20%) */
+  height: 100%;
   display: flex;
   flex-direction: column; /* Stacks items vertically */
   justify-content: flex-start;
@@ -252,7 +252,7 @@ h1 {
 .card {
   max-width: 400px; /* Ensures the card has a consistent width */
   width: 100%;
-  padding: 1rem; /* Reduced padding */
+  padding: 1.5rem; /* Reduced padding */
   font-size: 1rem; /* Slightly smaller font size */ 
 }
 
@@ -347,6 +347,7 @@ input, select {
   padding: 0.5rem; /* Reduced padding */
   font-size: 1rem; /* Reduced font size */
   border-radius: 15px;
+  margin-top: 1rem;
 }
 
 @media (max-width: 480px) {

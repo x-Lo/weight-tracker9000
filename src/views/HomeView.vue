@@ -27,105 +27,71 @@
 </template>
 
 
-<script lang="ts" defer>
-import { useRouter, useRoute } from "vue-router";
+<script lang="ts" defer setup>
+import { onMounted } from "vue";
+import { gsap } from "gsap";
 import { useAnimationStore } from "@/stores/animationStore";
-import { watch, onMounted } from "vue";
 
-export default {
-  name: "HomeView",
-  setup() {
-    const router = useRouter();
-    const route = useRoute();
-    const animationStore = useAnimationStore();
+const animationStore = useAnimationStore();
 
-    // Watch for sliding animation state
-    watch(
-      () => animationStore.isSliding,
-      (isSliding) => {
-        if (isSliding) {
-          // Start left section animations
-          setTimeout(() => animationStore.completeMove(), 700);
+onMounted(() => {
+  // Animate the left section
+  gsap.from(".homepage-left", {
+    x: "0%", // Start 200px to the left
+    opacity: 0, // Start invisible
+    duration: 0.7, // Animation duration
+    ease: "power2.out", // Smooth easing
+    delay: 0.2, // Slight delay for better effect
+  });
 
-          // Redirect after animations
-          setTimeout(() => {
-            router.push({ name: animationStore.targetRoute });
-            animationStore.makeVisible();
-          }, 700);
-        }
-      }
-    );
+  // Animate the right section
+  gsap.from(".homepage-right", {
+    x: "0%", // Start 200px to the right
+    opacity: 0, // Start invisible
+    duration: 1.2, // Animation duration
+    ease: "power2.out",
+    delay: 0.4, // Start after the left section
+  });
 
-    // Reset animations on returning to the home view
-    watch(
-      () => route.name,
-      (newRoute) => {
-        if (newRoute === "homeview" || newRoute === "login" || newRoute === "signup") {
-          animationStore.resetAnimation();
-        }
-      },
-      { immediate: true }
-    );
+  // Reset any previous animation states in your store
+  animationStore.resetAnimation();
+});
 
-    // Ensure reset on initial load if on home view
-    onMounted(() => {
-      if (route.name === "homeview" || route.name === "login" || route.name === "signup") {
-        /* animationStore.isSliding = false;
-        animationStore.isFading = false;
-        animationStore.isMoved = false;
-        animationStore.targetRoute = ""; */
-        animationStore.resetAnimation();
-      }
-    });
-
-    return {
-      animationStore,
-    };
-  },
-};
 </script>
 
 <style scoped>
 /* Existing styles */
 .homepage-container {
   display: flex;
-  height: 100vh;
+  flex-direction: row;
+  height: 90%;
   width: 100%;
-  min-height: 50vh;
-  /*background: linear-gradient(to bottom , #191919, #2c2c2c);*/
-  background: rgb(25,25,25);
-  background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(0,0,0,1) 75%, rgba(57,32,42,1) 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Keeps it steady on scroll */
 }
 
 .homepage-left,
 .homepage-right {
-  visibility: visible; /* Ensure visibility by default */
-  opacity: 1; /* Full opacity by default */
-  transform: none; /* Ensure no movement by default */
+  opacity: 1; /* Default visibility */
+  transform: none; /* Default positioning */
 }
 
 .homepage-left {
-  flex: 0 0 65%;
-  height: 100vh;
-  min-height: 25vh;
+  flex: 1 0 65%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  text-align: left;
   background: transparent;
-  transition: transform 0.7s ease-in-out, visibility 0.7s ease-in-out, opacity 0.7s ease-in-out;
+  transition: transform 0.7s ease-in-out;
 }
 
 .homepage-right {
-  flex: 0 0 35%;
+  flex: 1 0 35%;
   height: 100%;
   min-height: 50vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
   gap: 3rem;

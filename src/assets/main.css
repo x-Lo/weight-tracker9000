@@ -8,6 +8,13 @@
   box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scroll entirely */
+    overflow-y: hidden; /* Prevent vertical overflow */
+    width: 100%;
+    height: 100%;
+}
+
 body {
   font-family: 'Roboto', Arial, sans-serif;
   background: rgb(25,25,25);
@@ -18,6 +25,8 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
   color: #f0f0f0;
+  margin: 0;
+  padding: 0;
 }
 
 .logo {
@@ -42,7 +51,7 @@ body {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 5rem;
     font-weight: bold;
-    color: #fff;
+    color: #fff !important;
     letter-spacing: 2px;
     line-height: 0.8;
 }

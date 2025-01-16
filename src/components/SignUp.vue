@@ -95,7 +95,7 @@ export default defineComponent({
 .login-container {
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   color: #f0f0f0;
   text-align: center;
@@ -138,7 +138,7 @@ h2::after {
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 20px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 }
 

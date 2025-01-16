@@ -37,6 +37,10 @@ export default{
 
 <style scoped>
 #app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-family: 'Roboto', Arial, sans-serif;
+  height: 100vh;
 }
 </style>
