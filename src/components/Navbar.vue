@@ -176,7 +176,6 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
   }
 
   .nav-link:hover {
-    background-color: #C94079;
     color: #fff;
     border-radius: 5px;
   }

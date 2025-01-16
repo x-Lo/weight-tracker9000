@@ -1,7 +1,8 @@
 <template>
   <div class="homepage-container">
     <!-- Left Section -->
-    <div
+    <transition>
+      <div
       class="homepage-left"
       :class="{
         isFadingOut: animationStore.isFading,
@@ -12,9 +13,11 @@
     >
       <router-view name="left" />
     </div>
+    </transition>
 
     <!-- Right Section -->
-    <div
+    <transition>
+      <div
       class="homepage-right"
       :class="{
         isSlidingLeft: animationStore.isSliding,
@@ -23,12 +26,13 @@
     >
       <router-view name="right" />
     </div>
+    </transition>
   </div>
 </template>
 
 
 <script lang="ts" defer setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { gsap } from "gsap";
 import { useAnimationStore } from "@/stores/animationStore";
 
@@ -42,15 +46,6 @@ onMounted(() => {
     duration: 0.7, // Animation duration
     ease: "power2.out", // Smooth easing
     delay: 0.2, // Slight delay for better effect
-  });
-
-  // Animate the right section
-  gsap.from(".homepage-right", {
-    x: "0%", // Start 200px to the right
-    opacity: 0, // Start invisible
-    duration: 1.2, // Animation duration
-    ease: "power2.out",
-    delay: 0.4, // Start after the left section
   });
 
   // Reset any previous animation states in your store

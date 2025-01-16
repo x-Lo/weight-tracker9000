@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome-container">
+  <div class="welcome-container" ref="welcome">
     <h1 class="brand-name">Weight Tracking Made Simple.</h1>
     <h2>
       Dedication and careful planning are the keys to success,
@@ -12,23 +12,33 @@
   </div>
 </template>
 
-<script lang="ts" defer>
-import { useAnimationStore } from "@/stores/animationStore";
-import { useNavigation } from "@/composables/useNavigation";
+<script lang="ts" setup>
+  import { useNavigation } from "@/composables/useNavigation";
+  import { ref, onMounted } from 'vue';
+  import { gsap } from 'gsap';
 
-export default {
-  name: "Welcome",
-  setup() {
-    const animationStore = useAnimationStore();
-    const { navigate } = useNavigation();
+  const { navigate } = useNavigation();
+  const welcome = ref<HTMLDivElement | null>(null);
 
-    const triggerAnimation = (route: string) => {
-      animationStore.triggerAnimation(route);
-    };
+  onMounted(() => {
+    if (welcome.value) {
+      // Select all children of moto (h2, h3)
+      const letters = welcome.value.querySelectorAll('*');
 
-    return { triggerAnimation, navigate };
-  },
-};
+      // Animate text fading in from the right
+      gsap.fromTo(
+        letters,
+        { x: '100%', opacity: 0 }, // Start off-screen to the right and invisible
+        {
+          x: '0%',
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: 'power1.out', // Smooth deceleration effect
+        }
+      );
+    }
+  });
 </script>
 
 <style scoped>
