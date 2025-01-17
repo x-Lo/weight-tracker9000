@@ -1,5 +1,5 @@
 <template>
-  <div class="calc-container">
+  <div class="calc-container" ref="calc">
     <h1>Let's get started!</h1>
     <div class="card">
       <form @submit.prevent="calculateTDEE">
@@ -113,33 +113,30 @@
   </div>
 </template>
 
-<script lang="ts" defer>
-import { defineComponent, ref, computed } from "vue";
-import { useAppStore } from '@/stores/appStore';
+<script lang="ts" setup>
+  import { ref, computed, onMounted } from "vue";
+  import { useAppStore } from '@/stores/appStore';
+  import gsap from "gsap";
 
-export default defineComponent({
-  name: "Calculator",
-  emits: ["calculate"],
-  setup() {
-    const store = useAppStore();
+  
+  const store = useAppStore();
+  const calc = ref<HTMLElement | null>(null);
+  const unitSystem = ref<"metric" | "imperial">("metric");
+  const gender = ref<string>("Male");
+  const age = ref<number | null>(null);
+  const weight = ref<number | null>(null);
+  const height = ref<number | null>(null);
+  const activityLevel = ref<string | null>("");
+  const tdee = ref<number | null>(null);
 
-    const unitSystem = ref<"metric" | "imperial">("metric");
-    const gender = ref<string>("Male");
-    const age = ref<number | null>(null);
-    const weight = ref<number | null>(null);
-    const height = ref<number | null>(null);
-    const activityLevel = ref<string | null>("");
-    const typeOfPlan = ref<string | null>("");
-    const tdee = ref<number | null>(null);
+  const weightPlaceholder = computed(() => 
+    unitSystem.value === "metric" ? "Enter weight in kg" : "Enter weight in lbs"
+  );
+  const heightPlaceholder = computed(() => 
+    unitSystem.value === "metric" ? "Enter height in cm" : "Enter height in ft/in"
+  );
 
-    const weightPlaceholder = computed(() => 
-      unitSystem.value === "metric" ? "Enter weight in kg" : "Enter weight in lbs"
-    );
-    const heightPlaceholder = computed(() => 
-      unitSystem.value === "metric" ? "Enter height in cm" : "Enter height in ft/in"
-    );
-
-    const predefinedImperialHeights = [
+  const predefinedImperialHeights = [
       { label: "4ft 7in", value: 139.7 },
       { label: "4ft 8in", value: 142.24 },
       { label: "4ft 9in", value: 144.78 },
@@ -170,56 +167,54 @@ export default defineComponent({
       { label: "6ft 10in", value: 208.28 },
       { label: "6ft 11in", value: 210.82 },
       { label: "7ft 0in", value: 213.36 },
-    ];
+  ];
 
-    const switchTo = (system: "metric" | "imperial") => {
-      unitSystem.value = system;
-      height.value = null; // Reset height when switching systems
-      weight.value = null;
-    };
+  const switchTo = (system: "metric" | "imperial") => {
+    unitSystem.value = system;
+    height.value = null; // Reset height when switching systems
+    weight.value = null;
+  };
 
-    const calculateTDEE = () => {
-      if (age.value && weight.value && height.value && activityLevel.value) {
-        const weightInKg = unitSystem.value === 'imperial' ? weight.value! * 0.453592 : weight.value!;
-        const heightInCm = height.value!;
-        const bmr =
-          10 * weightInKg +
-          6.25 * heightInCm -
-          5 * age.value +
-          (gender.value === 'Male' ? 5 : -161);
-        tdee.value = Math.round(bmr * parseFloat(activityLevel.value));
-      }
+  const calculateTDEE = () => {
+    if (age.value && weight.value && height.value && activityLevel.value) {
+      const weightInKg = unitSystem.value === 'imperial' ? weight.value! * 0.453592 : weight.value!;
+      const heightInCm = height.value!;
+      const bmr =
+        10 * weightInKg +
+        6.25 * heightInCm -
+        5 * age.value +
+        (gender.value === 'Male' ? 5 : -161);
+      tdee.value = Math.round(bmr * parseFloat(activityLevel.value));
+    }
 
-      // Pass data and show hidden div
-      store.updateData({
-        gender: gender.value,
-        age: age.value,
-        weight: weight.value,
-        height: height.value,
-        activityLevel: activityLevel.value,
-        tdee: tdee.value,
-      });
+    // Pass data and show hidden div
+    store.updateData({
+      gender: gender.value,
+      age: age.value,
+      weight: weight.value,
+      height: height.value,
+      activityLevel: activityLevel.value,
+      tdee: tdee.value,
+    });
 
-      store.toggleHiddenState(false);
-    };
+    store.toggleHiddenState(false);
+  };
 
-    return {
-      unitSystem,
-      gender,
-      age,
-      weight,
-      height,
-      weightPlaceholder,
-      heightPlaceholder,
-      activityLevel,
-      typeOfPlan,
-      tdee,
-      predefinedImperialHeights,
-      switchTo,
-      calculateTDEE,
-    };
-  },
-});
+  onMounted(async() => {
+    // animation code
+    if (calc.value) {
+      gsap.fromTo(
+        calc.value.querySelectorAll("*"),
+        { x: '100%', opacity: 0 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 0.7,
+          ease: "power1.out" 
+        }
+      );
+    }
+  });
 </script>
 
 <style scoped>
