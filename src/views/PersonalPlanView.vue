@@ -227,11 +227,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: rgb(25,25,25);
-    background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(0,0,0,1) 75%, rgba(57,32,42,1) 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Keeps it steady on scroll */
     gap: 2rem;
     padding: 1rem;
 }

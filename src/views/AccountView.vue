@@ -110,11 +110,6 @@
   gap: 2rem;
   border-radius: 12px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-  background: rgb(25,25,25);
-  background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(0,0,0,1) 75%, rgba(57,32,42,1) 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Keeps it steady on scroll */
 }
 
 h1 {
