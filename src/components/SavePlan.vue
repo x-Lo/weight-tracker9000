@@ -1,20 +1,39 @@
-<script setup lang="ts">
-import { useNavigation } from '@/composables/useNavigation';
-
-const {navigate} = useNavigation();
-</script>
-
 <template>
-    <div class="saveplan-container">
+    <div class="saveplan-container" ref="savePlan">
       <h1>Ready to realize your full potential?</h1>
       <h2>Sign up to save your personalized plan and track your progress with daily weight logs.</h2>
       <button class="button" @click="navigate('signup')">Create Your Account!</button>
     </div>
-  </template>
+</template>
+
+<script setup lang="ts">
+  import { useNavigation } from '@/composables/useNavigation';
+  import gsap from 'gsap';
+  import { ref, onMounted } from 'vue';
+
+  const {navigate} = useNavigation();
+  const savePlan = ref<HTMLElement | null>(null);
+
+  onMounted(async() => {
+    // animation code
+    if (savePlan.value) {
+      gsap.fromTo(
+        savePlan.value.querySelectorAll("*"),
+        { x: '100%', opacity: 0 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 0.7,
+          ease: "power1.out" 
+        }
+      );
+    }
+  });
+</script>
 
 <style scoped>
 .saveplan-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
