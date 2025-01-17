@@ -1,7 +1,8 @@
 <template>
-  <div class="login-container">
-    <form class="login-form" @submit.prevent="handleLogIn">
-      <h2>SIGN IN</h2>
+  <div class="login-container" ref="login">
+    <form class="login-form" @submit.prevent="handleLogIn" >
+      <h2>Welcome Back</h2>
+      <h4>Please enter your details to sign in</h4>
       <div class="input-group">
         <label for="email">
           <span class="icon">📧</span>
@@ -32,54 +33,61 @@
       </p>
       <p class="signup">
         Don't have an account? 
-        <a @click.prevent="handleNavigate('signup')">Create an Account</a>
+        <a @click.prevent="navigate('signup')">Create an Account</a>
       </p>
     </form>
   </div>
 </template>
   
-<script lang="ts" defer>
-  import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+  import { ref, onMounted } from "vue";
   import { logIn } from "@/services/authService";
   import { getUserProfile } from "@/services/userService";
   import { useRouter, useRoute } from "vue-router";
   import { useNavigation } from "@/composables/useNavigation";
   import { useAppStore } from "@/stores/appStore";
+  import gsap from "gsap";
   
-  export default defineComponent({
-    setup() {
-      const email = ref("");
-      const password = ref("");
-      const errorMessage = ref("");
-      const router = useRouter(); // Access the router instance
-      const route = useRoute();
-      const { navigate } = useNavigation();
-      const store = useAppStore();
+  const email = ref("");
+  const password = ref("");
+  const errorMessage = ref("");
+  const router = useRouter(); // Access the router instance
+  const route = useRoute();
+  const { navigate } = useNavigation();
+  const store = useAppStore();
+  const login = ref<HTMLElement | null>(null);
+  
+  const handleLogIn = async () => {
+    try {
+      errorMessage.value = ""; // Reset error message
+      const user = await logIn(email.value, password.value);
+  
+      // Fetch user profile after logging in
+      const userProfile = await getUserProfile(user.uid);
+      store.setCalendarAttributes([]);
+      store.fetchUserData(user.uid);
+      console.log("User logged in successfully!", userProfile);
+      const redirectPath = route.query.redirect || "/"; // Default to home if no redirect
+      router.push(redirectPath as string);
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
 
-      const handleNavigate = (route: string) => {
-        navigate(route);
-      };
-  
-      const handleLogIn = async () => {
-        try {
-          errorMessage.value = ""; // Reset error message
-          const user = await logIn(email.value, password.value);
-  
-          // Fetch user profile after logging in
-          const userProfile = await getUserProfile(user.uid);
-          store.setCalendarAttributes([]);
-          store.fetchUserData(user.uid);
-          console.log("User logged in successfully!", userProfile);
-          const redirectPath = route.query.redirect || "/"; // Default to home if no redirect
-          router.push(redirectPath as string);
-        } catch (error) {
-          console.error("Error logging in:", error);
+  onMounted(async() => {
+    // animation code
+    if (login.value) {
+      gsap.fromTo(
+        login.value.querySelectorAll("*"),
+        { x: '100%', opacity: 0 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 0.7, 
+          ease: "power1.out" 
         }
-      };
-
-  
-      return { email, password, errorMessage, handleLogIn, handleNavigate };
-    },
+      );
+    }
   });
 </script>
   
@@ -97,15 +105,10 @@
 
 /* Header */
 h2 {
-  font-size: 2.5em;
+  font-size: 2em;
   margin-bottom: 1rem;
   font-weight: bold;
-  color: #c94079;
-  background: linear-gradient(90deg, #c94079, #ff8c42);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
   letter-spacing: 1px;
   position: relative;
 }
@@ -117,9 +120,9 @@ h2::after {
   bottom: -5px;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #c94079, #ff8c42);
-  border-radius: 4px;
+  height: 2px;
+  background: #c94079;
+  border-radius: 2px;
 }
 
 /* Form */
@@ -130,8 +133,10 @@ h2::after {
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
+  background: rgba(39, 39, 39, 0.1);
   border-radius: 20px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Input group */

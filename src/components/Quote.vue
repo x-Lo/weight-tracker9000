@@ -29,7 +29,7 @@ onMounted(() => {
       {
         x: '0%',
         opacity: 1,
-        duration: 1,
+        duration: 0.5,
         stagger: 0.2,
         ease: 'power1.out', // Smooth deceleration effect
       }

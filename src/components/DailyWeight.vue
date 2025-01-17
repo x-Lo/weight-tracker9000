@@ -1,31 +1,29 @@
 <template>
-    <div class="dailyweight-page" ref="dailyweight">
-        <h1>Welcome, <span class="user-name"> {{store.username}} </span>!</h1>
-        <h2>Stay on track by submitting your weight for today.</h2>
-            <div class="submit-form">
-                <input
-                    type="number"
-                    class="input"
-                    v-model="currentWeightInput"
-                    placeholder="Enter your current weight (kg)"
-                    :disabled="store.weightSubmitted"
-                />
-                <button
-                    class="button"
-                    @click="submitWeight"
-                    :disabled="store.weightSubmitted">
-                    Submit
-                </button>
-                <p v-if="store.weightSubmitted" class="info-message">
-                    You've already logged your weight for the day!
-                </p>
-            </div>
-
-            <div class="feedback-messages">
-                <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
-                <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-            </div>
+  <div class="dailyweight-page" ref="dailyweight">
+    <h1>Welcome, <span class="user-name"> {{store.username}} </span>!</h1>
+    <h2>Stay on track by submitting your weight for today.</h2>
+    <div class="submit-form">
+        <input
+          type="number"
+          class="input"
+          v-model="currentWeightInput"
+          placeholder="Enter your current weight (kg)"
+          :disabled="store.weightSubmitted"
+        />
+        <button
+          class="button"
+          @click="submitWeight"
+          :disabled="store.weightSubmitted">
+          Submit
+        </button>
+        <p
+          v-if="store.weightSubmitted"
+          class="info-message"
+          ref="infoMessage"  >
+          You've already logged your weight for the day!
+        </p>
     </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -35,6 +33,7 @@
 
   const store = useAppStore();
   const dailyweight = ref<HTMLDivElement | null>(null);
+  const infoMessage = ref<HTMLElement | null>(null);
 
   const currentWeightInput = ref("");
   const successMessage = ref("");
@@ -139,16 +138,15 @@
     }
   });
 
-  watch([successMessage, errorMessage], ([newSuccess, newError]) => {
-    if (newSuccess || newError) {
-      const message = newSuccess ? ".success-message" : ".error-message";
-      gsap.fromTo(
-        message,
-        { opacity: 0, y: -10 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "power1.out" }
-      );
-    }
-  });
+  watch(() => store.weightSubmitted, (newWeightSubmitted) => {
+  if (newWeightSubmitted && infoMessage.value) {
+    gsap.fromTo(
+      infoMessage.value,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+    );
+  }
+});
 </script>
 
 

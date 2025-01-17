@@ -1,7 +1,7 @@
 <template>
-  <div class="login-container">
+  <div class="login-container" ref="signup">
     <form class="login-form" @submit.prevent="handleSignUp">
-      <h2>SIGN UP</h2>
+      <h2>Create an Account</h2>
       <div class="input-group">
         <label for="username">
           <span class="icon">👤</span>
@@ -41,53 +41,60 @@
       <button type="submit" class="button">SIGN UP</button>
       <p class="signup">
         Already have an account?
-        <a @click.prevent="handleNavigate('login')">Sign In</a>
+        <a @click.prevent="navigate('login')">Sign In</a>
       </p>
       <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     </form>
   </div>
 </template>
 
-<script lang="ts" defer>
-import { defineComponent, ref } from "vue";
-import { signUp } from "@/services/authService";
-import { createUserProfile } from "@/services/userService";
-import { useRouter } from "vue-router";
-import { useNavigation } from "@/composables/useNavigation";
-import { useAppStore } from "@/stores/appStore";
+<script lang="ts" setup>
+  import { signUp } from "@/services/authService";
+  import { ref, onMounted } from "vue";
+  import { createUserProfile } from "@/services/userService";
+  import { useRouter } from "vue-router";
+  import { useNavigation } from "@/composables/useNavigation";
+  import { useAppStore } from "@/stores/appStore";
+  import gsap from "gsap";
+  const email = ref("");
+  const password = ref("");
+  const username = ref("");
+  const errorMessage = ref("");
+  const router = useRouter(); // Access the router instance
+  const { navigate } = useNavigation();
+  const store = useAppStore();
+  const signup = ref<HTMLElement | null>(null);
 
-export default defineComponent({
-  setup() {
-    const email = ref("");
-    const password = ref("");
-    const username = ref("");
-    const errorMessage = ref("");
-    const router = useRouter(); // Access the router instance
-    const { navigate } = useNavigation();
-    const store = useAppStore();
+  const handleSignUp = async () => {
+    try {
+      errorMessage.value = ""; // Reset error message
+      const user = await signUp(email.value, password.value);
+      await createUserProfile(user.uid, { username: username.value });
+      store.updateUser(user.uid, username.value);
+      await store.saveUserData();
+      console.log("Account created successfully!");
+      router.push("/account"); // Navigate to AccountView
+    } catch (error) {
+      console.error("Error signing up:", error);
+      errorMessage.value = "Error creating account. Please try again.";
+    }
+  };
 
-    const handleNavigate = (route: string) => {
-      navigate(route);
-    };
-
-    const handleSignUp = async () => {
-      try {
-        errorMessage.value = ""; // Reset error message
-        const user = await signUp(email.value, password.value);
-        await createUserProfile(user.uid, { username: username.value });
-        store.updateUser(user.uid, username.value);
-        await store.saveUserData();
-        console.log("Account created successfully!");
-        router.push("/account"); // Navigate to AccountView
-      } catch (error) {
-        console.error("Error signing up:", error);
-        errorMessage.value = "Error creating account. Please try again.";
-      }
-    };
-
-    return { email, password, username, errorMessage, handleSignUp, handleNavigate };
-  },
-});
+  onMounted(async() => {
+    // animation code
+    if (signup.value) {
+      gsap.fromTo(
+        signup.value.querySelectorAll("*"),
+        { x: '100%', opacity: 0 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 0.7, 
+          ease: "power1.out" 
+        }
+      );
+    }
+  });
 </script>
 
 <style scoped>
@@ -104,14 +111,10 @@ export default defineComponent({
 
 /* Header */
 h2 {
-  font-size: 2.5em;
+  font-size: 2em;
   margin-bottom: 1rem;
   font-weight: bold;
-  color: #c94079;
-  background: linear-gradient(90deg, #c94079, #ff8c42);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #f0f0f0;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   letter-spacing: 1px;
   position: relative;
@@ -124,9 +127,9 @@ h2::after {
   bottom: -5px;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #c94079, #ff8c42);
-  border-radius: 4px;
+  height: 2px;
+  background: #c94079;
+  border-radius: 2px;
 }
 
 
@@ -138,8 +141,10 @@ h2::after {
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
+  background: rgba(39, 39, 39, 0.1);
   border-radius: 20px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Input group */

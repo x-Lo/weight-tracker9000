@@ -33,7 +33,7 @@
             class="button" 
             @click="isLoggedIn ? logout() : login()"
           >
-            {{ isLoggedIn ? "Logout" : "Login" }}
+            {{ isLoggedIn ? "Sign Out" : "Sign In" }}
           </button>
           </div>
         </div>
