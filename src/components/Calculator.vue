@@ -225,7 +225,7 @@
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding: 1rem;
+  padding: 2rem;
   background: transparent;
   font-size: 1rem;
   font-weight: bold;
@@ -241,7 +241,6 @@ h1 {
   letter-spacing: 1.5px;
   position: relative;
   text-align: center;
-  margin-top: 0.3rem;
 }
 
 .card {

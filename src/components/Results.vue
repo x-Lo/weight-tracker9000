@@ -1,5 +1,5 @@
 <template>
-  <div class="info-page" v-if="resultsData.hidden">
+  <div class="info-page" v-show="resultsData.hidden" ref="info">
     <div class="info-step">
       <h1>The first step we need to take is to calculate your maintenance calories.</h1>
     </div>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="results-page" v-else>
+  <div class="results-page" v-show="!resultsData.hidden" ref="results">
     <h1>Your results:</h1>
     <div class="results-grid">
       <div class="grid-item calories">
@@ -31,9 +31,9 @@
         <h2>What Is Your Goal?</h2>
         <div class="plan-section">
           <div class="plan-grid">
-            <div class="grid-item fatloss" @click="updatePlanType" id="FAT LOSS">FAT LOSS</div>
-            <div class="grid-item maintenance" @click="updatePlanType" id="MAINTENANCE">MAINTENANCE</div>
-            <div class="grid-item musclegain" @click="updatePlanType" id="MUSCLE GAIN">MUSCLE GAIN</div>
+            <div class="grid-item fatloss" @click="updatePlanType" id="Fat Loss">Fat Loss</div>
+            <div class="grid-item maintenance" @click="updatePlanType" id="Maintenance">Maintenance</div>
+            <div class="grid-item musclegain" @click="updatePlanType" id="Muscle Gain">Muscle Gain</div>
           </div>
         </div>
       </div>
@@ -41,34 +41,102 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
-import { useNavigation } from '@/composables/useNavigation';
-import { useAppStore } from '@/stores/appStore';
+<script lang="ts" setup>
+  import { computed, ref, onMounted, watch } from "vue";
+  import { useNavigation } from '@/composables/useNavigation';
+  import { useAppStore } from '@/stores/appStore';
+  import gsap from "gsap";
 
-export default defineComponent({
-  setup() {
-    const { navigate } = useNavigation(); // Use the composable
-    const store = useAppStore();
-    
+  const { navigate } = useNavigation(); // Use the composable
+  const store = useAppStore();
+  const info = ref<HTMLElement | null>(null);
+  const results = ref<HTMLElement | null>(null);
+  const resultsData = computed(() => store.resultsData);
 
-    const resultsData = computed(() => store.resultsData);
+  const updatePlanType = (event: MouseEvent) => {
+    const clickedElement = event.target as HTMLElement;
+    if (clickedElement.id) {
+      console.time('updateResultsProperty');
+      store.updateResultsProperty('typeOfPlan', clickedElement.id.trim());
+      console.timeEnd('updateResultsProperty');
+    }
+    console.time('navigate');
+    navigate('personal');
+    console.timeEnd('navigate');
+  };
 
-    const updatePlanType = (event: MouseEvent) => {
-      const clickedElement = event.target as HTMLElement;
-      if (clickedElement.id) {
-        console.time('updateResultsProperty');
-        store.updateResultsProperty('typeOfPlan', clickedElement.id.trim());
-        console.timeEnd('updateResultsProperty');
-      }
-      console.time('navigate');
-      navigate('personal');
-      console.timeEnd('navigate');
-    };
+  onMounted(async() => {
+    // animation code
+    if (info.value) {
+      gsap.fromTo(
+        info.value.querySelectorAll("*"),
+        { x: '100%', opacity: 0 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 1,
+          stagger: 0.1,
+          ease: "power1.out" 
+        }
+      );
+    }
 
-    return { navigate, resultsData, updatePlanType, store };
-  },
-});
+    if (results.value) {
+      gsap.fromTo(
+        results.value.querySelectorAll("*"),
+        { x: '100%', opacity: 0 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 1,
+          stagger: 0.1,
+          ease: "power1.out" 
+        }
+      );
+    }
+  });
+
+  watch(() => store.resultsData.hidden,(newHidden) => {
+    const timeline = gsap.timeline();
+
+    if (!newHidden) {
+      // Animate info-page out to the left and results-page in from the right
+      timeline
+        .to(info.value, {
+          x: "-100%",
+          opacity: 0,
+          duration: 0.5,
+          ease: "power1.inOut",
+          onComplete: () => {
+            info.value!.style.display = "none"; // Ensure info-page is hidden
+          },
+        })
+        .fromTo(
+          results.value,
+          { x: "100%", opacity: 0, display: "block" },
+          { x: "0%", opacity: 1, duration: 0.5, ease: "power1.inOut" }
+        );
+    } else {
+      // Animate results-page out to the right and info-page in from the left
+      timeline
+        .to(results.value, {
+          x: "100%",
+          opacity: 0,
+          duration: 0.5,
+          ease: "power1.inOut",
+          onComplete: () => {
+            results.value!.style.display = "none"; // Ensure results-page is hidden
+          },
+        })
+        .fromTo(
+          info.value,
+          { x: "-100%", opacity: 0, display: "block" },
+          { x: "0%", opacity: 1, duration: 0.5, ease: "power1.inOut" }
+        );
+    }
+  });
+
+
 </script>
 
 <style scoped>
@@ -131,6 +199,7 @@ export default defineComponent({
   justify-content: flex-start;
   align-items: center;
   padding: 1.5rem;
+  padding-bottom: 1.9rem;
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;

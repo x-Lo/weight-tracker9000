@@ -1,9 +1,9 @@
 <template>
-  <div class="account-page">
-    <h1>ACCOUNT DETAILS</h1>
+  <div class="account-page" ref="account">
+    <h1>Account Details</h1>
     <div class="grid">
       <div class="grid-item">
-        <h2>ACCOUNT INFO</h2>
+        <h2>Acount Info</h2>
         <div class="user-field">
           <label>Email:</label>
           <input type="text" :value="email" readonly />
@@ -15,49 +15,49 @@
       </div>
       
       <div class="grid-item">
-        <h2>WEIGHT INFO</h2>
+        <h2>Weight Info</h2>
         <div class="user-field">
-          <label>STARTING WEIGHT:</label>
+          <label>Starting Weight:</label>
           <input type="number" :value="store.resultsData.weight" readonly />
         </div>
         <div class="user-field">
-          <label>GOAL WEIGHT:</label>
+          <label>Goal Weight:</label>
           <input type="number" :value="store.resultsData.goalweight" readonly />
         </div>
         <div class="user-field">
-          <label>CURRENT WEIGHT:</label>
+          <label>Curretn Weight:</label>
           <input type="number" :value="store.resultsData.weight" readonly />
         </div>
       </div>
       
       <div class="grid-item">
-        <h2>PLAN INFO</h2>
+        <h2>Plan Info</h2>
         <div class="user-field">
-          <label>PLAN TYPE:</label>
+          <label>Plan Type:</label>
           <input type="text" :value="store.resultsData.typeOfPlan" readonly style="text-transform: lowercase;"/>
         </div>
         <div class="user-field">
-          <label>PHASE DURATION (DAYS):</label>
+          <label>Phase Duration (Days):</label>
           <input type="number" :value="store.resultsData.phaseDuration" readonly />
         </div>
         <div class="user-field">
-          <label>STREAK:</label>
+          <label>Streak:</label>
           <input type="number" :value="store.resultsData.streak" readonly />
         </div>
       </div>
       
       <div class="grid-item">
-        <h2>CALORIE INFO</h2>
+        <h2>Calorie Info</h2>
         <div class="user-field">
-          <label>TDEE (CALORIES):</label>
+          <label>TDEE (Calories):</label>
           <input type="number" :value="store.resultsData.tdee" readonly />
         </div>
         <div class="user-field">
-          <label>MACRONUTRIENT BREAKDOWN:</label>
+          <label>Macronutrient Breakdown:</label>
           <div class="macros">
-            <p>PROTEIN: {{ store.resultsData.protein }}g</p>
-            <p>CARBS: {{ store.resultsData.carbs }}g</p>
-            <p>FATS: {{ store.resultsData.fats }}g</p>
+            <p>Protein: {{ store.resultsData.protein }}g</p>
+            <p>Carbs: {{ store.resultsData.carbs }}g</p>
+            <p>Fats: {{ store.resultsData.fats }}g</p>
           </div>
         </div>
       </div>
@@ -67,26 +67,35 @@
 
 
   
-<script lang="ts">
-  import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+  import { ref, onMounted } from "vue";
   import { getAuth } from "firebase/auth";
   import { useAppStore } from "@/stores/appStore";
+  import gsap from "gsap";
   
-  export default defineComponent({
-    name: "AccountView",
-    setup() {
-      const auth = getAuth();
-      const currentUser = auth.currentUser;
-      const store = useAppStore();
-      const email = ref(currentUser?.email || "");
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const store = useAppStore();
+  const email = ref(currentUser?.email || "");
+  const account = ref<HTMLElement | null>(null);
+
+  onMounted(async() => {
+    // animation code
+    if (account.value) {
+      gsap.fromTo(
+        account.value.querySelectorAll("h1, div"),
+        { x: '100%', opacity: 0 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 1, 
+          stagger: 0.1,
+          ease: "power1.out" 
+        }
+      );
+    }
+  })
   
-  
-      return {
-        email,
-        store,
-      };
-    },
-  });
 </script>
   
 <style scoped>
@@ -97,8 +106,8 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 3rem;
-  gap: 3rem;
+  padding: 1rem;
+  gap: 2rem;
   border-radius: 12px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
   background: rgb(25,25,25);
@@ -135,7 +144,7 @@ h2::after {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #c94079, #ff8c42);
+  background: #c94079;
   border-radius: 2px;
 }
 
@@ -156,10 +165,11 @@ h2::after {
   gap: 1.5rem;
   padding: 1.5rem;
   border-radius: 20px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
   width: calc(33.333% - 1rem);
   min-width: 280px;
-  height: 60vh;
+  height: 70vh;
 }
 
 .user-field {
@@ -172,7 +182,6 @@ h2::after {
   font-weight: bold;
   color: #c0c0c0;
   font-size: 0.95rem;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 

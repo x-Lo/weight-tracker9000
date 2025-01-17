@@ -1,33 +1,33 @@
 <template>
     <div class="personal-container">
-        <h1>YOUR PERSONAL PLAN</h1>
+        <h1>Your Personal Plan</h1>
         <div class="grid-container">
             <div class="grid-item rate">
-                <h2>SET A RATE OF {{ resultsData.typeOfPlan }}:</h2>
+                <h2>Set a Rate of {{ resultsData.typeOfPlan }}:</h2>
                 <div class="form-group">
                     <div class="rate-options-grid">
                         <div 
                             class="grid-item slow" 
                             :class="{ isSelected: selectedRate === 'slow' }" 
                             @click="pickRate('slow')">
-                            SLOW
+                            Slow
                         </div>
                         <div 
                             class="grid-item moderate" 
                             :class="{ isSelected: selectedRate === 'moderate' }" 
                             @click="pickRate('moderate')">
-                            MODERATE
+                            Moderate
                         </div>
                         <div 
                             class="grid-item fast" 
                             :class="{ isSelected: selectedRate === 'fast' }" 
                             @click="pickRate('fast')">
-                            FAST
+                            Fast
                         </div>
                     </div>
                 </div>
                 <div class="input-group">
-                    <h2>SET A GOAL WEIGHT:</h2>
+                    <h2>Set a Goal Weight:</h2>
                     <input
                         type="number"
                         class="input"
@@ -44,7 +44,7 @@
                 </button>
             </div>
             <div class="grid-item-h calories" :class="{ visible: isCalculated }">
-                <h2>YOUR {{ resultsData.typeOfPlan }} CALORIES:</h2>
+                <h2>Your {{ resultsData.typeOfPlan }} Calories:</h2>
                 <div class="calorie-section">
                     <span class="calories-value">{{ resultsData.calories }}</span>
                     <span class="calories-label">calories per day</span>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="grid-item-h macros" :class="{ visible: isCalculated }">
-                <h2>YOUR MACRONUTRIENTS:</h2>
+                <h2>Your Macronutrients:</h2>
                 <div class="macro-section">
                     <span class="macro-value">{{ resultsData.protein }}g</span>
                     <span class="macro-label">protein</span>
@@ -71,9 +71,9 @@
             </div>
             <div class="grid-item-h calendar"  :class="{ visible: isCalculated }">
                 <div class="calendar-section">
-                    <h2>YOUR  {{ resultsData.typeOfPlan }} PHASE WILL LAST: </h2>
+                    <h2>Your  {{ resultsData.typeOfPlan }} Phase Will Last: </h2>
                     <span class="calendar-value">{{resultsData.phaseDuration}}</span>
-                    <span class="calendar-label" style="">DAYS</span>
+                    <span class="calendar-label" style="">Days</span>
                 </div>
                 <button class="button" @click="calendarCalc">CHECK CALENDAR</button>
             </div>
@@ -81,28 +81,25 @@
     </div>
 </template>
 
-<script lang="ts" defer>
-import { useAppStore } from '@/stores/appStore';
-import { computed, ref } from 'vue';
-import { useNavigation } from '@/composables/useNavigation';
+<script lang="ts" setup>
+    import { useAppStore } from '@/stores/appStore';
+    import { computed, ref } from 'vue';
+    import { useNavigation } from '@/composables/useNavigation';
 
-export default {
-    name: "PersonalPlanView",
-    setup() {
-        const store = useAppStore();
-        const { navigate } = useNavigation();
-        const selectedRate = ref<string | null>(null);
-        const goalweight =  ref<number | null>(null);
-        const isCalculated = ref(false);
+    const store = useAppStore();
+    const { navigate } = useNavigation();
+    const selectedRate = ref<string | null>(null);
+    const goalweight =  ref<number | null>(null);
+    const isCalculated = ref(false);
 
-        const resultsData = computed(() => store.resultsData);
+    const resultsData = computed(() => store.resultsData);
 
-        const pickRate = (rate: string) => {
-            selectedRate.value = rate; // Update the selected rate
-            store.updateResultsProperty('rate', rate); // Update the Pinia store
-        };
+    const pickRate = (rate: string) => {
+        selectedRate.value = rate; // Update the selected rate
+        store.updateResultsProperty('rate', rate); // Update the Pinia store
+    };
 
-        const calorieCalc = () => {
+    const calorieCalc = () => {
             // Ensure required fields exist
             const { typeOfPlan, rate } = store.resultsData;
 
@@ -113,12 +110,12 @@ export default {
 
             // Base calorie adjustments
             const adjustments: Record<string, Record<string, number>> = {
-                'FAT LOSS': {
+                'Fat Loss': {
                     slow: -250,
                     moderate: -500,
                     fast: -1000,
                 },
-                'MUSCLE GAIN': {
+                'Muscle Gain': {
                     slow: +250,
                     moderate: +500,
                     fast: +1000,
@@ -162,9 +159,9 @@ export default {
             store.updateResultsProperty('phaseDuration', duration);
 
             isCalculated.value = true;
-        };
+    };
 
-        const calendarCalc = () => {
+    const calendarCalc = () => {
             const phaseDuration = store.resultsData.phaseDuration;
             const startDate = new Date(); // Current date
             const endDate = new Date();
@@ -219,13 +216,7 @@ export default {
             store.updateResultsProperty('streak', 0);
             console.log('Calendar attributes updated:', attributes);
             navigate('calendar');
-        };
-
-        return {
-            resultsData, selectedRate, pickRate, calorieCalc, goalweight, isCalculated, navigate, calendarCalc
-        };
-    },
-}
+    };
 </script>
 
 <style scoped>
@@ -242,6 +233,7 @@ export default {
     background-repeat: no-repeat;
     background-attachment: fixed; /* Keeps it steady on scroll */
     gap: 2rem;
+    padding: 1rem;
 }
 
 .grid-container {
@@ -298,7 +290,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem;
   text-align: center;
   font-family: 'Roboto', Arial, sans-serif;
   color: #f0f0f0;
@@ -315,7 +307,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 1rem;
     margin-bottom: 1rem;
     text-align: center;
     font-family: 'Roboto', Arial, sans-serif;

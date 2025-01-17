@@ -6,7 +6,7 @@
       <span>transcend yourself.</span>
     </h2>
     <div class="buttons-div">
-      <button class="start-button" @click="navigate('calculator')">BEGIN YOUR JOURNEY</button>
+      <button class="start-button" @click="navigate('calc2')">BEGIN YOUR JOURNEY</button>
       <button class="log-button" @click="navigate('dailyweight')">LOG YOUR PROGRESS</button>
     </div>
   </div>
@@ -43,6 +43,7 @@
 <style scoped>
 .welcome-container {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

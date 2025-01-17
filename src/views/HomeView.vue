@@ -10,6 +10,7 @@
         isMovedBack: animationStore.isMovedBack,
         isVisible: animationStore.isVisible,
       }"
+      ref="left"
     >
       <router-view name="left" />
     </div>
@@ -23,6 +24,7 @@
         isSlidingLeft: animationStore.isSliding,
         isSlidingBack: animationStore.isSlidingBack,
       }"
+      ref="right"
     >
       <router-view name="right" />
     </div>
@@ -32,16 +34,30 @@
 
 
 <script lang="ts" defer setup>
-import { onMounted, ref } from "vue";
-import { gsap } from "gsap";
-import { useAnimationStore } from "@/stores/animationStore";
+  import { onMounted, ref } from "vue";
+  import { gsap } from "gsap";
+  import { useAnimationStore } from "@/stores/animationStore";
 
-const animationStore = useAnimationStore();
+  const animationStore = useAnimationStore();
+  const left = ref<HTMLElement | null>(null);
+  const right = ref<HTMLElement | null>(null);
 
-onMounted(() => {
   
-});
-
+  onMounted(async() => {
+    // animation code
+    if (right.value) {
+      gsap.fromTo(
+        right.value,
+        { x: '0%', opacity: 1 },
+        { 
+          x: '0%',
+          opacity: 1, 
+          duration: 1, 
+          ease: "power1.out" 
+        }
+      );
+    }
+  });
 </script>
 
 <style scoped>

@@ -164,14 +164,13 @@
 }
 
 h1 {
-  margin-top: 10rem;
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: bold;
   color: #f0f0f0;
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 2em;
   font-weight: bold;
   color: #f0f0f0;
 }
@@ -179,7 +178,6 @@ h2 {
 .user-name {
   color: #c94079;
   font-weight: bold;
-  font-size: 2rem; /* Emphasize the brand name */
 }
 
 .submit-form {
@@ -195,10 +193,6 @@ h2 {
   color: #f0f0f0;
   text-align: center;
   margin-top: 1rem;
-}
-
-.feedback-messages {
-  visibility: hidden;
 }
 
 .button {

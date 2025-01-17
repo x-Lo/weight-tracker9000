@@ -79,6 +79,12 @@ const router = createRouter({
       component: () => import(/* webpackPrefetch: true */ '@/views/PersonalPlanView.vue'),
       meta: { requiresAuth: false },
     },
+    {
+      path: '/calc2',
+      name: 'calc2',
+      component: () => import(/* webpackPrefetch: true */ '@/views/CalculatorView.vue'),
+      meta: { requiresAuth: false },
+    },
   ],
 })
 
