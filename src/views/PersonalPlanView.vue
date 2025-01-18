@@ -215,7 +215,7 @@
             store.updateResultsProperty('startDate', startDate);
             store.updateResultsProperty('streak', 0);
             console.log('Calendar attributes updated:', attributes);
-            navigate('calendar');
+            navigate('saveplan');
     };
 </script>
 

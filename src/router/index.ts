@@ -37,34 +37,6 @@ const router = createRouter({
           },
           meta: { requiresAuth: false },
         },
-        {
-          path: '/calculator',
-          name: 'calculator',
-          components: {
-            left: () => import(/* webpackPrefetch: true */ '@/components/Results.vue'),
-            right: () => import(/* webpackPrefetch: true */ '@/components/Calculator.vue'),
-          },
-          meta: { requiresAuth: false },
-        },
-        {
-          path: '/calendar',
-          name: 'calendar',
-          components: {
-            left: () => import(/* webpackPrefetch: true */ '@/components/Calendar.vue'),
-            right: () => import(/* webpackPrefetch: true */ '@/components/SavePlan.vue'),
-          },
-          meta: { requiresAuth: false },
-        },
-        {
-          path: '/dailyweight',
-          name: 'dailyweight',
-          components: {
-            left: () => import(/* webpackPrefetch: true */ '@/components/Calendar.vue'),
-            right: () => import(/* webpackPrefetch: true */ '@/components/DailyWeight.vue'),
-          },
-          meta: { requiresAuth: true },
-        },
-
       ],
     },
     {
@@ -80,9 +52,21 @@ const router = createRouter({
       meta: { requiresAuth: false },
     },
     {
-      path: '/calc2',
-      name: 'calc2',
+      path: '/calculator',
+      name: 'calculator',
       component: () => import(/* webpackPrefetch: true */ '@/views/CalculatorView.vue'),
+      meta: { requiresAuth: false },
+    },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: () => import(/* webpackPrefetch: true */ '@/views/CalendarView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/saveplan',
+      name: 'saveplan',
+      component: () => import(/* webpackPrefetch: true */ '@/views/SavePlanView.vue'),
       meta: { requiresAuth: false },
     },
   ],
@@ -97,11 +81,6 @@ router.beforeEach(async (to, from, next) => {
       resolve(user);
     });
   });
-
-  // Redirect logged-in users going to "/calendar" to "/dailyweight"
-  if (to.path === "/calendar" && store.userId) {
-    return next("/dailyweight");
-  }
 
   // Redirect unauthenticated users trying to access protected routes
   if (requiresAuth && !currentUser) {

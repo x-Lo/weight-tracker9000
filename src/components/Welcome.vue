@@ -6,8 +6,8 @@
       <span>achieve greatness.</span>
     </h2>
     <div class="buttons-div">
-      <button class="start-button" @click="navigate('calc2')">BEGIN YOUR JOURNEY</button>
-      <button class="log-button" @click="navigate('dailyweight')">LOG YOUR PROGRESS</button>
+      <button class="start-button" @click="navigate('calculator')">BEGIN YOUR JOURNEY</button>
+      <button class="log-button" @click="navigate('calendar')">LOG YOUR PROGRESS</button>
     </div>
   </div>
 </template>

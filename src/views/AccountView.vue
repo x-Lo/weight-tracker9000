@@ -34,10 +34,10 @@
         <h2>Plan Info</h2>
         <div class="user-field">
           <label>Plan Type:</label>
-          <input type="text" :value="store.resultsData.typeOfPlan" readonly style="text-transform: lowercase;"/>
+          <input type="text" :value="store.resultsData.typeOfPlan" readonly/>
         </div>
         <div class="user-field">
-          <label>Phase Duration (Days):</label>
+          <label>Plan Duration (Days):</label>
           <input type="number" :value="store.resultsData.phaseDuration" readonly />
         </div>
         <div class="user-field">
@@ -51,6 +51,10 @@
         <div class="user-field">
           <label>TDEE (Calories):</label>
           <input type="number" :value="store.resultsData.tdee" readonly />
+        </div>
+        <div class="user-field">
+          <label>{{ store.resultsData.typeOfPlan }} Rate :</label>
+          <input type="text" :value="store.resultsData.rate" readonly/>
         </div>
         <div class="user-field">
           <label>Macronutrient Breakdown:</label>
@@ -115,7 +119,7 @@
 h1 {
   font-size: 2.5em;
   font-weight: bold;
-  color: #ffffff; /* High contrast */
+  color: #f0f0f0; /* High contrast */
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
   position: relative;
@@ -197,11 +201,11 @@ input[readonly]:focus {
 .macros {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: left;
   gap: 0.6rem;
   font-size: 1.1rem;
-  color: #ffffff;
-  padding: 0.5rem;
-  border-radius: 8px;
+  color: #f0f0f0;
 }
 
 @media (max-width: 768px) {
