@@ -3,7 +3,7 @@
     <h1 class="brand-name">Weight Tracking Made Simple.</h1>
     <h2>
       Dedication and careful planning are the keys to success,
-      <span>transcend yourself.</span>
+      <span>achieve greatness.</span>
     </h2>
     <div class="buttons-div">
       <button class="start-button" @click="navigate('calc2')">BEGIN YOUR JOURNEY</button>

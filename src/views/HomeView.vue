@@ -2,62 +2,25 @@
   <div class="homepage-container">
     <!-- Left Section -->
     <transition>
-      <div
-      class="homepage-left"
-      :class="{
-        isFadingOut: animationStore.isFading,
-        isMovedRight: animationStore.isMoved,
-        isMovedBack: animationStore.isMovedBack,
-        isVisible: animationStore.isVisible,
-      }"
-      ref="left"
-    >
-      <router-view name="left" />
-    </div>
+      <div class="homepage-left">
+        <router-view name="left" />
+      </div>
     </transition>
 
     <!-- Right Section -->
-    <transition>
-      <div
-      class="homepage-right"
-      :class="{
-        isSlidingLeft: animationStore.isSliding,
-        isSlidingBack: animationStore.isSlidingBack,
-      }"
-      ref="right"
-    >
-      <router-view name="right" />
+    <div class="homepage-right">
+      <router-view v-slot="{ Component }" name="right">
+        <transition name="route" mode="out-in">
+          <component  :is="Component"></component>
+        </transition>
+      </router-view>
     </div>
-    </transition>
   </div>
 </template>
 
 
 <script lang="ts" defer setup>
-  import { onMounted, ref } from "vue";
-  import { gsap } from "gsap";
-  import { useAnimationStore } from "@/stores/animationStore";
 
-  const animationStore = useAnimationStore();
-  const left = ref<HTMLElement | null>(null);
-  const right = ref<HTMLElement | null>(null);
-
-  
-  onMounted(async() => {
-    // animation code
-    if (right.value) {
-      gsap.fromTo(
-        right.value,
-        { x: '0%', opacity: 1 },
-        { 
-          x: '0%',
-          opacity: 1, 
-          duration: 1, 
-          ease: "power1.out" 
-        }
-      );
-    }
-  });
 </script>
 
 <style scoped>
@@ -69,11 +32,6 @@
   width: 100%;
 }
 
-.homepage-left,
-.homepage-right {
-  opacity: 1; /* Default visibility */
-  transform: none; /* Default positioning */
-}
 
 .homepage-left {
   flex: 1 0 65%;
@@ -101,30 +59,23 @@
   transition: transform 0.7s ease-in-out;
 }
 
-.homepage-left.isMovedRight {
-  transform: translateX(54%);
+/* route transitions  */
+.route-enter-from {
   opacity: 0;
+  transform: translateX(100%);
 }
 
-.homepage-left.isVisible {
-  opacity: 1;
+.route-enter-active {
+  transition: all 0.7s ease-out;
 }
 
-.homepage-left.isFadingOut {
+.route-leave-to {
   opacity: 0;
-}
-
-.homepage-right.isSlidingLeft {
-  transform: translateX(-185.5%);
-}
-
-.homepage-right.isSlidingBack {
-  transform: translateX(60%);
-}
-
-.homepage-left.isMovedBack {
   transform: translateX(-100%);
-  opacity: 0;
+}
+
+.route-leave-active {
+  transition: all 0.7s ease-in;
 }
 
 @media (max-width: 768px) {
