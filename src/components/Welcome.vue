@@ -21,19 +21,16 @@
   const welcome = ref<HTMLDivElement | null>(null);
 
   onMounted(() => {
+    // animation code
     if (welcome.value) {
-      // Select all children of moto (h2, h3)
-      const letters = welcome.value.querySelectorAll('*');
-
-      // Animate text fading in from the right
       gsap.fromTo(
-        letters,
-        { x: '100%', opacity: 0 }, // Start off-screen to the right and invisible
-        {
+        welcome.value.querySelectorAll("*"),
+        { x: '100%', opacity: 0 },
+        { 
           x: '0%',
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power1.out', // Smooth deceleration effect
+          opacity: 1, 
+          duration: 0.7, 
+          ease: "power1.out" 
         }
       );
     }

@@ -1,7 +1,7 @@
 <template>
     <div class="personal-container">
         <h1>Your Personal Plan</h1>
-        <div class="grid-container">
+        <div class="grid-container" ref="grid">
             <div class="grid-item rate">
                 <h2>Set a Rate of {{ resultsData.typeOfPlan }}:</h2>
                 <div class="form-group">
@@ -43,7 +43,7 @@
                     CALCULATE
                 </button>
             </div>
-            <div class="grid-item-h calories" :class="{ visible: isCalculated }">
+            <div class="grid-item-h calories"  ref="calories">
                 <h2>Your {{ resultsData.typeOfPlan }} Calories:</h2>
                 <div class="calorie-section">
                     <span class="calories-value">{{ resultsData.calories }}</span>
@@ -54,7 +54,7 @@
                     <span class="calories-label">calories per week</span>
                 </div>
             </div>
-            <div class="grid-item-h macros" :class="{ visible: isCalculated }">
+            <div class="grid-item-h macros"  ref="macros">
                 <h2>Your Macronutrients:</h2>
                 <div class="macro-section">
                     <span class="macro-value">{{ resultsData.protein }}g</span>
@@ -69,7 +69,7 @@
                     <span class="macro-label" style="">carbs</span>
                 </div>
             </div>
-            <div class="grid-item-h calendar"  :class="{ visible: isCalculated }">
+            <div class="grid-item-h calendar"   ref="calendar">
                 <div class="calendar-section">
                     <h2>Your  {{ resultsData.typeOfPlan }} Phase Will Last: </h2>
                     <span class="calendar-value">{{resultsData.phaseDuration}}</span>
@@ -85,12 +85,17 @@
     import { useAppStore } from '@/stores/appStore';
     import { computed, ref } from 'vue';
     import { useNavigation } from '@/composables/useNavigation';
+    import gsap from 'gsap';
 
     const store = useAppStore();
     const { navigate } = useNavigation();
     const selectedRate = ref<string | null>(null);
     const goalweight =  ref<number | null>(null);
     const isCalculated = ref(false);
+    const calories = ref<HTMLElement | null>(null);
+    const macros = ref<HTMLElement | null>(null);
+    const calendar = ref<HTMLElement | null>(null);
+    const grid = ref<HTMLElement | null>(null);
 
     const resultsData = computed(() => store.resultsData);
 
@@ -100,16 +105,16 @@
     };
 
     const calorieCalc = () => {
-            // Ensure required fields exist
-            const { typeOfPlan, rate } = store.resultsData;
+        // Ensure required fields exist
+        const { typeOfPlan, rate } = store.resultsData;
 
-            if (!typeOfPlan || !rate) {
-                console.error('typeOfPlan or rate is missing in resultsData');
-                return;
-            }
+        if (!typeOfPlan || !rate) {
+            console.error('typeOfPlan or rate is missing in resultsData');
+            return;
+        }
 
-            // Base calorie adjustments
-            const adjustments: Record<string, Record<string, number>> = {
+        // Base calorie adjustments
+        const adjustments: Record<string, Record<string, number>> = {
                 'Fat Loss': {
                     slow: -250,
                     moderate: -500,
@@ -120,45 +125,60 @@
                     moderate: +500,
                     fast: +1000,
                 },
-            };
+        }
 
-            // Update TDEE based on the typeOfPlan and rate
-            if (adjustments[typeOfPlan] && adjustments[typeOfPlan][rate]) {
+        // Update TDEE based on the typeOfPlan and rate
+        if (adjustments[typeOfPlan] && adjustments[typeOfPlan][rate]) {
                 const adjustmentValue = adjustments[typeOfPlan][rate];
                 const updatedTdee = store.resultsData.tdee + adjustmentValue;
 
                 store.updateResultsProperty('calories', updatedTdee);
-            } else {
+        } else {
                 console.error(`Invalid typeOfPlan or rate: typeOfPlan=${typeOfPlan}, rate=${rate}`);
-            }
+        }
 
-            // Update the goalweight variable
-            store.updateResultsProperty('goalweight', goalweight);
+        // Update the goalweight variable
+        store.updateResultsProperty('goalweight', goalweight);
 
-            // Update the macros card
-            const protein_gr = Math.round(store.resultsData.weight * 1.5);
-            const protein_cal = Math.round(protein_gr * 4);
+        // Update the macros card
+        const protein_gr = Math.round(store.resultsData.weight * 1.5);
+        const protein_cal = Math.round(protein_gr * 4);
 
-            const fats_cal = Math.round(store.resultsData.calories * 0.25);
-            const fats_gr = Math.round((store.resultsData.calories * 0.25) / 9);
+        const fats_cal = Math.round(store.resultsData.calories * 0.25);
+        const fats_gr = Math.round((store.resultsData.calories * 0.25) / 9);
 
-            const carbs_cal = Math.round(store.resultsData.calories - (protein_cal + fats_cal));
-            const carbs_gr = Math.round((carbs_cal / 4));
+        const carbs_cal = Math.round(store.resultsData.calories - (protein_cal + fats_cal));
+        const carbs_gr = Math.round((carbs_cal / 4));
 
-            store.updateResultsProperty('protein', protein_gr);
-            store.updateResultsProperty('fats', fats_gr);
-            store.updateResultsProperty('carbs', carbs_gr);
+        store.updateResultsProperty('protein', protein_gr);
+        store.updateResultsProperty('fats', fats_gr);
+        store.updateResultsProperty('carbs', carbs_gr);
 
-            // Calculate the duration of the phase
-            const adjustmentRate = adjustments[typeOfPlan][rate];
-            const WEIGHT_CHANGE_PER_CALORIE = 7700;
-            const weightDifference = (goalweight.value as number) - store.resultsData.weight;
-            const totalCaloriesNeeded = weightDifference * WEIGHT_CHANGE_PER_CALORIE;
-            const duration = Math.ceil(Math.abs(totalCaloriesNeeded / adjustmentRate));
+        // Calculate the duration of the phase
+        const adjustmentRate = adjustments[typeOfPlan][rate];
+        const WEIGHT_CHANGE_PER_CALORIE = 7700;
+        const weightDifference = (goalweight.value as number) - store.resultsData.weight;
+        const totalCaloriesNeeded = weightDifference * WEIGHT_CHANGE_PER_CALORIE;
+        const duration = Math.ceil(Math.abs(totalCaloriesNeeded / adjustmentRate));
 
-            store.updateResultsProperty('phaseDuration', duration);
+        store.updateResultsProperty('phaseDuration', duration);
 
-            isCalculated.value = true;
+        
+        if (grid.value) {
+            const hiddenItems = grid.value.querySelectorAll(".grid-item-h");
+
+            // Create a GSAP timeline for sequential animations
+            const tl = gsap.timeline();
+
+            // Animate each hidden item one by one
+            hiddenItems.forEach((item) => {
+                tl.fromTo(
+                    item,
+                    { x: "-100vw", opacity: 0, visibility: "hidden" }, // Start off-screen to the left
+                    { x: "0", opacity: 1, visibility: "visible", duration: 0.5, ease: "power1.out" } // Move to the grid and become visible
+                );
+            });
+        }
     };
 
     const calendarCalc = () => {
@@ -308,31 +328,8 @@
     font-family: 'Roboto', Arial, sans-serif;
     color: #f0f0f0;
     visibility: hidden;
-    transform: translateX(-100%); /* Start off-screen to the left */
-    transition: all 0.7s ease-in-out;
 }
 
-.grid-item-h.calories {
-    transform: translateX(-100%); /* Start off-screen to the left */
-    transition: transform 0.15s ease-in-out, visibility 0.15s ease-in-out, opacity 0.15s ease-in-out;
-}
-
-.grid-item-h.macros {
-    transform: translateX(-200%); /* Start off-screen to the left */
-    transition: transform 0.35s ease-in-out, visibility 0.35s ease-in-out, opacity 0.35s ease-in-out;
-}
-
-.grid-item-h.calendar {
-    transform: translateX(-300%); /* Start off-screen to the left */
-    transition: transform 0.7s ease-in-out, visibility 0.7s ease-in-out, opacity 0.7s ease-in-out;
-}
-
-/* When visible, grid items "spread out" */
-.grid-item-h.visible {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-}
 
 .form-group {
     display: flex;
