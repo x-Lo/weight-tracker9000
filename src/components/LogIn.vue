@@ -128,7 +128,7 @@ h2::after {
 /* Form */
 .login-form {
   width: 100%;
-  min-width: 400px;
+  min-width: 40vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;

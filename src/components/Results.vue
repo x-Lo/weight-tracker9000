@@ -269,4 +269,16 @@ h2 {
 .plan-grid .grid-item:hover {
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  .results-grid {
+    flex-direction: column; /* Stack sections on top of each other */
+    align-items: center;
+  }
+  
+  .grid-item {
+    width: 40vh;
+  }
+  
+}
 </style>

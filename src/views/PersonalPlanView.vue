@@ -434,4 +434,37 @@ a {
   color: #C94079;
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+  .grid-container {
+    flex-direction: column; /* Stack sections on top of each other */
+    align-items: center;
+  }
+  
+  .grid-item {
+    width: 40vh;
+  }
+
+  .grid-item-h {
+    width: 40vh;
+  }
+
+  .rate-options-grid .grid-item {
+    width: 30vh;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .input-group {
+    width: 30vh;
+    gap: 0.5rem;
+  }
+
+  .button {
+    width: 30vh;
+    margin-top: 1rem;
+  }
+}
 </style>

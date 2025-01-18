@@ -48,4 +48,16 @@
         background: transparent;
         transition: transform 0.7s ease-in-out;
     }
+
+@media (max-width: 480px) {
+    .calendarview-page {
+        flex-direction: column; /* Stack sections on top of each other */
+    }   
+  
+    .calendar,
+    .dailyWeight {
+        width: 100%; /* Full width for smaller screens */
+        flex: 0 0 100%;
+    }
+}
 </style>

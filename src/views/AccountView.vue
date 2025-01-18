@@ -109,6 +109,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  min-width: 40vh;
   height: 100%;
   padding: 1rem;
   gap: 2rem;
@@ -154,7 +155,7 @@ h2::after {
   gap: 1.5rem;
   width: 100%;
   height: 100vh;
-  min-width: 1200px; /* Responsive width limit */
+  min-width: 40vh; /* Responsive width limit */
 }
 
 .grid-item {
@@ -167,7 +168,7 @@ h2::after {
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
   width: calc(33.333% - 1rem);
-  min-width: 280px;
+  min-width: 40vh;
   height: 70vh;
 }
 
@@ -208,14 +209,11 @@ input[readonly]:focus {
   color: #f0f0f0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .grid {
+    height: 100%;
     flex-direction: column;
     gap: 1rem;
-  }
-
-  .grid-item {
-    width: 100%;
     align-items: center;
   }
 

@@ -345,6 +345,8 @@ input, select {
 }
 
 @media (max-width: 480px) {
-
+  h1 {
+    font-size: 2em;
+  }
 }
 </style>
