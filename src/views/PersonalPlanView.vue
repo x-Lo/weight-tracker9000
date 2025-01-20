@@ -2,7 +2,7 @@
     <div class="personal-container">
         <h1>Your Personal Plan</h1>
         <div class="grid-container" ref="grid">
-            <div class="grid-item rate">
+            <div class="grid-item rate" v-show="resultsData.typeOfPlan !== 'Maintenance'">
                 <h2>Set a Rate of {{ resultsData.typeOfPlan }}:</h2>
                 <div class="form-group">
                     <div class="rate-options-grid">
@@ -39,6 +39,24 @@
                 <button
                     class="button"
                     :disabled="!goalweight"
+                    @click="calorieCalc">
+                    CALCULATE
+                </button>
+            </div>
+            <div class="grid-item maintenance" v-show="resultsData.typeOfPlan == 'Maintenance'">
+                <div class="input-group">
+                    <h2>Set a Duration for Your Maintenance Plan:</h2>
+                    <input
+                        type="number"
+                        class="input"
+                        v-model="maintenanceDays"
+                        placeholder="Enter your desired duration (days)"
+                        required
+                    />
+                </div>
+                <button
+                    class="button"
+                    :disabled="!maintenanceDays"
                     @click="calorieCalc">
                     CALCULATE
                 </button>
@@ -82,162 +100,184 @@
 </template>
 
 <script lang="ts" setup>
-    import { useAppStore } from '@/stores/appStore';
-    import { computed, ref } from 'vue';
-    import { useNavigation } from '@/composables/useNavigation';
-    import gsap from 'gsap';
+import { useAppStore } from '@/stores/appStore';
+import { computed, ref } from 'vue';
+import { useNavigation } from '@/composables/useNavigation';
+import gsap from 'gsap';
 
-    const store = useAppStore();
-    const { navigate } = useNavigation();
-    const selectedRate = ref<string | null>(null);
-    const goalweight =  ref<number | null>(null);
-    const isCalculated = ref(false);
-    const calories = ref<HTMLElement | null>(null);
-    const macros = ref<HTMLElement | null>(null);
-    const calendar = ref<HTMLElement | null>(null);
-    const grid = ref<HTMLElement | null>(null);
+const store = useAppStore();
+const { navigate } = useNavigation();
+const selectedRate = ref<string | null>(null);
+const goalweight = ref<number | null>(null);
+const maintenanceDays = ref<number | null>(null);
+const calories = ref<HTMLElement | null>(null);
+const macros = ref<HTMLElement | null>(null);
+const calendar = ref<HTMLElement | null>(null);
+const grid = ref<HTMLElement | null>(null);
 
-    const resultsData = computed(() => store.resultsData);
+const resultsData = computed(() => store.resultsData);
 
-    const pickRate = (rate: string) => {
-        selectedRate.value = rate; // Update the selected rate
-        store.updateResultsProperty('rate', rate); // Update the Pinia store
-    };
+const pickRate = (rate: string) => {
+    selectedRate.value = rate;
+    store.updateResultsProperty('rate', rate);
+};
 
-    const calorieCalc = () => {
-        // Ensure required fields exist
-        const { typeOfPlan, rate } = store.resultsData;
+const calorieCalc = () => {
+    // Ensure required fields exist
+    const { typeOfPlan, rate } = store.resultsData;
 
-        if (!typeOfPlan || !rate) {
-            console.error('typeOfPlan or rate is missing in resultsData');
+    if (!typeOfPlan || (typeOfPlan !== 'Maintenance' && !rate)) {
+        console.error('typeOfPlan or rate is missing in resultsData');
+        return;
+    }
+
+    if (typeOfPlan === 'Maintenance') {
+        // Handle Maintenance case
+        if (!store.resultsData.tdee || !store.resultsData.weight) {
+            console.error('Missing TDEE or weight data for Maintenance plan');
             return;
         }
+        store.updateResultsProperty('phaseDuration', maintenanceDays.value);
+        store.updateResultsProperty('calories', store.resultsData.tdee);
+        store.updateResultsProperty('goalweight', store.resultsData.weight);
+        console.log('Maintenance plan data updated.');
 
-        // Base calorie adjustments
-        const adjustments: Record<string, Record<string, number>> = {
-                'Fat Loss': {
-                    slow: -250,
-                    moderate: -500,
-                    fast: -1000,
-                },
-                'Muscle Gain': {
-                    slow: +250,
-                    moderate: +500,
-                    fast: +1000,
-                },
-        }
-
-        // Update TDEE based on the typeOfPlan and rate
-        if (adjustments[typeOfPlan] && adjustments[typeOfPlan][rate]) {
-                const adjustmentValue = adjustments[typeOfPlan][rate];
-                const updatedTdee = store.resultsData.tdee + adjustmentValue;
-
-                store.updateResultsProperty('calories', updatedTdee);
-        } else {
-                console.error(`Invalid typeOfPlan or rate: typeOfPlan=${typeOfPlan}, rate=${rate}`);
-        }
-
-        // Update the goalweight variable
-        store.updateResultsProperty('goalweight', goalweight);
-
-        // Update the macros card
+        // Update macros calculations
         const protein_gr = Math.round(store.resultsData.weight * 1.5);
         const protein_cal = Math.round(protein_gr * 4);
 
         const fats_cal = Math.round(store.resultsData.calories * 0.25);
-        const fats_gr = Math.round((store.resultsData.calories * 0.25) / 9);
+        const fats_gr = Math.round(fats_cal / 9);
 
         const carbs_cal = Math.round(store.resultsData.calories - (protein_cal + fats_cal));
-        const carbs_gr = Math.round((carbs_cal / 4));
+        const carbs_gr = Math.round(carbs_cal / 4);
 
         store.updateResultsProperty('protein', protein_gr);
         store.updateResultsProperty('fats', fats_gr);
         store.updateResultsProperty('carbs', carbs_gr);
 
-        // Calculate the duration of the phase
-        const adjustmentRate = adjustments[typeOfPlan][rate];
-        const WEIGHT_CHANGE_PER_CALORIE = 7700;
-        const weightDifference = (goalweight.value as number) - store.resultsData.weight;
-        const totalCaloriesNeeded = weightDifference * WEIGHT_CHANGE_PER_CALORIE;
-        const duration = Math.ceil(Math.abs(totalCaloriesNeeded / adjustmentRate));
-
-        store.updateResultsProperty('phaseDuration', duration);
-
-        
         if (grid.value) {
-            const hiddenItems = grid.value.querySelectorAll(".grid-item-h");
+            const hiddenItems = grid.value.querySelectorAll('.grid-item-h');
 
-            // Create a GSAP timeline for sequential animations
             const tl = gsap.timeline();
-
-            // Animate each hidden item one by one
             hiddenItems.forEach((item) => {
                 tl.fromTo(
                     item,
-                    { x: "-100vw", opacity: 0, visibility: "hidden" }, // Start off-screen to the left
-                    { x: "0", opacity: 1, visibility: "visible", duration: 0.5, ease: "power1.out" } // Move to the grid and become visible
+                    { x: '-100vw', opacity: 0, visibility: 'hidden' },
+                    { x: '0', opacity: 1, visibility: 'visible', duration: 0.5, ease: 'power1.out' }
                 );
             });
         }
+
+        return; // Skip further calculations
+    }
+
+    // Base calorie adjustments
+    const adjustments: Record<string, Record<string, number>> = {
+        'Fat Loss': {
+            slow: -250,
+            moderate: -500,
+            fast: -1000,
+        },
+        'Muscle Gain': {
+            slow: +250,
+            moderate: +500,
+            fast: +1000,
+        },
     };
 
-    const calendarCalc = () => {
-            const phaseDuration = store.resultsData.phaseDuration;
-            const startDate = new Date(); // Current date
-            const endDate = new Date();
-            endDate.setDate(startDate.getDate() + phaseDuration); // Calculate end date
+    // Update TDEE based on the typeOfPlan and rate
+    if (adjustments[typeOfPlan] && adjustments[typeOfPlan][rate]) {
+        const adjustmentValue = adjustments[typeOfPlan][rate];
+        const updatedTdee = store.resultsData.tdee + adjustmentValue;
+        store.updateResultsProperty('calories', updatedTdee);
+    } else {
+        console.error(`Invalid typeOfPlan or rate: typeOfPlan=${typeOfPlan}, rate=${rate}`);
+        return;
+    }
 
-            // New attributes for VCalendar highlighting the phase duration
-            const attributes = [
-            // Attribute for the first day with a popover
-            {
-                dates: startDate, // Highlight only the first day
-                popover: {
-                    label: 'Daily Weight Measurement: ' + store.resultsData.weight,
-                },
-                dot: {
-                    color: 'pink',
-                }
+    // Update macros calculations
+    const protein_gr = Math.round(store.resultsData.weight * 1.5);
+    const protein_cal = Math.round(protein_gr * 4);
+
+    const fats_cal = Math.round(store.resultsData.calories * 0.25);
+    const fats_gr = Math.round(fats_cal / 9);
+
+    const carbs_cal = Math.round(store.resultsData.calories - (protein_cal + fats_cal));
+    const carbs_gr = Math.round(carbs_cal / 4);
+
+    store.updateResultsProperty('protein', protein_gr);
+    store.updateResultsProperty('fats', fats_gr);
+    store.updateResultsProperty('carbs', carbs_gr);
+
+    // Calculate the phase duration
+    const adjustmentRate = adjustments[typeOfPlan][rate];
+    const WEIGHT_CHANGE_PER_CALORIE = 7700;
+    const weightDifference = (goalweight.value as number) - store.resultsData.weight;
+    const totalCaloriesNeeded = weightDifference * WEIGHT_CHANGE_PER_CALORIE;
+    const duration = Math.ceil(Math.abs(totalCaloriesNeeded / adjustmentRate));
+
+    store.updateResultsProperty('phaseDuration', duration);
+
+    if (grid.value) {
+        const hiddenItems = grid.value.querySelectorAll('.grid-item-h');
+
+        const tl = gsap.timeline();
+        hiddenItems.forEach((item) => {
+            tl.fromTo(
+                item,
+                { x: '-100vw', opacity: 0, visibility: 'hidden' },
+                { x: '0', opacity: 1, visibility: 'visible', duration: 0.5, ease: 'power1.out' }
+            );
+        });
+    }
+};
+
+const calendarCalc = () => {
+    const phaseDuration = store.resultsData.phaseDuration;
+    const startDate = new Date();
+    const endDate = new Date();
+    endDate.setDate(startDate.getDate() + phaseDuration);
+
+    const attributes = [
+        {
+            dates: startDate,
+            popover: {
+                label: 'Daily Weight Measurement: ' + store.resultsData.weight,
             },
-            // Attribute for the entire phase duration
-            {
-                highlight: {
-                    start: { 
-                        fillMode: 'outline', 
-                        style: {
-                            backgroundColor: '#2c2c2c', // blue
-                        },
-                        contentStyle: {
-                            color: '#f0f0f0', // text color
-                        },
-                    },
-                    base: { 
-                        fillMode: 'light',
-                        style: {
-                            backgroundColor: '#f0f0f0', // background color
-                        },
-                    },
-                    end: {
-                        fillMode: 'outline',
-                        style: {
-                            backgroundColor: '#2c2c2c', // blue
-                        },
-                        contentStyle: {
-                            color: '#f0f0f0', // text color
-                        },
-                    },
+            dot: {
+                color: 'pink',
+            },
+        },
+        {
+            highlight: {
+                start: {
+                    fillMode: 'outline',
+                    style: { backgroundColor: '#2c2c2c' },
+                    contentStyle: { color: '#f0f0f0' },
                 },
-                dates: { start: startDate, end: endDate }, // Apply styles to the full duration
-            },];
+                base: {
+                    fillMode: 'light',
+                    style: { backgroundColor: '#f0f0f0' },
+                },
+                end: {
+                    fillMode: 'outline',
+                    style: { backgroundColor: '#2c2c2c' },
+                    contentStyle: { color: '#f0f0f0' },
+                },
+            },
+            dates: { start: startDate, end: endDate },
+        },
+    ];
 
-            // Update attributes in Pinia store
-            store.setCalendarAttributes(attributes);
-            store.updateResultsProperty('startDate', startDate);
-            store.updateResultsProperty('streak', 0);
-            console.log('Calendar attributes updated:', attributes);
-            navigate('saveplan');
-    };
+    store.setCalendarAttributes(attributes);
+    store.updateResultsProperty('startDate', startDate);
+    store.updateResultsProperty('streak', 0);
+    console.log('Calendar attributes updated:', attributes);
+    navigate('saveplan');
+};
 </script>
+
 
 <style scoped>
 .personal-container {
@@ -330,6 +370,15 @@
     visibility: hidden;
 }
 
+.maintenance {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.maintenance .input-group{
+    gap: 1rem;
+}
 
 .form-group {
     display: flex;
@@ -344,6 +393,7 @@
     align-items: center;
     justify-content: space-between;   
     width: 40vh;
+    gap: 1rem;
 }
 
 .button {
