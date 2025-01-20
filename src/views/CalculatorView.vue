@@ -24,7 +24,7 @@
 
 .calculator {
     flex: 1 0 35%;
-        height: 100%;
+    height: 100%;
     display: flex;
     min-height: 50vh;
     flex-direction: column;

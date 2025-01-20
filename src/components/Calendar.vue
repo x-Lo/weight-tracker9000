@@ -31,7 +31,7 @@
         <div class="grid-item plan">
           <div class="plan-section">
             <h2>Have your results slowed down?</h2>
-            <h3 class="reconfigure" @click="navigate('calculator')">Reconfigure your plan!</h3>
+            <button class="button secondary" @click="navigate('calculator')">Reconfigure your plan!</button>
           </div>
         </div>
       </div>
@@ -163,20 +163,8 @@
   font-size: 1rem;
 }
 
-.reconfigure {
-  font-weight: bold;
-  font-size: 0.9em;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.reconfigure:hover {
-  outline-color: #C94079; /* Solid color for active state */
-  box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
-  cursor: pointer;
+.button {
+  font-size: 0.7em;
 }
 
 
@@ -207,6 +195,7 @@
   }
 
   .plan-section {
+    
     gap: 1rem;
   }
 }

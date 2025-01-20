@@ -48,6 +48,7 @@
   text-align: center;
   gap: 4rem;
   position: relative;
+  padding: 1rem;
 }
 
 h1 {

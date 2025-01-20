@@ -204,7 +204,7 @@
     // animation code
     if (calc.value) {
       gsap.fromTo(
-        calc.value.querySelectorAll("*"),
+        calc.value.querySelectorAll("h1, div"),
         { x: '100%', opacity: 0 },
         { 
           x: '0%',

@@ -54,7 +54,6 @@
   align-items: center;
   text-align: center;
   gap: 3rem;
-  padding: 1rem;
   background: transparent;
   transition: transform 0.7s ease-in-out;
 }

@@ -99,10 +99,10 @@ body {
 }
   
 .button.secondary {
-    background-color: #4079c9;  /* Primary pink color */
+    background-color: transparent;
+    border-radius: 20px;
+    border: 2px solid #42a3e4;
     color: white;  /* Text color */
-    border: none;  /* Remove default border */
-    border-radius: 12px;  /* Rounded corners */
     padding: 12px 30px;  /* Comfortable padding */
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 16px;  /* Text size */
@@ -127,7 +127,9 @@ body {
 .button.secondary:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
     transform: translateY(-2px);  /* Slight upward movement */
-    background-color: #396CB4;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 2px solid #e45242;
 }
   
 /* Focus Effect */
@@ -137,19 +139,6 @@ body {
   
 .button.secondary:focus {
     outline: none;  /* Remove default outline */
-}
-  
-/* Active Effect */
-.button:active {
-    background-color: #FF8C42;  /* Darker purple when pressed */
-    transform: translateY(1px);  /* Slight downward movement */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Reduced shadow on press */
-}
-  
-.button.secondary:active {
-    background-color: #3360A0;  /* Darker purple when pressed */
-    transform: translateY(1px);  /* Slight downward movement */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Reduced shadow on press */
 }
   
 /* Disabled Button */

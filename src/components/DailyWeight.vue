@@ -17,7 +17,7 @@
           Submit
         </button>
         <p
-          v-if="store.weightSubmitted"
+          v-show="store.weightSubmitted"
           class="info-message"
           ref="infoMessage"  >
           You've already logged your weight for the day!
@@ -101,6 +101,14 @@
 
     successMessage.value = "Weight logged successfully!";
     currentWeightInput.value = "";
+
+    if (infoMessage.value) {
+      gsap.fromTo(
+        infoMessage.value,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      );
+    }
   };  
 
   onMounted(async () => {
@@ -137,16 +145,6 @@
       );
     }
   });
-
-  watch(() => store.weightSubmitted, (newWeightSubmitted) => {
-  if (newWeightSubmitted && infoMessage.value) {
-    gsap.fromTo(
-      infoMessage.value,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
-    );
-  }
-});
 </script>
 
 
