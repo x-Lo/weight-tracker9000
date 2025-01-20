@@ -140,6 +140,7 @@ const calorieCalc = () => {
         store.updateResultsProperty('phaseDuration', maintenanceDays.value);
         store.updateResultsProperty('calories', store.resultsData.tdee);
         store.updateResultsProperty('goalweight', store.resultsData.weight);
+        store.updateResultsProperty('rate', '-');
         console.log('Maintenance plan data updated.');
 
         // Update macros calculations
@@ -218,6 +219,9 @@ const calorieCalc = () => {
     const duration = Math.ceil(Math.abs(totalCaloriesNeeded / adjustmentRate));
 
     store.updateResultsProperty('phaseDuration', duration);
+
+    store.updateResultsProperty('goalweight', goalweight)
+    
 
     if (grid.value) {
         const hiddenItems = grid.value.querySelectorAll('.grid-item-h');

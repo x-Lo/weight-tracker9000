@@ -1,7 +1,7 @@
 // stores/appStore.ts
 import { defineStore } from "pinia";
 import { db,  } from "@/firebase";
-import { doc, setDoc, getDoc, Timestamp } from 'firebase/firestore'
+import { doc, setDoc, getDoc, Timestamp, updateDoc } from 'firebase/firestore'
 
 export const useAppStore = defineStore('appStore', {
   state: () => ({
@@ -146,6 +146,66 @@ export const useAppStore = defineStore('appStore', {
       }
     },
     
+    // Reset user data for plan reconfiguration
+    async resetUserData() {
+      // Get the currently logged-in user
+      const userId = this.userId;
+
+      if (!userId) {
+          console.error("No user is currently logged in.");
+          return;
+      }
+  
+      const userDocRef = doc(db, "users", userId);
+
+      try {
+          // Retrieve the user document from Firestore
+          const userDocSnap = await getDoc(userDocRef);
+          if (!userDocSnap.exists()) {
+              console.error("User document does not exist.");
+              return;
+          }
+  
+          // Reset all fields except userId and username
+          await updateDoc(userDocRef, {
+              dailyWeights: [],
+              calendarAttributes: [],
+              resultsData: {
+                  hidden: true,
+                  gender: '',
+                  age: 0,
+                  weight: 0,
+                  height: 0,
+                  activityLevel: '',
+                  typeOfPlan: '',
+                  tdee: 0,
+                  rate: '',
+                  goalweight: null,
+                  calories: 0,
+                  protein: 0,
+                  carbs: 0,
+                  fats: 0,
+                  phaseDuration: 0,
+                  startDate: null,
+                  currentWeight: 0,
+                  streak: 0,
+                  lastSubmissionDate: null,
+              },
+              weightSubmitted: false,
+          });
+
+          const preservedUsername = this.username;
+          const preservedUserId = this.userId;
+          this.$reset(); //reset the pinia store
+          this.username = preservedUsername;
+          this.userId = preservedUserId;
+  
+          console.log("User data reset successfully except for username and userId.");
+      } catch (error) {
+          console.error("Error resetting user data:", error);
+      }
+    },
+
     // Helper function to handle date conversion
     convertToDate(value: any): Date | null {
       if (value instanceof Timestamp) {

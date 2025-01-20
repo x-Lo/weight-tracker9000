@@ -31,49 +31,42 @@
         <div class="grid-item plan">
           <div class="plan-section">
             <h2>Have your results slowed down?</h2>
-            <button class="button secondary" @click="navigate('calculator')">Reconfigure your plan!</button>
+            <button class="button secondary" @click="reconfigure()">Reconfigure your plan!</button>
           </div>
         </div>
       </div>
     </div>
 </template>
   
-<script lang="ts">
-  import { computed, defineComponent, ref } from "vue";
+<script lang="ts" setup>
+  import { computed, ref } from "vue";
   import { useAppStore } from "@/stores/appStore";
   import { useNavigation } from '@/composables/useNavigation';
   
-  export default defineComponent({
-    name: "Calendar",
-    setup() {
-      const store = useAppStore();
-      const { navigate } = useNavigation(); // Use the composable
-      const resultsData = computed(() => store.resultsData);
-      const calendarAttributes = computed(() => store.calendarAttributes);
-      const selectedColor = ref("pink"); // Soft blue color for events/cursor highlight
+ 
+  const store = useAppStore();
+  const { navigate } = useNavigation(); // Use the composable
+  const resultsData = computed(() => store.resultsData);
+  const calendarAttributes = computed(() => store.calendarAttributes);
+  const selectedColor = ref("pink"); // Soft blue color for events/cursor highlight
 
-      const planStartDate = new Date(store.resultsData.startDate ?? new Date()); // Ensure you have this property in your resultsData.
-      const today = new Date(); // Current date
+  const planStartDate = new Date(store.resultsData.startDate ?? new Date()); // Ensure you have this property in your resultsData.
+  const today = new Date(); // Current date
 
-      // Calculate days passed
-      const daysPassed = Math.floor(
-        (today.getTime() - planStartDate.getTime()) / (1000 * 60 * 60 * 24)
-      );
+  // Calculate days passed
+  const daysPassed = Math.floor(
+    (today.getTime() - planStartDate.getTime()) / (1000 * 60 * 60 * 24)
+  );
 
-      // Compute days remaining
-      const daysRemaining = computed(() => {
-        return store.resultsData.phaseDuration - daysPassed;
-      });
-
-      return {
-        resultsData,
-        selectedColor,
-        calendarAttributes,
-        daysRemaining,
-        navigate,
-      };
-    },
+  // Compute days remaining
+  const daysRemaining = computed(() => {
+    return store.resultsData.phaseDuration - daysPassed;
   });
+
+  const reconfigure = () => {
+      store.resetUserData();
+      navigate("calculator");
+  }
 </script>
   
 <style scoped>
