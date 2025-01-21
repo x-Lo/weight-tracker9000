@@ -33,8 +33,10 @@
                         class="input"
                         v-model="goalweight"
                         placeholder="Enter your goal weight (kg)"
+                        @input="validateGoalWeight"
                         required
                     />
+                    <p v-if="validationError" class="error">{{ validationError }}</p>
                 </div>
                 <button
                     class="button"
@@ -51,8 +53,10 @@
                         class="input"
                         v-model="maintenanceDays"
                         placeholder="Enter your desired duration (days)"
+                        @input="validateMaintenanceDays"
                         required
                     />
+                    <p v-if="validationError" class="error">{{ validationError }}</p>
                 </div>
                 <button
                     class="button"
@@ -110,6 +114,7 @@ const { navigate } = useNavigation();
 const selectedRate = ref<string | null>(null);
 const goalweight = ref<number | null>(null);
 const maintenanceDays = ref<number | null>(null);
+const validationError = ref(""); // Store validation error messages.
 const calories = ref<HTMLElement | null>(null);
 const macros = ref<HTMLElement | null>(null);
 const calendar = ref<HTMLElement | null>(null);
@@ -121,6 +126,32 @@ const pickRate = (rate: string) => {
     selectedRate.value = rate;
     store.updateResultsProperty('rate', rate);
 };
+
+const validateGoalWeight = () => {
+    if (goalweight.value === null || goalweight.value <= 0) {
+        validationError.value = "Goal weight must be a positive number.";
+        return;
+    }
+
+    if (store.resultsData.typeOfPlan === "Fat Loss" && goalweight.value >= store.resultsData.weight) {
+        validationError.value = "For Fat Loss, the goal weight must be less than your current weight.";
+        return;
+    }
+
+    if (store.resultsData.typeOfPlan === "Muscle Gain" && goalweight.value <= store.resultsData.weight) {
+        validationError.value = "For Muscle Gain, the goal weight must be more than your current weight.";
+        return;
+    }
+
+    validationError.value = ""; // Clear the error if validation passes.
+};
+
+const validateMaintenanceDays = () => {
+    if (maintenanceDays.value === null || maintenanceDays.value <= 0) {
+        validationError.value = "Plan duration must be a positive number.";
+        return;
+    }
+}
 
 const calorieCalc = () => {
     // Ensure required fields exist
