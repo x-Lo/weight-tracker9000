@@ -87,13 +87,13 @@
     // animation code
     if (account.value) {
       gsap.fromTo(
-        account.value.querySelectorAll("h1, div"),
+        account.value.querySelectorAll("h1, .grid-item"),
         { x: '100%', opacity: 0 },
         { 
           x: '0%',
           opacity: 1, 
           duration: 1, 
-          stagger: 0.1,
+          stagger: 0.2,
           ease: "power1.out" 
         }
       );
@@ -109,8 +109,6 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  min-width: 40vh;
-  height: 100%;
   padding: 1rem;
   gap: 2rem;
   border-radius: 12px;
@@ -123,7 +121,6 @@ h1 {
   color: #f0f0f0; /* High contrast */
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
-  position: relative;
   text-align: center;
 }
 
@@ -149,13 +146,10 @@ h2::after {
 }
 
 .grid {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
   width: 100%;
-  height: 100vh;
-  min-width: 40vh; /* Responsive width limit */
 }
 
 .grid-item {
@@ -167,9 +161,6 @@ h2::after {
   border-radius: 20px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
-  width: calc(33.333% - 1rem);
-  min-width: 40vh;
-  height: 70vh;
 }
 
 .user-field {
@@ -202,27 +193,51 @@ input[readonly]:focus {
 .macros {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: left;
   gap: 0.6rem;
   font-size: 1.1rem;
   color: #f0f0f0;
 }
 
-@media (max-width: 480px) {
-  .grid {
-    height: 100%;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-
+/* Responsive Styles */
+@media (max-width: 768px) {
   h1 {
     font-size: 2rem;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .grid-item {
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .grid {
+    gap: 0.5rem;
+  }
+
+  .grid-item {
+    padding: 0.8rem;
+  }
+
+  input[readonly] {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .macros {
+    font-size: 0.95rem;
   }
 }
 </style>

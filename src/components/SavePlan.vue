@@ -87,27 +87,21 @@ h2 {
   color: #f0f0f0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .saveplan-container {
     padding: 1rem;
   }
 
-  .grid-item {
-    width: 80%;
-    height: auto;
-    padding: 1rem 2rem;
-  }
-
   h2 {
-    font-size: 1.8em;
+    font-size: 1rem;
   }
 
   p {
-    font-size: 1em;
+    font-size: 0.5rem;
   }
 
   .cta-text {
-    font-size: 1.2em;
+    font-size: 1.2rem;
   }
 }
 </style>

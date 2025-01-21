@@ -150,6 +150,21 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
   background-color: #C94079;
 }
 
+.logo {
+  font-family: "Righteous", sans-serif;
+  background-color: #f3ec78;
+  font-size: 2rem;
+  background-image: linear-gradient(90deg, #C94079, #FF8C42);
+  background-clip: text;
+  background-size: 100%
+  background-repeat;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+}
+
 
 /* Mobile styles */
 @media screen and (max-width: 768px) {
@@ -157,11 +172,11 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
-    right: 20px;
+    top: 3rem;
+    right: 1rem;
     background-color: #191919;
-    border-radius: 8px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
@@ -170,9 +185,9 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
   }
 
   .nav-link {
-    padding: 10px;
+    padding: 0.5rem;
     text-align: center;
-    font-size: 18px;
+    font-size: 1.5rem;
   }
 
   .nav-link:hover {
@@ -186,6 +201,20 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
   .auth-button {
     margin-top: 10px;
+  }
+
+  .logo {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 2em;
+  }
+
+  .navbar {
+    height: 7%;
   }
 }
 </style>

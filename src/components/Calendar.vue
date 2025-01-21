@@ -99,11 +99,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .grid-item {
-  width: 30vh;
-  height: 35vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -161,25 +162,19 @@
 }
 
 
-@media (max-width: 768px) {
-  .calendar-container {
-    margin-top: 1rem;
-  }
-
+@media (max-width: 480px) {
   .info-grid{
     flex-direction: column;
     align-items: center;
-  }
-
-  .info-grid {
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   .grid-item {
-    width: 45vh;
-    height: 15vh;
+    width: 100%;
+    height: 100%;
     font-size: 0.8rem;
     margin: 0;
+    justify-content: center;
   }
 
   .days-value {
@@ -188,10 +183,8 @@
   }
 
   .plan-section {
-    
-    gap: 1rem;
+    gap: 0.5rem;
   }
 }
-
 </style>
   

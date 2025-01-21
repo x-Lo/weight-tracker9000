@@ -143,7 +143,6 @@
 /* General Page Styling */
 .results-page {
   height: 100%;
-  min-width: 20vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -270,15 +269,41 @@ h2 {
   cursor: pointer;
 }
 
-@media (max-width: 480px) {
-  .results-grid {
-    flex-direction: column; /* Stack sections on top of each other */
+@media (max-width: 768px) {
+  .info-page, .results-grid {
+    flex-direction: column; /* Stack left and right sections vertically */
+    flex: 1 0 auto; /* Adjust flex to auto for better stacking */
+    width: 100%;
+    height: auto; /* Allow dynamic height for both sections */
     align-items: center;
   }
-  
+
+  .info-page h1 {
+    font-size: 1.5rem;
+  }
+
+  .info-page h2 {
+    font-size: 1rem;
+  }
+
+  .info-page h3 {
+    font-size: 0.8rem;
+  }
+
   .grid-item {
     width: 40vh;
   }
+}
+
+@media (max-width: 480px) {
+  .info-page, .results-page {
+    flex-direction: column; /* Stack sections on top of each other */
+  }
   
+  .info-page, .results-grid {
+    width: 100%; /* Ensure both sections are full-width */
+    padding: 1rem; /* Provide internal padding for better spacing */
+    gap: 1rem; /* Reduce spacing for smaller devices */
+  }
 }
 </style>

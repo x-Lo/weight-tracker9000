@@ -94,7 +94,7 @@
 <style scoped>
 /* Background */
 .login-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -201,6 +201,10 @@ h2::after {
   font-size: 1em;
   margin-top: 1rem;
   color: #f0f0f0;
+}
+
+@media (max-width: 400px) {
+
 }
 </style>
   

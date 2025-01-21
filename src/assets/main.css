@@ -11,51 +11,21 @@
 html, body {
     overflow-x: hidden; /* Prevent horizontal scroll entirely */
     overflow-y: hidden; /* Prevent vertical overflow */
-    width: 100%;
-    height: 100%;
 }
 
 body {
+  width: 100%;
+  height: 100%;
   font-family: 'Roboto', Arial, sans-serif;
   background: rgb(25,25,25);
   background: linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(0,0,0,1) 75%, rgba(57,32,42,1) 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed; /* Keeps it steady on scroll */
-  overflow-x: hidden;
-  overflow-y: hidden;
   color: #f0f0f0;
   margin: 0;
   padding: 0;
 }
-
-.logo {
-    font-family: "Righteous", sans-serif;
-    background-color: #f3ec78;
-    font-size: 2rem;
-    background-image: linear-gradient(90deg, #C94079, #FF8C42);
-    background-clip: text;
-    background-size: 100%
-    background-repeat;
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
-}
-
-.moto {
-    position: absolute; /* Position relative to .homepage-left */
-    top: 30px; /* Adjust distance from the top edge */
-    left: 50px; /* Adjust distance from the left edge */
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 5rem;
-    font-weight: bold;
-    color: #fff !important;
-    letter-spacing: 2px;
-    line-height: 0.8;
-}
-
 
 /* Font Settings */
 @font-face {
@@ -173,10 +143,6 @@ body {
     color: #f0f0f0;
     text-align: center;
     transition: transform 0.2s, background-color 0.2s, box-shadow 0.3s ease-in-out;
-
-    /* Frosted glass effect */
-    backdrop-filter: blur(60px); /* Applies blur effect to the background */
-    -webkit-backdrop-filter: blur(60px); /* For Safari support */
 }
 
 input, select {
@@ -269,8 +235,8 @@ label {
 
     .moto {
         position: absolute; /* Position relative to .homepage-left */
-        top: 30px; /* Adjust distance from the top edge */
-        left: 15px; /* Adjust distance from the left edge */
+        top: 1rem; /* Adjust distance from the top edge */
+        left: 0.5rem; /* Adjust distance from the left edge */
         font-size: 3em;
         letter-spacing: 2px;
         line-height: 0.8;

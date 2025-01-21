@@ -10,54 +10,59 @@
 </template>
 
 <script lang="ts" setup>
-    import Calendar from '@/components/Calendar.vue';
-    import DailyWeight from '@/components/DailyWeight.vue';
+import Calendar from '@/components/Calendar.vue';
+import DailyWeight from '@/components/DailyWeight.vue';
 </script>
 
 <style scoped>
-    .calendarview-page {
-        display: flex;
-        flex-direction: row;
-        height: 90%;
-        width: 100%;
-    }
+.calendarview-page {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    width: 100%;
+}
 
-    .calendar {
-        flex: 1 0 65%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: left;
-        background: transparent;
-        transition: transform 0.7s ease-in-out;
-    }
+.calendar {
+    flex: 1 0 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    background: transparent;
+    transition: transform 0.7s ease-in-out;
+    padding: 1rem; /* Added padding for better alignment */
+}
 
-    .dailyWeight {
-        flex: 1 0 35%;
-        height: 100%;
-        min-height: 50vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        text-align: center;
-        gap: 3rem;
-        padding: 1rem;
-        background: transparent;
-        transition: transform 0.7s ease-in-out;
-    }
+.dailyWeight {
+    flex: 1 0 35%;
+    height: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+    padding: 1rem;
+    background: transparent;
+    transition: transform 0.7s ease-in-out;
+}
 
 @media (max-width: 480px) {
     .calendarview-page {
-        flex-direction: column; /* Stack sections on top of each other */
-    }   
-  
+        flex-direction: column-reverse; /* Stack sections with results on top */
+        justify-content: flex-start;
+        height: auto;
+    }
+
     .calendar,
     .dailyWeight {
-        width: 100%; /* Full width for smaller screens */
-        flex: 0 0 100%;
+        width: 100%; /* Ensure both sections are full-width */
+        height: auto;
+        padding: 1rem;
+        flex: 1 0 auto; /* Adjust flex to auto for better stacking */
     }
 }
 </style>

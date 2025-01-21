@@ -70,11 +70,13 @@ const router = createRouter({
       meta: { requiresAuth: false },
     },
   ],
+  scrollBehavior () {
+    return { top: 0, left: 0 }
+  }
 })
 
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const store = useAppStore();
   const currentUser = await new Promise((resolve) => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       unsubscribe(); // Stop listening

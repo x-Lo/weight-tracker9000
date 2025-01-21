@@ -137,36 +137,36 @@
   );
 
   const predefinedImperialHeights = [
-      { label: "4ft 7in", value: 139.7 },
-      { label: "4ft 8in", value: 142.24 },
-      { label: "4ft 9in", value: 144.78 },
-      { label: "4ft 10in", value: 147.32 },
-      { label: "4ft 11in", value: 149.86 },
-      { label: "5ft 0in", value: 152.4 },
-      { label: "5ft 1in", value: 154.94 },
-      { label: "5ft 2in", value: 157.48 },
-      { label: "5ft 3in", value: 160.02 },
-      { label: "5ft 4in", value: 162.56 },
-      { label: "5ft 5in", value: 165.1 },
-      { label: "5ft 6in", value: 167.64 },
-      { label: "5ft 7in", value: 170.18 },
-      { label: "5ft 8in", value: 172.72 },
-      { label: "5ft 9in", value: 175.26 },
-      { label: "5ft 10in", value: 177.8 },
-      { label: "5ft 11in", value: 180.34 },
-      { label: "6ft 0in", value: 182.88 },
-      { label: "6ft 1in", value: 185.42 },
-      { label: "6ft 2in", value: 187.96 },
-      { label: "6ft 3in", value: 190.5 },
-      { label: "6ft 4in", value: 193.04 },
-      { label: "6ft 5in", value: 195.58 },
-      { label: "6ft 6in", value: 198.12 },
-      { label: "6ft 7in", value: 200.66 },
-      { label: "6ft 8in", value: 203.2 },
-      { label: "6ft 9in", value: 205.74 },
-      { label: "6ft 10in", value: 208.28 },
-      { label: "6ft 11in", value: 210.82 },
-      { label: "7ft 0in", value: 213.36 },
+    { label: "4ft 7in", value: 139.7 },
+    { label: "4ft 8in", value: 142.24 },
+    { label: "4ft 9in", value: 144.78 },
+    { label: "4ft 10in", value: 147.32 },
+    { label: "4ft 11in", value: 149.86 },
+    { label: "5ft 0in", value: 152.4 },
+    { label: "5ft 1in", value: 154.94 },
+    { label: "5ft 2in", value: 157.48 },
+    { label: "5ft 3in", value: 160.02 },
+    { label: "5ft 4in", value: 162.56 },
+    { label: "5ft 5in", value: 165.1 },
+    { label: "5ft 6in", value: 167.64 },
+    { label: "5ft 7in", value: 170.18 },
+    { label: "5ft 8in", value: 172.72 },
+    { label: "5ft 9in", value: 175.26 },
+    { label: "5ft 10in", value: 177.8 },
+    { label: "5ft 11in", value: 180.34 },
+    { label: "6ft 0in", value: 182.88 },
+    { label: "6ft 1in", value: 185.42 },
+    { label: "6ft 2in", value: 187.96 },
+    { label: "6ft 3in", value: 190.5 },
+    { label: "6ft 4in", value: 193.04 },
+    { label: "6ft 5in", value: 195.58 },
+    { label: "6ft 6in", value: 198.12 },
+    { label: "6ft 7in", value: 200.66 },
+    { label: "6ft 8in", value: 203.2 },
+    { label: "6ft 9in", value: 205.74 },
+    { label: "6ft 10in", value: 208.28 },
+    { label: "6ft 11in", value: 210.82 },
+    { label: "7ft 0in", value: 213.36 },
   ];
 
   const switchTo = (system: "metric" | "imperial") => {
@@ -344,9 +344,15 @@ input, select {
   margin-top: 1rem;
 }
 
+
+
 @media (max-width: 480px) {
   h1 {
     font-size: 2em;
+  }
+
+  .card {
+    width: 40vh;
   }
 }
 </style>

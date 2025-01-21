@@ -49,15 +49,24 @@
         transition: transform 0.7s ease-in-out;
     }
 
+/* Tablet styles */
+@media (max-width: 768px) {
+  .savePlanView-page {
+    flex-direction: column; /* Stack left and right sections vertically */
+  }
+
+}
+
+/* Mobile styles */
 @media (max-width: 480px) {
     .savePlanView-page {
-        flex-direction: column; /* Stack sections on top of each other */
-    }   
-  
-    .calendar,
-    .savePlan {
-        width: 100%; /* Full width for smaller screens */
-        flex: 0 0 100%;
+        flex-direction: column;
+    }
+
+    .calendar, .savePlan {
+        width: 100%; /* Ensure both sections are full-width */
+        height: auto;
+        padding: 1rem;
     }
 }
 </style>

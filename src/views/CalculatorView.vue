@@ -26,7 +26,7 @@
     flex: 1 0 35%;
     height: 100%;
     display: flex;
-    min-height: 50vh;
+    min-height: 30vh;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -40,6 +40,7 @@
 .results {
     flex: 1 0 65%;
     height: 100%;
+    min-height: 30vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,13 +51,18 @@
 
 @media (max-width: 480px) {
   .calculator-page {
-    flex-direction: column; /* Stack sections on top of each other */
+    flex-direction: column-reverse; /* Stack sections with results on top */
+    justify-content: flex-start;
+    height: auto;
   }
   
   .calculator,
   .results {
-    width: 100%; /* Full width for smaller screens */
-    flex: 0 0 100%;
+    width: 100%; /* Ensure both sections are full-width */
+    padding: 1rem; /* Provide internal padding for better spacing */
+    gap: 0.5rem; /* Reduce spacing for smaller devices */
+    flex: 1 0 auto; /* Adjust flex to auto for better stacking */
+    height: auto;
   }
 }
 </style>

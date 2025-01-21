@@ -24,14 +24,13 @@
 </script>
 
 <style scoped>
-/* Existing styles */
+/* Container styles */
 .homepage-container {
   display: flex;
   flex-direction: row;
   height: 90%;
   width: 100%;
 }
-
 
 .homepage-left {
   flex: 1 0 65%;
@@ -47,7 +46,6 @@
 .homepage-right {
   flex: 1 0 35%;
   height: 100%;
-  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -58,7 +56,7 @@
   transition: transform 0.7s ease-in-out;
 }
 
-/* route transitions  */
+/* Transition Effects for Routes */
 .route-enter-from {
   opacity: 0;
   transform: translateX(100%);
@@ -77,41 +75,34 @@
   transition: all 0.7s ease-in;
 }
 
+/* Tablet styles */
 @media (max-width: 768px) {
   .homepage-container {
-    flex-direction: column; /* Stack sections on top of each other */
-  }
-  
-  .homepage-left,
-  .homepage-right {
-    width: 100%; /* Full width for smaller screens */
+    flex-direction: column;
   }
 
-  .homepage-left {
-    flex: 0 0 100%;
-  }
-
-  .homepage-right {
-    flex: 0 0 20%;
+  .homepage-left, .homepage-right {
+    width: 100%; /* Ensure both sections are full-width */
+    max-height: 65%;
+    padding: 1rem;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile styles */
+@media (max-width: 400px) {
   .homepage-container {
-    flex-direction: column; /* Stack sections on top of each other */
-  }
-  
-  .homepage-left,
-  .homepage-right {
-    width: 100%; /* Full width for smaller screens */
+    flex-direction: column;
+    gap: 3rem;
   }
 
   .homepage-left {
-    flex: 0 0 100%;
+    width: 100%; /* Ensure both sections are full-width */
+    max-height: 65%;
+    
   }
 
   .homepage-right {
-    flex: 0 0 100%;
+    height: auto;
   }
 }
 </style>
