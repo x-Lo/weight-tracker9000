@@ -88,7 +88,7 @@ onMounted(() => {
     position: absolute; /* Position relative to .homepage-left */
     top: 1rem; /* Adjust distance from the top edge */
     left: 0.5rem; /* Adjust distance from the left edge */
-    font-size: 2rem;
+    font-size: 3rem;
   } 
 }
 

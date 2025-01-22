@@ -265,12 +265,12 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
   
 }
 </style>

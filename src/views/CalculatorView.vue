@@ -70,13 +70,19 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media (min-width: 600px) and (max-width: 767px) {
   .calculator-page {
-    flex-shrink: 1;
-    height: 90%;
+    flex-direction: column-reverse; /* Stack sections with results on top */
+    justify-content: flex-start;
+    height: auto;
+    width: 100%;
   }
-
+  
   .calculator,
   .results {
-    flex: 1 0 50%;
+    width: 100%; /* Ensure both sections are full-width */
+    padding: 1rem; /* Provide internal padding for better spacing */
+    gap: 0.5rem; /* Reduce spacing for smaller devices */
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -88,6 +94,13 @@
   .calculator,
   .results {
     flex-shrink: 1;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
+  .calculator,
+  .results {
+    height: 100%;
   }
 }
 </style>

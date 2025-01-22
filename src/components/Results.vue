@@ -143,6 +143,7 @@
 /* General Page Styling */
 .results-page {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -293,27 +294,13 @@ h2 {
   }
 
   .info-page {
-    justify-content: space-between;
-  }
-
-  .info-page h1 {
-    font-size: 2rem;
-  }
-
-  .results-page h1 {
-    font-size: 2rem;
-  }
-
-  .info-page h2 {
-    font-size: 1rem;
-  }
-
-  .info-page h3 {
-    font-size: 0.8rem;
+    height: auto;
+    justify-content: flex-start;
+    gap: 0.5rem;
   }
 
   .grid-item {
-    max-width: 70vh;
+    width: 100vh;
   }
 }
 
@@ -352,6 +339,15 @@ h2 {
 
   .results-grid .grid-item {
     max-height: 61vh;
+  }
+
+  .info-page {
+    height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; /* Centers content horizontally */
+    text-align: center;
+    gap: 1rem;
   }
 }
 </style>

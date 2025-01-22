@@ -97,12 +97,16 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media (min-width: 600px) and (max-width: 767px) {
   .homepage-container {
-    flex-shrink: 1;
-    height: 90%;
+    flex-direction: column;
+    height: 93%;
   }
 
   .homepage-left, .homepage-right {
-    flex: 1 0 50%;
+    width: 100%; 
+  }
+
+  .homepage-left {
+    flex: 1 0 100%;
   }
 }
 
@@ -110,10 +114,6 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .homepage-container {
     flex-direction: column;
-  }
-
-  .homepage-left {
-    max-height: 50%;
   }
 }
 
