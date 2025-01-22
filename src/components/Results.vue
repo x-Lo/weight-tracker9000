@@ -184,6 +184,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -270,6 +271,10 @@ h2 {
 }
 
 @media only screen and (max-width: 600px) {
+  .results-page {
+    align-items: center;
+  }
+
   .info-page, .results-grid {
     flex-direction: column;
     align-items: center;
@@ -287,6 +292,10 @@ h2 {
 }
 
 @media only screen and (min-width: 600px) and (max-width: 767px) {
+  .results-page {
+    align-items: center;
+  }
+
   .info-page, .results-grid {
     flex-direction: column;
     width: 100%;
@@ -305,6 +314,10 @@ h2 {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .results-page {
+    align-items: center;
+  }
+
   .results-grid {
     flex-direction: row;
     align-items: center;
@@ -329,6 +342,10 @@ h2 {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1279px) {
+  .results-page {
+    align-items: center;
+  }
+
   .grid-item {
     max-width: 30vh;
   }
