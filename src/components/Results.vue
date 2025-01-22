@@ -272,6 +272,7 @@ h2 {
 @media only screen and (max-width: 600px) {
   .info-page, .results-grid {
     flex-direction: column;
+    align-items: center;
   }
   
   .info-page, .results-grid {
