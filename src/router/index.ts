@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from '@/firebase'
-import { useAppStore } from '@/stores/appStore';
 
 
 const router = createRouter({

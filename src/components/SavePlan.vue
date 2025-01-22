@@ -87,7 +87,7 @@ h2 {
   color: #f0f0f0;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .saveplan-container {
     padding: 1rem;
   }

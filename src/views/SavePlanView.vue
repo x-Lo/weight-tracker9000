@@ -50,19 +50,19 @@
     }
 
 /* Mobile styles */
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .savePlanView-page {
         flex-direction: column;
     }
 
     .calendar, .savePlan {
-        width: 100%; /* Ensure both sections are full-width */
+        width: 100%;
         height: auto;
         padding: 1rem;
     }
 }
 
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
     .savePlanView-page {
         flex-direction: column;
         gap: 30em;
@@ -73,7 +73,7 @@
 /* Tablet styles */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .savePlanView-page {
-    flex-direction: column; /* Stack left and right sections vertically */
+    flex-direction: column;
   }
 
 }

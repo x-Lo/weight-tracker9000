@@ -361,12 +361,12 @@ const calendarCalc = () => {
 }
 
 .rate-options-grid .grid-item:hover {
-    outline-color: #C94079; /* Solid color for active state */
+    outline-color: #C94079;
     box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
 }
 
 .rate-options-grid .grid-item.isSelected {
-    outline-color: #C94079; /* Solid color for active state */
+    outline-color: #C94079;
     box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
 }
 
@@ -460,7 +460,7 @@ const calendarCalc = () => {
 h1 {
   font-size: 2.5em;
   font-weight: bold;
-  color: #ffffff; /* High contrast */
+  color: #ffffff;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
   position: relative;
@@ -520,9 +520,9 @@ a {
   text-decoration: underline;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .grid-container {
-    flex-direction: column; /* Stack sections on top of each other */
+    flex-direction: column; 
     align-items: center;
   }
   
@@ -553,7 +553,7 @@ a {
   }
 }
 
-@media (min-width: 600px) and (max-width: 767px) {  
+@media only screen and (min-width: 600px) and (max-width: 767px) {  
     .personal-container {
         padding: 0.5rem;
     }
@@ -564,34 +564,34 @@ a {
 
     .grid-item,
     .grid-item-h {
-        width: 45vh; /* Reduce the width slightly for better fit */
-        padding: 0.8rem; /* Adjust padding */
+        width: 45vh;
+        padding: 0.8rem;
     }
 
     .rate-options-grid .grid-item {
-        width: 35vh; /* Make individual rate options smaller */
+        width: 35vh;
     }
 
     .input-group {
-        gap: 0.8rem; /* Slightly reduce spacing between input and label */
+        gap: 0.8rem;
         margin-bottom: 0.5rem;
     }
 
     .macro-section,
     .calorie-section,
     .calendar-section {
-        font-size: 0.9em; /* Reduce font size slightly for better scaling */
+        font-size: 0.9em;
     }
 
     .calories-value,
     .macro-value {
-        font-size: 1.5em; /* Adjust larger text sizes for smaller widths */
+        font-size: 1.5em;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .grid-container {
-    flex-direction: column; /* Stack sections on top of each other */
+    flex-direction: column;
     align-items: center;
   }
 
@@ -617,8 +617,8 @@ a {
 
     .grid-item,
     .grid-item-h {
-        max-width: 35vh; /* Reduce the width slightly for better fit */
-        padding: 0.8rem; /* Adjust padding */
+        max-width: 35vh;
+        padding: 0.8rem;
     }
 
     .input-group {

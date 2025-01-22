@@ -40,66 +40,67 @@
     </nav>
   </template>
   
-<script lang="ts">
-import { useAppStore } from "@/stores/appStore";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-
-  export default {
-    name: "Navbar",
-
-    data() {
-      return {
-        menuOpen: false,
-        activeLink: "/", // Store the active link path
-        isLoggedIn: false, // Track if the user is logged in
-      };
-    },
-
-    created() {
-      // Set the active link based on the current route when the component is created
-      this.activeLink = this.$route.path;
-
-      // Check authentication state
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        this.isLoggedIn = !!user; // Update isLoggedIn based on user presence
-      });
-    },
-
-    watch: {
-      // Watch for route changes and update activeLink accordingly
-      $route(to) {
-        this.activeLink = to.path;
-      },
-    },
-
-    methods: {
-      toggleMenu() {
-        this.menuOpen = !this.menuOpen;
-      },
-      setActiveLink(path: string) {
-        this.activeLink = path;
-        this.menuOpen = false; // Close menu after selecting a link
-      },
-      async logout() {
-        const auth = getAuth();
-        try {
-          await signOut(auth);
-          const store = useAppStore();
-          store.logout();
-          this.$router.push("/"); // Redirect to the home page after logout
-          this.menuOpen = false; // Close menu after selecting a link
-        } catch (error) {
-          console.error("Logout failed:", error);
-        }
-      },
-      login() {
-        this.$router.push("/login"); // Redirect to the SignInView.vue
-        this.menuOpen = false; // Close menu after selecting a link
-      },
-    },
-  };
-</script>
+<script lang="ts" setup>
+  import { ref, watch, onMounted } from "vue";
+  import { useRouter, useRoute } from "vue-router";
+  import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+  import { useAppStore } from "@/stores/appStore";
+  
+  // Reactive references
+  const menuOpen = ref(false);
+  const activeLink = ref("/"); // Store the active link path
+  const isLoggedIn = ref(false); // Track if the user is logged in
+  
+  // Router and route instances
+  const router = useRouter();
+  const route = useRoute();
+  
+  // Set the active link based on the current route
+  activeLink.value = route.path;
+  
+  // Check authentication state
+  const auth = getAuth();
+  onMounted(() => {
+    onAuthStateChanged(auth, (user) => {
+      isLoggedIn.value = !!user; // Update isLoggedIn based on user presence
+    });
+  });
+  
+  // Watch for route changes and update `activeLink`
+  watch(
+    () => route.path,
+    (newPath) => {
+      activeLink.value = newPath;
+    }
+  );
+  
+  // Methods
+  function toggleMenu() {
+    menuOpen.value = !menuOpen.value;
+  }
+  
+  function setActiveLink(path: string) {
+    activeLink.value = path;
+    menuOpen.value = false; // Close menu after selecting a link
+  }
+  
+  async function logout() {
+    try {
+      await signOut(auth);
+      const store = useAppStore();
+      store.logout();
+      router.push("/"); // Redirect to the home page after logout
+      menuOpen.value = false; // Close menu after logging out
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  }
+  
+  function login() {
+    router.push("/login"); // Redirect to the SignInView.vue
+    menuOpen.value = false; // Close menu after selecting a link
+  }
+</script>  
   
 <style scoped>
 .navbar {
@@ -164,7 +165,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .nav-links {
     display: none;
     flex-direction: column;
@@ -215,7 +216,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .nav-links {
     display: none;
     flex-direction: column;

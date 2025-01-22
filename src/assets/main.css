@@ -55,48 +55,48 @@ body {
     background-color: transparent;
     border-radius: 20px;
     border: 2px solid #C94079;
-    color: white;  /* Text color */
-    padding: 12px 30px;  /* Comfortable padding */
+    color: white;  
+    padding: 12px 30px; 
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 16px;  /* Text size */
-    font-weight: 500;  /* Medium font weight */
-    text-transform: uppercase;  /* All caps for modern feel */
-    letter-spacing: 1px;  /* Slight spacing between letters */
-    cursor: pointer;  /* Pointer cursor on hover */
-    transition: all 0.3s ease;  /* Smooth transition for all properties */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
-    display: inline-block;  /* Inline block for flexible layout */
+    font-size: 16px;  
+    font-weight: 500;  
+    text-transform: uppercase;  
+    letter-spacing: 1px;  
+    cursor: pointer;  
+    transition: all 0.3s ease;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+    display: inline-block;  
 }
   
 .button.secondary {
     background-color: transparent;
     border-radius: 20px;
     border: 2px solid #42a3e4;
-    color: white;  /* Text color */
-    padding: 12px 30px;  /* Comfortable padding */
+    color: white;  
+    padding: 12px 30px;  
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 16px;  /* Text size */
-    font-weight: 500;  /* Medium font weight */
-    text-transform: uppercase;  /* All caps for modern feel */
-    letter-spacing: 1px;  /* Slight spacing between letters */
-    cursor: pointer;  /* Pointer cursor on hover */
-    transition: all 0.3s ease;  /* Smooth transition for all properties */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
-    display: inline-block;  /* Inline block for flexible layout */
+    font-size: 16px;  
+    font-weight: 500;  
+    text-transform: uppercase;  
+    letter-spacing: 1px;  
+    cursor: pointer;  
+    transition: all 0.3s ease;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+    display: inline-block;
 }
   
 /* Hover Effect */
 .button:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
-    transform: translateY(-2px);  /* Slight upward movement */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);  
     background-color: transparent;
     border-radius: 20px;
     border: 2px solid #FF8C42;
 }
   
 .button.secondary:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
-    transform: translateY(-2px);  /* Slight upward movement */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);  
     background-color: transparent;
     border-radius: 20px;
     border: 2px solid #e45242;
@@ -104,26 +104,26 @@ body {
   
 /* Focus Effect */
 .button:focus {
-    outline: none;  /* Remove default outline */
+    outline: none;  
 }
   
 .button.secondary:focus {
-    outline: none;  /* Remove default outline */
+    outline: none;  
 }
   
 /* Disabled Button */
 .button:disabled {
-    background-color: #ccc;  /* Gray background for disabled state */
-    color: #888;  /* Dimmed text */
-    cursor: not-allowed;  /* Block interaction */
-    box-shadow: none;  /* Remove shadow for disabled state */
+    background-color: #ccc;
+    color: #888;  
+    cursor: not-allowed;  
+    box-shadow: none;  
 }
   
 .button.secondary:disabled {
-    background-color: #ccc;  /* Gray background for disabled state */
-    color: #888;  /* Dimmed text */
-    cursor: not-allowed;  /* Block interaction */
-    box-shadow: none;  /* Remove shadow for disabled state */
+    background-color: #ccc;  
+    color: #888;  
+    cursor: not-allowed;  
+    box-shadow: none;  
 }
 
 /* Card Styling */
@@ -151,7 +151,7 @@ input, select {
     font-size: 1rem;
     color: #f0f0f0;
     background: linear-gradient(to bottom right, #2e2e2e, #3c3c3c);
-    border-radius: 15px; /* Slightly smaller border radius */
+    border-radius: 15px; 
     outline: 2px solid transparent;
     border: none;
     border-image: linear-gradient(to right, #505050, #C94079) 1;
@@ -166,8 +166,8 @@ input[type=number] {
 }
 
 input:focus,select:focus {
-    outline-color: #C94079; /* Solid color for active state */
-    box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8); /* Subtle glowing effect */
+    outline-color: #C94079; 
+    box-shadow: 0 0 0 2px #C94079, 0 0 6px rgba(201, 64, 121, 0.8);
 }
 
 option {

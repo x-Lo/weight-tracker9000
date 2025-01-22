@@ -47,7 +47,7 @@
   import { useAppStore } from '@/stores/appStore';
   import gsap from "gsap";
 
-  const { navigate } = useNavigation(); // Use the composable
+  const { navigate } = useNavigation();
   const store = useAppStore();
   const info = ref<HTMLElement | null>(null);
   const results = ref<HTMLElement | null>(null);
@@ -140,7 +140,6 @@
 </script>
 
 <style scoped>
-/* General Page Styling */
 .results-page {
   height: 100%;
   width: 100%;
@@ -161,20 +160,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center; /* Centers content horizontally */
+  align-items: center;
   text-align: center;
-  gap: 2rem; /* Space between sections */
+  gap: 2rem;
   max-width: 800px; /* Limits content width for readability */
 }
 
 .info-step {
-  padding: 1rem; /* Adds space around each step for visual clarity */
+  padding: 1rem;
 }
 
 .results-page h1 {
   font-size: 2.5em;
   font-weight: bold;
-  color: #ffffff; /* High contrast */
+  color: #ffffff;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
   text-align: center;
@@ -235,7 +234,7 @@
 }
 
 .plan-grid .grid-item:hover {
-  outline-color: #C94079; /* Solid color for active state */
+  outline-color: #C94079;
   box-shadow: 0 2px 0 rgba(201, 64, 121, 0.8);
 }
 
@@ -270,15 +269,15 @@ h2 {
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .info-page, .results-grid {
-    flex-direction: column; /* Stack sections on top of each other */
+    flex-direction: column;
   }
   
   .info-page, .results-grid {
-    width: 100%; /* Ensure both sections are full-width */
-    padding: 1rem; /* Provide internal padding for better spacing */
-    gap: 1rem; /* Reduce spacing for smaller devices */
+    width: 100%;
+    padding: 1rem;
+    gap: 1rem;
   }
 
   .grid-item {
@@ -286,9 +285,9 @@ h2 {
   }
 }
 
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .info-page, .results-grid {
-    flex-direction: column; /* Stack left and right sections vertically */
+    flex-direction: column;
     width: 100%;
     align-items: center;
   }
@@ -306,7 +305,7 @@ h2 {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .results-grid {
-    flex-direction: row; /* Stack left and right sections vertically */
+    flex-direction: row;
     align-items: center;
   }
 
@@ -314,13 +313,13 @@ h2 {
     height: auto;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center; /* Centers content horizontally */
+    align-items: center; 
     text-align: center;
     max-width: 800px; /* Limits content width for readability */
   }
 
   .info-step {
-    padding: 1rem; /* Adds space around each step for visual clarity */
+    padding: 1rem;
   }
 
   .grid-item {
@@ -345,7 +344,7 @@ h2 {
     height: auto;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center; /* Centers content horizontally */
+    align-items: center;
     text-align: center;
     gap: 1rem;
   }

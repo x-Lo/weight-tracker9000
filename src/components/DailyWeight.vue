@@ -187,7 +187,7 @@ h2 {
 }
 
 .info-message {
-  font-size: 1rem; /* Larger, yet readable */
+  font-size: 1rem;
   color: #f0f0f0;
   text-align: center;
   margin-top: 1rem;
@@ -197,7 +197,7 @@ h2 {
   border-radius: 15px;
 }
 
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .submit-form {
     width: 70vh;
   }

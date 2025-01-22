@@ -14,7 +14,6 @@
 import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
 
-// Reference the moto container
 const moto = ref<HTMLDivElement | null>(null);
 
 onMounted(() => {
@@ -54,7 +53,7 @@ onMounted(() => {
 }
 
 .moto {
-  position: absolute; /* Position relative to .homepage-left */
+  position: absolute;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 5rem;
   top: 1rem; /* Adjust distance from the top edge */
@@ -66,14 +65,14 @@ onMounted(() => {
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .quote-container {
     padding: 1rem; /* Reduce padding for smaller devices */
     height: 100%; /* Flexible height for small screens */
   }
 
   .moto {
-    position: absolute; /* Position relative to .homepage-left */
+    position: absolute;
     top: 1rem; /* Adjust distance from the top edge */
     left: 0.3rem; /* Adjust distance from the left edge */
     font-size: 2.3rem;
@@ -83,9 +82,9 @@ onMounted(() => {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .moto {
-    position: absolute; /* Position relative to .homepage-left */
+    position: absolute;
     top: 1rem; /* Adjust distance from the top edge */
     left: 0.5rem; /* Adjust distance from the left edge */
     font-size: 3rem;
@@ -95,7 +94,7 @@ onMounted(() => {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .moto {
-    position: absolute; /* Position relative to .homepage-left */
+    position: absolute;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4rem;
     top: 1rem; /* Adjust distance from the top edge */

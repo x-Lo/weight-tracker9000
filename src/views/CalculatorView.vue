@@ -50,27 +50,27 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .calculator-page {
-    flex-direction: column-reverse; /* Stack sections with results on top */
+    flex-direction: column-reverse;
     justify-content: flex-start;
     height: auto;
   }
   
   .calculator,
   .results {
-    width: 100%; /* Ensure both sections are full-width */
-    padding: 1rem; /* Provide internal padding for better spacing */
-    gap: 0.5rem; /* Reduce spacing for smaller devices */
-    flex: 1 0 auto; /* Adjust flex to auto for better stacking */
+    width: 100%; 
+    padding: 1rem; 
+    gap: 0.5rem; 
+    flex: 1 0 auto;
     height: auto;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .calculator-page {
-    flex-direction: column-reverse; /* Stack sections with results on top */
+    flex-direction: column-reverse;
     justify-content: flex-start;
     height: auto;
     width: 100%;
@@ -78,9 +78,9 @@
   
   .calculator,
   .results {
-    width: 100%; /* Ensure both sections are full-width */
-    padding: 1rem; /* Provide internal padding for better spacing */
-    gap: 0.5rem; /* Reduce spacing for smaller devices */
+    width: 100%; 
+    padding: 1rem;
+    gap: 0.5rem;
     width: 100%;
     height: auto;
   }
@@ -88,7 +88,7 @@
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .calculator-page {
-    flex-direction: column-reverse; /* Stack sections with results on top */
+    flex-direction: column-reverse;
   }
 
   .calculator,

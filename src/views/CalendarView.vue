@@ -32,7 +32,7 @@ import DailyWeight from '@/components/DailyWeight.vue';
     text-align: left;
     background: transparent;
     transition: transform 0.7s ease-in-out;
-    padding: 1rem; /* Added padding for better alignment */
+    padding: 1rem;
 }
 
 .dailyWeight {
@@ -50,25 +50,25 @@ import DailyWeight from '@/components/DailyWeight.vue';
     transition: transform 0.7s ease-in-out;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .calendarview-page {
-        flex-direction: column-reverse; /* Stack sections with results on top */
+        flex-direction: column-reverse;
         justify-content: flex-start;
         height: auto;
     }
 
     .calendar,
     .dailyWeight {
-        width: 100%; /* Ensure both sections are full-width */
+        width: 100%;
         height: auto;
         padding: 1rem;
-        flex: 1 0 auto; /* Adjust flex to auto for better stacking */
+        flex: 1 0 auto;
     }
 }
 
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
     .calendarview-page {
-        flex-direction: column-reverse; /* Stack sections with results on top */
+        flex-direction: column-reverse; 
         justify-content: flex-start;
         height: auto;
     }
@@ -76,7 +76,7 @@ import DailyWeight from '@/components/DailyWeight.vue';
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .calendarview-page {
-        flex-direction: column-reverse; /* Stack sections with results on top */
+        flex-direction: column-reverse;
         justify-content: flex-start;
         
     }

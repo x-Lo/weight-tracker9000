@@ -221,7 +221,7 @@
 .calc-container {
   height: 100%;
   display: flex;
-  flex-direction: column; /* Stacks items vertically */
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
@@ -236,7 +236,7 @@
 h1 {
   font-size: 2.5em;
   font-weight: bold;
-  color: #ffffff; /* High contrast */
+  color: #ffffff;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
   position: relative;
@@ -246,13 +246,13 @@ h1 {
 .card {
   max-width: 400px; /* Ensures the card has a consistent width */
   width: 100%;
-  padding: 1.5rem; /* Reduced padding */
-  font-size: 1rem; /* Slightly smaller font size */ 
+  padding: 1.5rem; 
+  font-size: 1rem;
 }
 
 .unit-switch a {
   text-decoration: none;
-  margin: 0 1rem; /* Reduced margin */
+  margin: 0 1rem; 
   color: #f0f0f0;
   cursor: pointer;
   font-weight: bold;
@@ -282,23 +282,23 @@ h1 {
 
 label {
   margin-bottom: 0.5rem;
-  font-size: 1rem; /* Reduced label font size */
+  font-size: 1rem;
 }
 
 input, select {
-  padding: 0.5rem; /* Reduced padding */
-  font-size: 1rem; /* Reduced input font size */
+  padding: 0.5rem;
+  font-size: 1rem;
   background-color: #2e2e2e;
   color: #f0f0f0;
-  margin-bottom: 1rem; /* Reduced margin */
+  margin-bottom: 1rem;
 }
 
 .imperial {
-  padding-left: 3rem; /* Reduced padding */
+  padding-left: 3rem;
   padding-right: 3rem;
-  font-size: 1rem; /* Reduced input font size */
+  font-size: 1rem;
   text-align: left;
-  margin-bottom: 1rem; /* Reduced margin */
+  margin-bottom: 1rem;
 }
 
 .radio {
@@ -312,12 +312,12 @@ input, select {
 }
 
 .radio label {
-  font-size: 1rem; /* Reduced label font size */
-  margin-left: 0.5rem; /* Reduced margin */
+  font-size: 1rem;
+  margin-left: 0.5rem;
 }
 
 .radio input {
-  width: 1.2rem; /* Reduced input size */
+  width: 1.2rem;
   height: 1.2rem;
   color: #f0f0f0;
   accent-color: #C94079;
@@ -338,15 +338,15 @@ input, select {
 
 .button {
   width: 100%;
-  padding: 0.5rem; /* Reduced padding */
-  font-size: 1rem; /* Reduced font size */
+  padding: 0.5rem;
+  font-size: 1rem;
   border-radius: 15px;
   margin-top: 1rem;
 }
 
 
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   h1 {
     font-size: 2em;
   }
@@ -356,7 +356,7 @@ input, select {
   }
 }
 
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   h1 {
     font-size: 1.5rem;
   }

@@ -60,7 +60,7 @@
   const password = ref("");
   const username = ref("");
   const errorMessage = ref("");
-  const router = useRouter(); // Access the router instance
+  const router = useRouter();
   const { navigate } = useNavigation();
   const store = useAppStore();
   const signup = ref<HTMLElement | null>(null);
@@ -98,7 +98,6 @@
 </script>
 
 <style scoped>
-/* Background */
 .login-container {
   height: 100%;
   display: flex;
@@ -109,7 +108,6 @@
   flex-direction: column;
 }
 
-/* Header */
 h2 {
   font-size: 2em;
   margin-bottom: 1rem;
@@ -120,7 +118,6 @@ h2 {
   position: relative;
 }
 
-/* Add a decorative underline */
 h2::after {
   content: "";
   position: absolute;
@@ -132,8 +129,6 @@ h2::after {
   border-radius: 2px;
 }
 
-
-/* Form */
 .login-form {
   width: 100%;
   min-width: 40vh;
@@ -147,7 +142,6 @@ h2::after {
   box-shadow: 0 0 0 2px transparent, 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Input group */
 .input-group {
   position: relative;
 }
@@ -176,7 +170,6 @@ h2::after {
   border-color: #c94079;
 }
 
-/* Button */
 .button {
   padding: 0.8rem;
   font-size: 1em;
@@ -213,7 +206,7 @@ h2::after {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .login-container {
     padding: 0.5rem;
   }

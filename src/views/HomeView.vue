@@ -24,7 +24,6 @@
 </script>
 
 <style scoped>
-/* Container styles */
 .homepage-container {
   display: flex;
   flex-direction: row;
@@ -76,7 +75,7 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .homepage-container {
     flex-direction: column;
     height: 93%;
@@ -84,7 +83,7 @@
   }
 
   .homepage-left, .homepage-right {
-    width: 100%; /* Ensure both sections are full-width */
+    width: 100%;
     max-height: 65%;
     padding: 1rem;
   }
@@ -95,7 +94,7 @@
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) and (max-width: 767px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .homepage-container {
     flex-direction: column;
     height: 93%;

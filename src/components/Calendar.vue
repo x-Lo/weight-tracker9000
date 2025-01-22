@@ -45,12 +45,12 @@
   
  
   const store = useAppStore();
-  const { navigate } = useNavigation(); // Use the composable
+  const { navigate } = useNavigation();
   const resultsData = computed(() => store.resultsData);
   const calendarAttributes = computed(() => store.calendarAttributes);
-  const selectedColor = ref("pink"); // Soft blue color for events/cursor highlight
+  const selectedColor = ref("pink");
 
-  const planStartDate = new Date(store.resultsData.startDate ?? new Date()); // Ensure you have this property in your resultsData.
+  const planStartDate = new Date(store.resultsData.startDate ?? new Date());
   const today = new Date(); // Current date
 
   // Calculate days passed
@@ -162,7 +162,7 @@
 }
 
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .info-grid{
     flex-direction: column;
     align-items: center;

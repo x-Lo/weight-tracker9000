@@ -117,7 +117,7 @@
 h1 {
   font-size: 2.5em;
   font-weight: bold;
-  color: #f0f0f0; /* High contrast */
+  color: #f0f0f0; 
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
   letter-spacing: 1.5px;
   text-align: center;
@@ -198,7 +198,7 @@ input[readonly]:focus {
 }
 
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   h1 {
     font-size: 1.8rem;
   }
