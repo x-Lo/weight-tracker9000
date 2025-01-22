@@ -32,7 +32,7 @@ Welcome to the Weight-Tracker9000, a single-page application (SPA) designed to h
 
 This project is deployed using [Firebase Hosting](https://firebase.google.com/products/hosting).
 
-### **Live Demo**: 🚀 **[Check it out here!](https://your-project.web.app)**
+### **Live Demo**: 🚀 **[Check it out here!](https://weight-tracker2000.web.app)**
 
 ---
 
