@@ -106,7 +106,7 @@ span {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
   .welcome-container {
     padding: 0.5rem;
     gap: 2rem;

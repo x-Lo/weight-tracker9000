@@ -215,7 +215,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
   .nav-links {
     display: none;
     flex-direction: column;

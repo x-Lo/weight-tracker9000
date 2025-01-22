@@ -356,7 +356,7 @@ input, select {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
   h1 {
     font-size: 2rem;
   }

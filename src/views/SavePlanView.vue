@@ -62,7 +62,7 @@
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
     .savePlanView-page {
         flex-direction: column;
         gap: 30em;
@@ -71,7 +71,7 @@
 }
 
 /* Tablet styles */
-@media (max-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .savePlanView-page {
     flex-direction: column; /* Stack left and right sections vertically */
   }

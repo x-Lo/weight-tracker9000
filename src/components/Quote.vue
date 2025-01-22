@@ -83,7 +83,7 @@ onMounted(() => {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
   .moto {
     position: absolute; /* Position relative to .homepage-left */
     top: 1rem; /* Adjust distance from the top edge */
@@ -93,7 +93,7 @@ onMounted(() => {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .moto {
     position: absolute; /* Position relative to .homepage-left */
     font-family: 'Bebas Neue', sans-serif;
@@ -104,7 +104,7 @@ onMounted(() => {
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
   .quote-container {
     height: 100%;
     background-size: cover;

@@ -197,7 +197,7 @@ h2 {
   border-radius: 15px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
   .submit-form {
     width: 70vh;
   }

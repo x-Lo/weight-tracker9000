@@ -198,23 +198,8 @@ input[readonly]:focus {
   color: #f0f0f0;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-  }
 
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  .grid-item {
-    gap: 1rem;
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   h1 {
     font-size: 1.8rem;
   }
@@ -238,6 +223,21 @@ input[readonly]:focus {
 
   .macros {
     font-size: 0.95rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .grid-item {
+    gap: 1rem;
+    padding: 1rem;
   }
 }
 </style>

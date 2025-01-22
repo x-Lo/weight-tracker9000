@@ -66,7 +66,7 @@ import DailyWeight from '@/components/DailyWeight.vue';
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
     .calendarview-page {
         flex-direction: column-reverse; /* Stack sections with results on top */
         justify-content: flex-start;

@@ -162,7 +162,7 @@
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .info-grid{
     flex-direction: column;
     align-items: center;

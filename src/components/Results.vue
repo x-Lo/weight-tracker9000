@@ -281,7 +281,7 @@ h2 {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
   .info-page, .results-grid {
     flex-direction: column; /* Stack left and right sections vertically */
     width: 100%;
@@ -313,7 +313,7 @@ h2 {
   }
 }
 
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .info-page, .results-grid {
     flex-direction: column; /* Stack left and right sections vertically */
     flex: 1 0 auto; /* Adjust flex to auto for better stacking */

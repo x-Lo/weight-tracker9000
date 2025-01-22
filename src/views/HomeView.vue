@@ -95,7 +95,7 @@
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
   .homepage-container {
     flex-shrink: 1;
     height: 90%;
@@ -107,7 +107,7 @@
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .homepage-container {
     flex-direction: column;
   }
@@ -118,7 +118,7 @@
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
   .homepage-container {
     flex-direction: row;
   }
