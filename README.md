@@ -1,6 +1,6 @@
 # Weight Tracker9000
 
-Welcome to the Weight Tracker9000, a single-page application (SPA) designed to help users monitor and manage their weight over time. Built using modern web technologies like Vue 3, TypeScript and Firebase.
+Welcome to the Weight Tracker9000, a single-page application (SPA) designed to help users monitor and manage their weight over time. Built using web technologies like Vue 3, TypeScript and Firebase.
 
 ---
 
