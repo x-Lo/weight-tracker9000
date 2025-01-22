@@ -1,40 +1,41 @@
-# weight-tracker9000
+# Weight Tracker9000
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to the Weight Tracker9000, a single-page application (SPA) designed to help users monitor and manage their weight over time. Built using modern web technologies like Vue 3, TypeScript and Firebase.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- **Weight Tracking**: Log your weight in for daily progress tracking.
+- **Dynamic Calendar**: View weight entries and milestones in a calendar format.
+- **Fitness Plans**: Create personalized plans (e.g. fat loss, muscle gain, maintenance).
+- **Authentication**: Secure sign-up and login functionality using Firebase.
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## Tech Stack
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Frontend
+- **Vue 3**: For building the user interface, utilizing the Composition API.
+- **TypeScript**: For static typing and improved code maintainability.
+- **GSAP**: For animations to enhance the user experience.
 
-## Project Setup
+### Backend
+- **Firebase**:
+  - Authentication: Manage user accounts securely.
+  - Firestore: Store user data persistently (e.g., weights, plans, and preferences).
 
-```sh
-npm install
-```
+---
 
-### Compile and Hot-Reload for Development
+## Deployment
 
-```sh
-npm run dev
-```
+This project is deployed using [Firebase Hosting](https://firebase.google.com/products/hosting).
 
-### Type-Check, Compile and Minify for Production
+### **Live Demo**: 🚀 **[Check it out here!](https://your-project.web.app)**
 
-```sh
-npm run build
-```
+---
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## License
+This project is licensed under the [MIT License](LICENSE).
 
-```sh
-npm run test:unit
-```
-Weight Tracking App
