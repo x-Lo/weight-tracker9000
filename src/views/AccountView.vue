@@ -109,10 +109,9 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  height: 100%;
   padding: 1rem;
   gap: 2rem;
-  border-radius: 12px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
@@ -238,6 +237,29 @@ input[readonly]:focus {
   .grid-item {
     gap: 1rem;
     padding: 1rem;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .grid {
+    height: auto;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .grid-item {
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 35vh;
   }
 }
 </style>

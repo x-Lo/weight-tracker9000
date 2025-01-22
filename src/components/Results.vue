@@ -341,4 +341,17 @@ h2 {
   }
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
+  .grid-item {
+    max-width: 30vh;
+  }
+
+  .results-page h1 {
+    font-size: 2rem;
+  }
+
+  .results-grid .grid-item {
+    max-height: 61vh;
+  }
+}
 </style>

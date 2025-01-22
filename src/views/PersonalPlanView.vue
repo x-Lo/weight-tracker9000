@@ -605,4 +605,30 @@ a {
     margin-top: 1rem;
   }
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
+    .personal-container {
+        padding: 0.5rem;
+    }
+
+    .grid-container {
+        gap: 1rem;
+    }
+
+    .grid-item,
+    .grid-item-h {
+        max-width: 35vh; /* Reduce the width slightly for better fit */
+        padding: 0.8rem; /* Adjust padding */
+    }
+
+    .input-group {
+        max-width: 30vh;
+        gap: 0.5rem;
+    }
+
+    .button {
+        max-width: 30vh;
+        margin-top: 1rem;
+    }
+}
 </style>

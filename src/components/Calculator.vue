@@ -367,4 +367,14 @@ input, select {
     max-width: 70vh;
   }
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .card{
+    max-width: 50vh;
+  }
+}
 </style>

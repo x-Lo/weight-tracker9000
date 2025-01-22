@@ -186,5 +186,11 @@
     gap: 0.5rem;
   }
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
+  .calendar-page {
+    justify-content: space-between;
+  }
+}
 </style>
   
