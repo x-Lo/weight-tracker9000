@@ -104,4 +104,30 @@ span {
   transform: translateY(-3px);
   border: 2px solid #FF8C42;
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media (min-width: 600px) {
+  .welcome-container {
+    padding: 0.5rem;
+    gap: 2rem;
+  }
+
+  h1 {
+    margin-top: 5rem;
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  .buttons-div {
+    gap: 0.5rem;
+  }
+
+  .start-button, .log-button {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9em;
+  }
+}
 </style>

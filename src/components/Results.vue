@@ -269,7 +269,51 @@ h2 {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+  .info-page, .results-grid {
+    flex-direction: column; /* Stack sections on top of each other */
+  }
+  
+  .info-page, .results-grid {
+    width: 100%; /* Ensure both sections are full-width */
+    padding: 1rem; /* Provide internal padding for better spacing */
+    gap: 1rem; /* Reduce spacing for smaller devices */
+  }
+}
+
+@media (min-width: 600px) {
+  .info-page, .results-grid {
+    flex-direction: column; /* Stack left and right sections vertically */
+    width: 100%;
+    align-items: center;
+  }
+
+  .info-page {
+    justify-content: space-between;
+  }
+
+  .info-page h1 {
+    font-size: 2rem;
+  }
+
+  .results-page h1 {
+    font-size: 2rem;
+  }
+
+  .info-page h2 {
+    font-size: 1rem;
+  }
+
+  .info-page h3 {
+    font-size: 0.8rem;
+  }
+
+  .grid-item {
+    width: 70vh;
+  }
+}
+
+@media (min-width: 768px) {
   .info-page, .results-grid {
     flex-direction: column; /* Stack left and right sections vertically */
     flex: 1 0 auto; /* Adjust flex to auto for better stacking */
@@ -295,15 +339,4 @@ h2 {
   }
 }
 
-@media (max-width: 480px) {
-  .info-page, .results-page {
-    flex-direction: column; /* Stack sections on top of each other */
-  }
-  
-  .info-page, .results-grid {
-    width: 100%; /* Ensure both sections are full-width */
-    padding: 1rem; /* Provide internal padding for better spacing */
-    gap: 1rem; /* Reduce spacing for smaller devices */
-  }
-}
 </style>

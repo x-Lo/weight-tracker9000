@@ -203,8 +203,58 @@ h2::after {
   color: #f0f0f0;
 }
 
-@media (max-width: 400px) {
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media (min-width: 600px) {
+  .login-container {
+    padding: 0.5rem;
+  }
 
+  h2 {
+    font-size: 1.2em;
+    margin-bottom: 0.5rem;
+  }
+
+  h2::after {
+    height: 1px;
+  }
+
+  h4 {
+    font-size: 0.9em;
+    margin-bottom: 0.5rem;
+  }
+
+  .login-form {
+    min-width: 25vh;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 15px;
+  }
+
+  .input-group label {
+    font-size: 0.9em;
+  }
+
+  .input-group input {
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    font-size: 0.8em;
+  }
+
+  .button {
+    padding: 0.5rem;
+    font-size: 0.8em;
+    border-radius: 8px;
+  }
+
+  .forgot-password,
+  .signup {
+    font-size: 0.8em;
+    margin: 0.3rem 0;
+  }
+
+  .forgot-password a,
+  .signup a {
+    font-size: 0.8em;
+  }
 }
 </style>
   

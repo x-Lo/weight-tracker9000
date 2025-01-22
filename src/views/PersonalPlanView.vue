@@ -520,7 +520,7 @@ a {
   text-decoration: underline;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .grid-container {
     flex-direction: column; /* Stack sections on top of each other */
     align-items: center;
@@ -551,5 +551,41 @@ a {
     width: 30vh;
     margin-top: 1rem;
   }
+}
+
+@media (min-width: 600px) {  
+    .personal-container {
+        padding: 0.5rem;
+    }
+
+    .grid-container {
+        gap: 1rem;
+    }
+
+    .grid-item,
+    .grid-item-h {
+        width: 45vh; /* Reduce the width slightly for better fit */
+        padding: 0.8rem; /* Adjust padding */
+    }
+
+    .rate-options-grid .grid-item {
+        width: 35vh; /* Make individual rate options smaller */
+    }
+
+    .input-group {
+        gap: 0.8rem; /* Slightly reduce spacing between input and label */
+        margin-bottom: 0.5rem;
+    }
+
+    .macro-section,
+    .calorie-section,
+    .calendar-section {
+        font-size: 0.9em; /* Reduce font size slightly for better scaling */
+    }
+
+    .calories-value,
+    .macro-value {
+        font-size: 1.5em; /* Adjust larger text sizes for smaller widths */
+    }
 }
 </style>

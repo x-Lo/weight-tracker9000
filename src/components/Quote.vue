@@ -65,24 +65,8 @@ onMounted(() => {
   line-height: 0.8;
 }
 
-/* Tablet styles */
-@media (max-width: 768px) {
-  .quote-container {
-    padding: 1rem;
-    height: 100%; /* Allow flexible height for content */
-  }
-
-  .moto h2 {
-    font-size: 3.5rem;
-  }
-
-  .moto h3 {
-    font-size: 3rem;
-  }
-}
-
-/* Mobile styles */
-@media (max-width: 480px) {
+/* Extra small devices (phones, 600px and down) */
+@media (max-width: 600px) {
   .quote-container {
     padding: 1rem; /* Reduce padding for smaller devices */
     height: 100%; /* Flexible height for small screens */
@@ -91,17 +75,51 @@ onMounted(() => {
   .moto {
     position: absolute; /* Position relative to .homepage-left */
     top: 1rem; /* Adjust distance from the top edge */
-    left: 0.5rem; /* Adjust distance from the left edge */
-    font-size: 3em;
+    left: 0.3rem; /* Adjust distance from the left edge */
+    font-size: 2.3rem;
     letter-spacing: 2px;
     line-height: 0.8;
   }
 }
 
-/* Landscape for small devices */
-@media (max-width: 480px) and (orientation: landscape) {
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media (min-width: 600px) {
+  .moto {
+    position: absolute; /* Position relative to .homepage-left */
+    top: 1rem; /* Adjust distance from the top edge */
+    left: 0.5rem; /* Adjust distance from the left edge */
+    font-size: 2rem;
+  } 
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .moto {
+    position: absolute; /* Position relative to .homepage-left */
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    top: 1rem; /* Adjust distance from the top edge */
+    left: 1.5rem; /* Adjust distance from the left edge */
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
   .quote-container {
-    height: 100%; /* Occupy full height in landscape */
+    height: 100%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .moto {
+    position: absolute; /* Position relative to .homepage-left */
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    top: 1rem; /* Adjust distance from the top edge */
+    left: 1rem; /* Adjust distance from the left edge */
   }
 }
 </style>

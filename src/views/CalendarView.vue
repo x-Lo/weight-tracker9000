@@ -50,7 +50,7 @@ import DailyWeight from '@/components/DailyWeight.vue';
     transition: transform 0.7s ease-in-out;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .calendarview-page {
         flex-direction: column-reverse; /* Stack sections with results on top */
         justify-content: flex-start;
@@ -63,6 +63,14 @@ import DailyWeight from '@/components/DailyWeight.vue';
         height: auto;
         padding: 1rem;
         flex: 1 0 auto; /* Adjust flex to auto for better stacking */
+    }
+}
+
+@media (min-width: 600px) {
+    .calendarview-page {
+        flex-direction: column-reverse; /* Stack sections with results on top */
+        justify-content: flex-start;
+        height: auto;
     }
 }
 </style>

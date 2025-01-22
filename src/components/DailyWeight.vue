@@ -196,4 +196,10 @@ h2 {
 .button {
   border-radius: 15px;
 }
+
+@media (min-width: 600px) {
+  .submit-form {
+    width: 70vh;
+  }
+}
 </style>

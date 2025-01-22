@@ -346,13 +346,19 @@ input, select {
 
 
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   h1 {
     font-size: 2em;
   }
 
   .card {
     width: 40vh;
+  }
+}
+
+@media (min-width: 600px) {
+  h1 {
+    font-size: 2rem;
   }
 }
 </style>

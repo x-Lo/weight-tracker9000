@@ -49,16 +49,8 @@
         transition: transform 0.7s ease-in-out;
     }
 
-/* Tablet styles */
-@media (max-width: 768px) {
-  .savePlanView-page {
-    flex-direction: column; /* Stack left and right sections vertically */
-  }
-
-}
-
 /* Mobile styles */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .savePlanView-page {
         flex-direction: column;
     }
@@ -68,5 +60,21 @@
         height: auto;
         padding: 1rem;
     }
+}
+
+@media (min-width: 600px) {
+    .savePlanView-page {
+        flex-direction: column;
+        gap: 30em;
+    }
+
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .savePlanView-page {
+    flex-direction: column; /* Stack left and right sections vertically */
+  }
+
 }
 </style>

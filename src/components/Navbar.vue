@@ -126,14 +126,12 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
   color: #fff;
   text-decoration: none;
   font-size: 1.5rem;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Active link styling */
 .nav-link.active {
   color: #C94079;
   font-size: 1.5rem;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .hamburger {
@@ -165,9 +163,8 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
   -moz-text-fill-color: transparent;
 }
 
-
-/* Mobile styles */
-@media screen and (max-width: 768px) {
+/* Extra small devices (phones, 600px and down) */
+@media (max-width: 600px) {
   .nav-links {
     display: none;
     flex-direction: column;
@@ -182,6 +179,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
   .nav-active {
     display: flex;
+    font-size: 1.5rem;
   }
 
   .nav-link {
@@ -195,6 +193,10 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
     border-radius: 5px;
   }
 
+  .nav-link.active {
+    font-size: 1.5rem;
+  }
+
   .hamburger {
     display: flex;
   }
@@ -206,15 +208,69 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
   .logo {
     font-size: 2em;
   }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    font-size: 2em;
-  }
 
   .navbar {
     height: 7%;
   }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media (min-width: 600px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 2rem;
+    right: 0.5rem;
+    background-color: #191919;
+    border-radius: 20px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-active {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .nav-link:hover {
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  .nav-link.active {
+    font-size: 1.3rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .auth-button {
+    margin-top: 10px;
+  }
+
+  .logo {
+    font-size: 2em;
+  }
+ 
+  .navbar {
+    height: 10%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  
 }
 </style>

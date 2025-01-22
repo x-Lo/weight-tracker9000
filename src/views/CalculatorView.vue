@@ -49,7 +49,8 @@
     transition: transform 0.7s ease-in-out;
 }
 
-@media (max-width: 480px) {
+/* Extra small devices (phones, 600px and down) */
+@media (max-width: 600px) {
   .calculator-page {
     flex-direction: column-reverse; /* Stack sections with results on top */
     justify-content: flex-start;
@@ -63,6 +64,19 @@
     gap: 0.5rem; /* Reduce spacing for smaller devices */
     flex: 1 0 auto; /* Adjust flex to auto for better stacking */
     height: auto;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media (min-width: 600px) {
+  .calculator-page {
+    flex-shrink: 1;
+    height: 90%;
+  }
+
+  .calculator,
+  .results {
+    flex: 1 0 50%;
   }
 }
 </style>
