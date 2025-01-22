@@ -54,6 +54,7 @@
   .calculator-page {
     flex-direction: column-reverse;
     justify-content: flex-start;
+    align-items: center;
     height: auto;
   }
   
@@ -64,6 +65,7 @@
     gap: 0.5rem; 
     flex: 1 0 auto;
     height: auto;
+    align-items: center;
   }
 }
 
@@ -74,6 +76,7 @@
     justify-content: flex-start;
     height: auto;
     width: 100%;
+    align-items: center;
   }
   
   .calculator,
@@ -83,6 +86,7 @@
     gap: 0.5rem;
     width: 100%;
     height: auto;
+    align-items: center;
   }
 }
 

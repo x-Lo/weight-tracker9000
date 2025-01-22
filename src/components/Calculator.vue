@@ -353,6 +353,7 @@ input, select {
 
   .card {
     max-width: 40vh;
+    align-items: center;
   }
 }
 
@@ -363,22 +364,26 @@ input, select {
 
   .card{
     max-width: 100vh;
+    align-items: center;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .card{
     max-width: 70vh;
+    align-items: center;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1279px) {
   h1 {
     font-size: 2rem;
+    
   }
 
   .card{
     max-width: 50vh;
+    align-items: center;
   }
 }
 </style>
