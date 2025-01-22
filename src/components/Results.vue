@@ -279,6 +279,10 @@ h2 {
     padding: 1rem; /* Provide internal padding for better spacing */
     gap: 1rem; /* Reduce spacing for smaller devices */
   }
+
+  .grid-item {
+    max-width: 40vh;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 767px) {
@@ -309,33 +313,31 @@ h2 {
   }
 
   .grid-item {
-    width: 70vh;
+    max-width: 70vh;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .info-page, .results-grid {
-    flex-direction: column; /* Stack left and right sections vertically */
-    flex: 1 0 auto; /* Adjust flex to auto for better stacking */
-    width: 100%;
-    height: auto; /* Allow dynamic height for both sections */
+  .results-grid {
+    flex-direction: row; /* Stack left and right sections vertically */
     align-items: center;
   }
 
-  .info-page h1 {
-    font-size: 1.5rem;
+  .info-page {
+    height: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; /* Centers content horizontally */
+    text-align: center;
+    max-width: 800px; /* Limits content width for readability */
   }
 
-  .info-page h2 {
-    font-size: 1rem;
-  }
-
-  .info-page h3 {
-    font-size: 0.8rem;
+  .info-step {
+    padding: 1rem; /* Adds space around each step for visual clarity */
   }
 
   .grid-item {
-    width: 40vh;
+    max-width: 30vh;
   }
 }
 

@@ -79,4 +79,15 @@
     flex: 1 0 50%;
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .calculator-page {
+    flex-direction: column-reverse; /* Stack sections with results on top */
+  }
+
+  .calculator,
+  .results {
+    flex-shrink: 1;
+  }
+}
 </style>

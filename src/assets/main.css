@@ -212,35 +212,29 @@ label {
 }
 
 
-/* Add responsiveness for small screens */
-@media (max-width: 768px) {
-    body {
-        overflow-y: scroll;
-    }
-
-    .logo {
-        font-size: 2em;
-    }
-}
-
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     body {
         overflow-y: scroll;
         overflow-x: hidden;
     }
+}
 
-    .logo {
-        font-size: 1.5em;
+@media (min-width: 600px) and (max-width: 767px) {
+    body {
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
+}
 
-    .moto {
-        position: absolute; /* Position relative to .homepage-left */
-        top: 1rem; /* Adjust distance from the top edge */
-        left: 0.5rem; /* Adjust distance from the left edge */
-        font-size: 3em;
-        letter-spacing: 2px;
-        line-height: 0.8;
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    body {
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 }
   
-  
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1279px) {
+    
+}

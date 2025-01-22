@@ -527,15 +527,15 @@ a {
   }
   
   .grid-item {
-    width: 40vh;
+    max-width: 40vh;
   }
 
   .grid-item-h {
-    width: 40vh;
+    max-width: 40vh;
   }
 
   .rate-options-grid .grid-item {
-    width: 30vh;
+    max-width: 30vh;
   }
 
   h1 {
@@ -543,12 +543,12 @@ a {
   }
 
   .input-group {
-    width: 30vh;
+    max-width: 30vh;
     gap: 0.5rem;
   }
 
   .button {
-    width: 30vh;
+    max-width: 30vh;
     margin-top: 1rem;
   }
 }
@@ -587,5 +587,22 @@ a {
     .macro-value {
         font-size: 1.5em; /* Adjust larger text sizes for smaller widths */
     }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .grid-container {
+    flex-direction: column; /* Stack sections on top of each other */
+    align-items: center;
+  }
+
+  .input-group {
+    max-width: 50vh;
+    gap: 0.5rem;
+  }
+
+  .button {
+    max-width: 50vh;
+    margin-top: 1rem;
+  }
 }
 </style>
